@@ -30,13 +30,13 @@ mem:
   big_mem_total_gb: 128
   big_mem_cores: 16
   big_mem_per_core_gb: 8
-outputdir: scratch/T_2947rhi23nr_output_assemblyannotation
+outputdir: /scratch/slopez/T_712_2_output
 proteomics:
   filter_N_peptides: 2
   host_proteome: ''
   insert_variants: false
 raws:
-  Metagenomics: '/zfs/omics/projects/phb/bora/test/all_samples/T_712_1/Preprocessing/mg.r1.trimmed.phiX174_filtered.tomato4mp_filtered.fq /zfs/omics/projects/phb/bora/test/all_samples/T_712_1/Preprocessing/mg.r2.trimmed.phiX174_filtered.tomato4mp_filtered.fq /zfs/omics/projects/phb/bora/test/all_samples/T_712_1/Preprocessing/mg.se.trimmed.phiX174_filtered.tomato4mp_filtered.fq'
+  Metagenomics: '/zfs/omics/projects/phb/bora/test/all_samples/T_712_2/Preprocessing/mg.r1.trimmed.phiX174_filtered.tomato4mp_filtered.fq /zfs/omics/projects/phb/bora/test/all_samples/T_712_2/Preprocessing/mg.r2.trimmed.phiX174_filtered.tomato4mp_filtered.fq /zfs/omics/projects/phb/bora/test/all_samples/T_712_2/Preprocessing/mg.se.trimmed.phiX174_filtered.tomato4mp_filtered.fq'
 sample: test
 steps: assembly analysis summary
 summary_steps: stats vis
