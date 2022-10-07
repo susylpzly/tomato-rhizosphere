@@ -1,4 +1,6 @@
 ## CODE AND SCRIPT LINES USEFUL FOR THINGS 
+#To access uva server
+ssh -X 14108550@omics-h0.science.uva.nl 
 
 #TO LOOK AT CURRENT JOBS
 squeue -u 14108550
@@ -23,9 +25,16 @@ ls -ltrh
 conda activate /zfs/omics/projects/metatools/TOOLS/miniconda3/envs/antismash6/ 
     #TO GET HELP FOR ANTISMASH
     > antismash -h (to learn how to run it with flags and everything)
+    antismash mg.assembly.merged.length_filtered.fa --genefinding-gff3 annotation.assembly_filt.gff -c 8 --output-dir 
     #TO CLOSE ANTISMASH 
     > conda deactivate once done using it 
 
 #TO KILL A RUN
 do scancel +number of run to cancel a run
+
+#to filter the assembly output based on length of contig 
+reformat.sh in=mg.assembly.merged.fa out=mg.assembly.merged.length_filtered.fa minlength=10000
+
+#to use python script to filter gff based on annotation file contigs 
+python3 gff_filtering.py T_712_2/annotation.filt.gff T_712_2/mg.assembly.merged.length_filtered.fa T_712_2/annotation.assembly_filt.gff
 
