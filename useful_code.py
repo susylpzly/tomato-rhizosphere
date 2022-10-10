@@ -29,6 +29,9 @@ conda activate /zfs/omics/projects/metatools/TOOLS/miniconda3/envs/antismash6/
     #TO CLOSE ANTISMASH 
     > conda deactivate once done using it 
 
+#code ran for antismash - multiple parameters - took 50 mins 
+antismash mg.assembly.merged.length_filtered.fa --genefinding-gff3 annotation.assembly_filt.gff -c 8 --output-dir antismash_output --smcog-trees --clusterhmmer --cb-subcluster --cb-knownclusters
+
 #TO KILL A RUN
 do scancel +number of run to cancel a run
 
