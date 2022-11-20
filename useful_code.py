@@ -11,6 +11,9 @@ sinfo -o "%n %e %m %a %c %C"
 #TO ENTER A COMPUTATION NODE 
 srun -w omics-cn002 --pty bash
 
+#TO COPY FILES OR DIRECTORIES FROM REMOTE SERVER TO LOCAL 
+scp 14108550@omics-h0.science.uva.nl:/zfs/omics/projects/phb/bora/IMP3/Pfam_output . 
+
 #TO LOOK AT DIRECTORY CONTENTS 
 ls -lh 
 ls -ltrh 

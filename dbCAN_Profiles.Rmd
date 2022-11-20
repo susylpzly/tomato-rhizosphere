@@ -1,0 +1,1091 @@
+---
+title: "Functional_Profiles"
+author: "Susana Lopez Lemarroy"
+date: "2022-10-21"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Functional Profile Analysis of Shotgun Metagenome sequencing dataset, from strigolactone-deficient tomato rhizosphere samples
+- 54 samples.
+- 6 treatment groups: 3 experimental and 3 controls. 
+- 12669 functional groups (PFAM families).
+- data: mapped count reads from aligning sequenced reads back to assembled contigs, from *de novo* assembly. 
+
+
+```{r}
+#PACKAGES
+library(ggplot2)
+library(vegan)
+library(cluster)
+library(compositions)
+library(ape)
+library(robCompositions)
+library(dplyr)
+library(tidyr)
+library(parallel)
+library(ggfortify)
+library(phyloseq)
+library(microbiome)
+```
+
+
+```{r}
+#read the functional profile table 
+df_counts <- read.csv("dbCAN_profile.csv", row.names = 'X')
+
+#change NA values from empty spaces to 0 values
+df_counts[is.na(df_counts)] <- 0
+
+#sort the rows and columns by alphabetical order
+df_counts <- df_counts[order(rownames(df_counts)),order(colnames(df_counts))]
+
+#transform dataframe to make it data sciency format 
+df_datascience <- as.data.frame(t(df_counts))
+```
+
+```{r}
+#make a dataframe with only the sample names and change the column name to Sample 
+df_info <- as.data.frame(colnames(df_counts)) %>% 
+  'colnames<-'(c('Sample'))
+
+#make Treatment column based on the Sample name, which includes the type of treatment 
+df_info <- separate(df_info, Sample, into=c('t','Treatment','sample'), sep='[_]', remove = FALSE) %>% select(c(Sample,Treatment))
+```
+
+*THIS ALSO MADE THE INFO DATAFRAME BUT A BIT MORE COMPLICATED*
+treatments_df <- as.data.frame(colnames(df_counts))
+treatments_df <- treatments_df %>% 
+  mutate(Treatment = case_when(
+    grepl("712", `colnames(df_counts)`, fixed = TRUE) ~ "712",
+    grepl("722", `colnames(df_counts)`, fixed = TRUE) ~ "722",
+    grepl("CCD8", `colnames(df_counts)`, fixed = TRUE) ~ "CCD8",
+    grepl("MMA", `colnames(df_counts)`, fixed = TRUE) ~ "MMA",
+    grepl("GUS", `colnames(df_counts)`, fixed = TRUE) ~ "GUS",
+    grepl("EP", `colnames(df_counts)`, fixed = TRUE) ~ "EP",
+  )) %>%
+  'colnames<-' c("Sample", "Treatment")
+
+
+##ANALYSE FUNCTIONAL PROFILES 
+
+-Filter by treatment type within functional group and then by general functional group 
+
+##FOR GENERAL FILTERING
+
+-for all the treatment types of a functional group's counts 
+-if 70% of the counts are 0s (so 30% in the df_percent), then mark it as FALSE, otherwise mark it as TRUE (aggregate)
+  -if half of the treatment types are TRUE then keep the functional group, else, eliminate it (by adding the name of the functional group to a list, which will then be used to eliminate those columns from the original df)
+  -(maybe do this by counting the number of TRUES from the previous if and if there are 3 or more TRUEs then keep the functional group)
+  
+```{r}
+#FILTERING FUNCTION: removes zero heavy functional groups from dataframe by counting percentage of zeros within treatment groups 
+#and between treatment groups for each functional group 
+#ARGUMENTS
+#x = dataframe 
+#treat_group_factor = treatment groups from info df, as df_info$Treatment
+#per_treat_cutoff = number/percentage of treatment groups that have less than this value of 0s overall 
+#funct_cutoff = 
+filter_fun <- function(x,treat_group_factor,per_treat_cutoff,funct_cutoff){
+  
+#gets the decimal(percentage) of 0 values on functional groups for grouped treatment types. returns a df with grouped treatments
+#on rows and functional groups on columns with percentage as values
+perc0_funct <- aggregate(t(x),
+                          list(treat_group_factor),
+                          function(x) length(which(x==0))/length(x))
+
+#per column (2) in the aggregation of how many 0's there are per functional group (perc0_groups[,-1]), 
+#it counts (length) the number of treatment groups that have less than 30% (or given per_treat_cutoff) 0s 
+#(which(x<0.3) and returns that number divided by the number of groups (length(x)
+perc0_funct_all <- apply(perc0_funct[,-1],
+                          2,
+                          function(x) length(which(x<per_treat_cutoff))/length(x))
+
+#which functional groups have more than a certain amount of treatment groups, with the treatment 0s count cutoff.
+#get the functional groups that have more than the funct_cutoff of the treatment groups with a 0 average below the per_treat_cutoff
+which(perc0_funct_all>funct_cutoff)
+}
+```
+
+
+```{r}
+#for a 0 count cutoff within treatments of 25% and a functional group treatment cutoff of 75% (at least 75% of treatment groups
+#have enough 0s, less than 25%)
+df_few0_funct <- df_counts[filter_fun(df_counts,df_info$Treatment, 0.25, 0.75),]
+unique(df_info$Treatment)
+```
+
+##FOR MAKING PAIRWISE DATAFRAMES WITH ONE TREATMENT VS ONE CONTROL DATAFRAMES 
+
+- if making separate dataframes from zero counts, then match TRUEs from one experimental to one control and keep those functional groups in common (is this too many DFs?) 
+- initialize a df (example: 712_MMA_df)
+- make functional groups to remove list: if both of these treatment types have TRUEs for the previous filter of 30% 0s threshold, then add that functional group to the list (or should a different scheme be used?) 
+
+```{r}
+#Generating specific dataframes for pairs of treatment group comparisons 
+
+#one Treatment with one Control 
+#712-GUS
+df_712_GUS <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(1,5)]]
+df_few0_712_GUS <- df_712_GUS[filter_fun(df_712_GUS,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(1,5)]],0.25, 0.75),]
+df_info_712_GUS <- df_info[df_info$Treatment=='712' | df_info$Treatment=='GUS',]
+
+#712-MMA
+df_712_MMA <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(1,6)]]
+df_few0_712_MMA <- df_712_MMA[filter_fun(df_712_MMA,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(1,6)]],0.25, 0.75),]
+
+#712_EP
+df_712_EP <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(1,4)]]
+df_few0_712_EP <- df_712_EP[filter_fun(df_712_EP,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(1,4)]],0.25, 0.75),]
+
+
+
+#722-GUS
+df_722_GUS <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(2,5)]]
+df_few0_722_GUS <- df_722_GUS[filter_fun(df_722_GUS,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(2,5)]],0.25, 0.75),]
+
+#722-MMA
+df_722_MMA <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(2,6)]]
+df_few0_722_MMA <- df_722_MMA[filter_fun(df_722_MMA,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(2,6)]],0.25, 0.75),]
+
+#722_EP
+df_722_EP <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(2,4)]]
+df_few0_722_EP <- df_722_EP[filter_fun(df_722_EP,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(2,4)]],0.25, 0.75),]
+
+
+
+#CCD8-GUS
+df_CCD8_GUS <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(3,5)]]
+df_few0_CCD8_GUS <- df_CCD8_GUS[filter_fun(df_CCD8_GUS,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(3,5)]],0.25, 0.75),]
+
+#CCD8-MMA
+df_CCD8_MMA <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(3,6)]]
+df_few0_CCD8_MMA <- df_CCD8_MMA[filter_fun(df_CCD8_MMA,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(3,6)]],0.25, 0.75),]
+
+#CCD8_EP
+df_CCD8_EP <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(3,4)]]
+df_few0_CCD8_EP <- df_CCD8_EP[filter_fun(df_CCD8_EP,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(3,4)]],0.25, 0.75),]
+
+
+
+#2 Controls 
+#GUS-MMA 
+df_GUS_MMA <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(5,6)]]
+df_few0_GUS_MMA <- df_GUS_MMA[filter_fun(df_GUS_MMA,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(5,6)]],0.25, 0.75),]
+
+
+#all but EP
+df_all_plant <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(1,2,3,5,6)]]
+df_few0_plant <- df_all_plant[filter_fun(df_all_plant,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(1,2,3,5,6)]],0.25, 0.75),]
+df_info_plant <- df_info[df_info$Treatment!= 'EP',]
+
+```
+
+
+##AFTER FILTERING 0s TRANSFORM DATA FOR STATISTICAL COMPARISONS 
+- transform data differently for each analysis or use the same transformed data for all? chose one that is useful for all or be more exact with application of transformation?
+- sum-normalization: divides each value by total sum of sample 
+- hellinger-transform: samples as rows, divides each value by total of row and takes square root of value 
+- DA-normalization: (deletion anomalies??) ... 
+- CLR before PCA/for PCA 
+- pseudo count the 0s 
+- also to do centering and scaling, scaling is not always recommended for this data since we want to maintain the large values effect on the data analysis and comparison between the samples. 
+
+-> transform the data, using pseudo count for the remaining 0s, then apply a PCA and plot the results to observe clusterings 
+-> with the same transformed data or maybe with the separate smaller DFs perform statistical test 
+
+```{r}
+#norm and transform zero-filtered dataframe with all treatment groups
+
+#Sum normalization 
+df_few0_funct_sum <- decostand(df_few0_funct,method = "total",2)
+
+#Hellinger transform
+df_few0_funct_hellinger <- decostand(df_few0_funct,method = "hellinger",2)
+
+#Small pseudocount of 1/10th of the smallest value bigger than zero, adding it to all values in the df
+#to maintain comparable sizes between the values, then apply center-log ratio transform 
+df_few0_funct_clr <- as.matrix(as.data.frame(t(clr(min(df_few0_funct[df_few0_funct>0])/10+t(df_few0_funct)))))
+
+#presudocount: replacing zero values by 1 
+df_few0_funct_psc <- df_few0_funct
+df_few0_funct_psc[df_few0_funct_psc==0] <- 1
+#then apply CLR to the dataframe 
+gems_few0groups2_clr2 <- as.matrix(as.data.frame(t(clr(t(df_few0_funct_psc)))))
+
+```
+
+```{r}
+#plant treatments transformations and normalizations 
+
+#Sum normalization 
+df_few0_plant_sum <- decostand(df_few0_plant,method = "total",2)
+
+#Hellinger transform
+df_few0_plant_hellinger <- decostand(df_few0_plant,method = "hellinger",2)
+
+#Small pseudocount of 1/10th of the smallest value bigger than zero, adding it to all values in the df
+#to maintain comparable sizes between the values, then apply center-log ratio transform 
+df_few0_plant_clr <- as.matrix(as.data.frame(t(clr(min(df_few0_plant[df_few0_plant>0])/10+t(df_few0_plant)))))
+
+#presudocount: replacing zero values by 1 
+df_few0_plant_psc <- df_few0_plant
+df_few0_plant_psc[df_few0_plant_psc==0] <- 1
+#then apply CLR to the dataframe 
+gems_few0plant2_clr2 <- as.matrix(as.data.frame(t(clr(t(df_few0_plant_psc)))))
+
+```
+
+
+##PCA
+
+```{r}
+###PCA with clr data
+few0_funct_pca_clr <- prcomp(t(df_few0_funct_clr))
+plot(few0_funct_pca_clr$x,
+     col=rainbow(6)[as.numeric(as.factor(df_info$Treatment))],
+     main='PCA of CLR transformed data')
+legend("topright",col=rainbow(6),
+       legend=levels(as.factor(df_info$Treatment)),
+       lty=1,
+       bty="n")
+
+autoplot(few0_funct_pca_clr, data=t(df_few0_funct_clr), colour = rainbow(6)[as.numeric(as.factor(df_info$Treatment))]) 
+
+
+#### PCA with log transformed 0 to 1 pseudocount data
+few0_funct_pca_log <- prcomp(t(log(df_few0_funct_psc)))
+plot(few0_funct_pca_log$x,
+     col=rainbow(6)[as.numeric(as.factor(df_info$Treatment))],
+     main='PCA of log transformed 1-PSC data')
+legend("topright",col=rainbow(6),
+       legend=levels(as.factor(df_info$Treatment)),
+       lty=1,
+       bty="n")
+
+autoplot(few0_funct_pca_log, data=t(df_few0_funct_log), colour = rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
+
+### PCA with hellinger
+few0_funct_pca_hellinger <- prcomp(t(df_few0_funct_hellinger))
+plot(few0_funct_pca_hellinger$x,
+     col=rainbow(6)[as.numeric(as.factor(df_info$Treatment))],
+     main='PCA of log transformed 1-PSC data')
+legend("topright",col=rainbow(6),
+       legend=levels(as.factor(df_info$Treatment)),
+       lty=1,
+       bty="n")
+
+autoplot(few0_funct_pca_hellinger, data=t(df_few0_funct_hellinger), colour = rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
+
+
+### PCA with sum
+few0_funct_pca_sum <- prcomp(t(df_few0_funct_sum))
+plot(few0_funct_pca_sum$x,
+     col=rainbow(6)[as.numeric(as.factor(df_info$Treatment))],
+     main='PCA of log transformed 1-PSC data')
+legend("topright",col=rainbow(6),
+       legend=levels(as.factor(df_info$Treatment)),
+       lty=1,
+       bty="n")
+
+autoplot(few0_funct_pca_sum, data=t(df_few0_funct_sum), colour = rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
+```
+
+```{r}
+#plant treatment groups
+###PCA with clr data
+few0_plant_pca_clr <- prcomp(t(df_few0_plant_clr))
+plot(few0_plant_pca_clr$x,
+     col=rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))],
+     main='PCA of CLR transformed data')
+legend("topright",col=rainbow(6),
+       legend=levels(as.factor(df_info_plant$Treatment)),
+       lty=1,
+       bty="n")
+
+autoplot(few0_plant_pca_clr, data=t(df_few0_plant_clr), colour = rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))]) 
+
+
+#### PCA with log transformed 0 to 1 pseudocount data
+few0_plant_pca_log <- prcomp(t(log(df_few0_plant_psc)))
+plot(few0_plant_pca_log$x,
+     col=rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))],
+     main='PCA of log transformed 1-PSC data')
+legend("topright",col=rainbow(6),
+       legend=levels(as.factor(df_info_plant$Treatment)),
+       lty=1,
+       bty="n")
+
+autoplot(few0_plant_pca_log, data=t(df_few0_plant_psc), colour = rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))])
+
+
+### PCA with hellinger 
+few0_plant_pca_hellinger <- prcomp(t(df_few0_plant_hellinger))
+plot(few0_plant_pca_hellinger$x,
+     col=rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))],
+     main='PCA of log transformed 1-PSC data')
+legend("topright",col=rainbow(6),
+       legend=levels(as.factor(df_info_plant$Treatment)),
+       lty=1,
+       bty="n")
+
+autoplot(few0_plant_pca_hellinger, data=t(df_few0_plant_hellinger), colour = rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))])
+
+
+### PCA with sum 
+few0_plant_pca_sum <- prcomp(t(df_few0_plant_sum))
+plot(few0_plant_pca_sum$x,
+     col=rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))],
+     main='PCA of log transformed 1-PSC data')
+legend("topright",col=rainbow(6),
+       legend=levels(as.factor(df_info_plant$Treatment)),
+       lty=1,
+       bty="n")
+
+autoplot(few0_plant_pca_sum, data=t(df_few0_plant_sum), colour = rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))])
+```
+
+
+```{r}
+#calculate pairwise distances between the samples based on their functional composition. In ecology pairwise distance between samples is referred to as beta-diversity, although typically based on taxonomic composition rather than functional
+funct_dist <- as.matrix(vegdist(t(log(df_few0_funct_psc)), method="bray", binary=FALSE, diag=TRUE, upper=TRUE, na.rm = FALSE))
+```
+
+```{r}
+#bray curtis dissimilarity matrix on log transformed zero-filtered data with 0 to 1 replace pseudocounts
+bc1 <- vegdist(t(df_few0_funct_sum))
+#don't do bray curtis with log data or with data containing negative counts because it does not consider that distance
+euc1 <- vegdist(t(df_few0_funct_hellinger))
+```
+
+#Principal Coordinate Analysis 
+```{r}
+pcoa1 <- pcoa(bc1)
+pcoa_val1 <- 100*c(pcoa1$values[pcoa1$values[,2]>0,2]/sum(pcoa1$values[pcoa1$values[,2]>0,2]))
+plot(pcoa1$vector[,1:2],
+     col=rainbow(6)[as.numeric(as.factor(df_info$Treatment))],
+     axes=F,
+     xlab=paste0("PC1 (",round(pcoa_val1[1],digits = 1),"%)"),
+     ylab=paste0("PC2 (",round(pcoa_val1[2],digits = 1),"%)"))
+legend("topleft",col=rainbow(6),
+       legend=levels(as.factor(df_info$Treatment)),
+       pch=1,
+       bty="n",cex=0.8)
+box()
+#looks the same if applied with the funct_dist matrix 
+```
+
+#ANCOM: Analysis of Composition of Microbiomes - Differential Abundance Testing 
+```{r}
+source("ancom_v2.1_noTidy.R")
+```
+
+```{r}
+#df with features in rows and samples in columns
+#data.frame containing the sample identifier
+#sample ID name
+#the group to compare
+#alpha
+#occurrence rate
+#library size
+#logistic
+prepro <- feature_table_pre_process(feature_table = df_counts[rowSums(df_few0_funct[,df_info$Treatment %in% c("GUS","712")])>0,df_info$Treatment %in% c("GUS","MMA")], 
+                                   meta_data = df_info[df_info$Treatment %in% c("GUS","MMA"),], 
+                                   sample_var = "Sample", 
+                                   group_var = "Treatment", 
+                                   out_cut = 0.05, 
+                                   zero_cut = 0.90, 
+                                   lib_cut = 1000, 
+                                   neg_lb = T)
+```
+
+```{r}
+dim(df_counts) # -> 12669   54
+dim(prepro$feature_table) # -> 10703   54
+#number of 0s that are specific to treatment groups and does not perform further tests on these 
+#not as strict as the previous filtration of zero values, could be because that is taxonomic data and this is more detailed functional group data
+sum(prepro$structure_zeros) # -> 5259     dim -> 10703  6
+```
+
+```{r}
+#which zeros identified in the feature table pre process were kept after zero filtering with the filter_fun function. 
+which(prepro$structure_zeros %in% df_few0_funct)
+#all of the structure zeros resulting from the feature table filtering were also removed from the treatment groups threshold filtering
+```
+
+```{r}
+prepro_differential <- ANCOM(feature_table = prepro$feature_table,
+                      meta_data = prepro$meta_data,
+                      main_var = 'Treatment',
+                      p_adj_method = "BH",
+                      alpha = 0.05,
+                      adj_formula = NULL,
+                      rand_formula = NULL)
+```
+
+```{r}
+prepro_differential
+```
+
+
+```{r}
+#DESeq2
+#df_info_712_GUS <- df_info[df_info$Treatment=='712' | df_info$Treatment=='GUS',]
+library(DESeq2)
+
+dds1_712_GUS <- DESeqDataSetFromMatrix(countData=df_few0_712_GUS,
+                               colData=df_info[df_info$Treatment %in% unique(df_info$Treatment)[c(1,5)],],
+                               design = ~ Treatment)
+dds1_712_GUS <- estimateSizeFactors(dds1_712_GUS)
+
+#for visualization
+DS_712_GUS <- counts(dds1_712_GUS,normalized=T) #DESeq2-normalized data
+DS_712_GUS_Log <- log2(DS_712_GUS+1) 
+boxplot(DS_712_GUS_Log)
+
+
+#differential analysis
+dds1_712_GUS <- DESeq(dds1_712_GUS)
+
+#plot dispersion 
+plotDispEsts(dds1_712_GUS)
+
+#get results
+resultsNames(dds1_712_GUS)
+res_712_GUS <- results(dds1_712_GUS, contrast=c("Treatment","712","GUS")) #these are the names of the two groups
+length(which(res_712_GUS$padj < 0.05 & !is.na(res_712_GUS$padj)))
+
+#visualize
+plotMA(res_712_GUS, alpha=0.05)
+plotCounts(dds1_712_GUS, gene=which.min(res_712_GUS$padj), intgroup="Treatment")
+#for(i in which(res_722_GUS$padj < 0.05 & !is.na(res_712_GUS$padj))) plotCounts(dds1_712_GUS, gene=i, intgroup="Treatment")
+
+
+#After calling plotMA, one can use the function identify to interactively detect the row number of individual genes by clicking on the plot. One can then recover the gene identifiers by saving the resulting indices:
+
+#idx <- identify(res$baseMean, res$log2FoldChange)
+#rownames(res)[idx]
+plotMA(res_722_GUS, alpha=0.05)
+MMA_GUS_sig <- rownames(res_722_GUS)[which(res_722_GUS$padj<0.05)]
+sig_712_GUS <- rownames(res_712_GUS)[which(res_712_GUS$padj<0.05)]
+idx <- identify(res_712_GUS$baseMean, res_712_GUS$log2FoldChange)
+rownames(res_712_GUS)[idx]
+length(which(MMA_GUS_sig %in% sig_712_GUS))
+rownames(res_712_GUS)[which(res_712_GUS$padj<0.05)]
+length(which(res_712_GUS$padj<0.05))
+```
+
+
+
+```{r}
+library(Rtsne)
+set.seed(423542)
+tsne_out <- Rtsne(euc1, perplexity=5)
+
+proj <- tsne_out$Y
+
+rownames(proj) <- rownames(t(df_few0_funct_hellinger))
+
+plot_landscape(proj, size = 1, col=rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
+
+
+```
+
+```{r}
+permanova <- adonis(t(df_few0_funct_clr) ~ Treatment,
+               data = df_info, permutations=99, method = "euclidian")
+
+# P-value
+print(as.data.frame(permanova$aov.tab)["Treatment", "Pr(>F)"])
+
+print(as.data.frame(permanova$aov.tab))
+```
+
+```{r}
+#dispersion of the distance matrix of the dataframe used to apply permanova
+anova(betadisper(euc1, df_info$Treatment))
+#similar spreads - assumptions hold 
+```
+
+```{r}
+df_few0_712_GUS_clr <- as.matrix(as.data.frame(t(clr(min(df_few0_712_GUS[df_few0_712_GUS>0])/10+t(df_few0_712_GUS)))))
+df_info_712_GUS <- df_info[df_info$Treatment=='712' | df_info$Treatment=='GUS',]
+
+permanova_712_GUS <- adonis(t(df_few0_712_GUS_clr) ~ Treatment,
+               data = df_info_712_GUS, permutations=99, method = "euclidian")
+
+# P-value
+#print(as.data.frame(permanova_712_GUS$aov.tab)["Treatment", "Pr(>F)"])
+
+print(as.data.frame(permanova_712_GUS$aov.tab))
+```
+
+```{r}
+#df_new <- pivot_longer(df,names_to="treatment",values_to="counts", -X )
+
+#split based on sample name pattern, keeping all but the T from the sample name, into 2 new columns with the specified names
+#df_new <- separate(df_new, treatment, into=c('t','treatment','sample'), sep='[_]') %>% select(!t)
+df_few0_712_GUS_clr <- setDT(as.data.frame(df_few0_712_GUS_clr), keep.rownames = "X")
+#colnames(df_few0_712_GUS_clr)[0] <- 'X'
+df_712_GUS_long <- pivot_longer(df_few0_712_GUS_clr,names_to="Sample",values_to="Counts", -X)
+
+#split based on sample name pattern, keeping all but the T from the sample name, into 2 new columns with the specified names
+df_712_GUS_long <- separate(df_712_GUS_long, Sample, into=c('t','Treatment','Sample'), sep='[_]') %>% select(!t)
+
+#anova
+model <- lm(X~Treatment, df_712_GUS_long)
+#making this model is not useful because i was trying to model what the data is actually doing. an effect on the functional groups between the treatments. maybe stick to doing the functional groups individually between the treatments or doing the ancom which automatically considers all of the functional groups as features between the treatments. 
+```
+
+
+compare the controls with each other to observe transformation effect on the plant, just in general, is this a validation of controls? 
+compare each experimental line with the each control
+- perform statistical tests between the treatment groups and controls to determine the functional groups with low p values (graphical representation of the functional group counts between the compared groups -> )
+-should be making linear or non-linear models for the relation between the groups to observe coefficients? what is the purpose of these? should they be used to observe residuals?? 
+-
+
+graphical outputs
+GENERAL COMPARISON - functional composition 
+-data presentation: boxplot figure with number of functional groups found in each treatment group and how they compared between the groups.
+-PCA of samples with colors for treatments for validation (on the raw and transformed data to compare the explained variation and observe the effect of outliers)
+-show residuals? and how to interpret
+-peak profile with a control on background showing the average normal counts found, and then the average found for each of the treatment types for those functional groups that were significantly different, maybe include some confidence interval bars to show the difference of counts graphically (this can be done with filtering of the functional groups that were found to be significantly different by evaluating the pvalue) 
+
+PAIRWISE COMPARISON
+-heatmap? comparing between 2 types of treatments at a time (so 3, and then a 4th comparing all 3 experimental treatments to the base control) making a 4 heatmap figure to also compare between each other
+
+
+```{r}
+par(mfrow=c(2,2))
+
+#total mapped reads per sample - depth 
+col_counts <- as.data.frame(colSums(df_counts))
+colnames(col_counts) <- c("Total_mapped_Reads")
+#Plot of total mapped counts per sample 
+plot(col_counts$`Total_mapped_Reads`, ylab = 'Total Mapped Reads', xlab = 'Sample', xlim = c(0,55), ylim = c(25000000,40000000), col =rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
+
+plot(colSums(df_few0_funct_clr), main= "CLR", col=rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
+
+plot(colSums(df_few0_funct_sum), main ="SUM", col=rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
+
+plot(colSums(df_few0_funct_hellinger), main="hellinger", col=rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
+```
+
+```{r}
+par(mfrow=c(2,2))
+#COUNTS PER SAMPLE
+#distribution of total mapped counts per sample, showing that most of the samples have a total count at 35,000,000
+hist(col_counts[,1],xlab="Total Counts per Sample",main="Histogram of Total Mapped Counts Distribution",las=1)
+hist(colSums(df_few0_funct_clr),xlab="Total Counts per Sample",main="Histogram of CLR Mapped Counts Distribution",las=1)
+hist(colSums(df_few0_funct_sum),xlab="Total Counts per Sample",main="Histogram of SUM Mapped Counts Distribution",las=1)
+hist(colSums(df_few0_funct_hellinger),xlab="Total Counts per Sample",main="Histogram of Hellinger Mapped Counts Distribution",las=1)
+
+```
+
+
+```{r}
+#ggplot(df_counts) +  
+  #geom_boxplot(aes(x=T_712_11))
+par(mfrow=c(2,2))
+
+#Plot of distribution of counts for all functional profiles, per sample. Showing basically only the outliers since the data is heavily skewed
+boxplot(df_counts, col = rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
+#
+boxplot(df_few0_funct_clr, col = rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
+
+boxplot(df_few0_funct_sum, col = rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
+
+boxplot(df_few0_funct_hellinger, col = rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
+
+```
+
+```{r}
+#pseudo count replace 0 values for 1 
+df_counts_1 <- replace(df_counts, df_counts==0, 1)
+#plot the distribution of all mapped counts per sample on a logarithmic scale
+boxplot(log(df_counts_1), col = c("royalblue1","tomato1","firebrick4","yellow","purple","green")[as.numeric(as.factor(treatments_df$Treatment))])
+
+#sample 31, which is T_CCD8_8 has a different boxplot compared to the rest 
+```
+
+
+Perform a rarefaction analysis.
+
+```{r}
+rarecurve(as.data.frame(t(df_counts)), step=1000000, label = FALSE, ylim= c(7000,10000), xlim = c(5000000, 40000000), cex=0.6,
+#quickRareCurve(as.data.frame(t(df_counts)), max.cores = F, nCores = 6)
+          col = c("royalblue1","tomato1","firebrick4","yellow","purple","green")[as.numeric(as.factor(treatments_df$Treatment))])
+abline(v=min(colSums(df_counts)),lty=3)
+legend("bottomright",col=c("royalblue1","tomato1","firebrick4","yellow","purple","green"),
+       legend=levels(as.factor(treatments_df$Treatment)),
+       lty=1,
+       bty="n")
+```
+
+```{r}
+#get row index of functional group based on name
+row_index <- grep("EutC", rownames(df_counts))
+row_index
+#get count value based on row index for a specific sample 
+df_counts$T_MMA_3[[row_index]]
+#there are multiple KOs with the rRNA name in them. 4 to be exact - error in rRNA
+#was counting the rRNA mapped counts in case normalization based to rRNA counts was a good idea. found the other annotated file for rRNAs, don't know if that is more useful 
+```
+
+
+```{r}
+#count number of 0s per column
+colSums(df_counts==0)
+#per 12669 rows per sample, so that is about 30% of the sample counts being 0 value 
+```
+
+
+```{r}
+#length of list of functional groups that have 0 value counts, divided by the total number of functional groups, multiplied by the number of samples -> approximate percentage of values in the dataset that are 0s 
+length(which(df_counts==0))/(nrow(df_counts) * ncol(df_counts))
+```
+
+**Estimated species per sample, difference in richness -> alpha diversity for each treatment group**
+
+```{r}
+#length of a list of functional groups that have counts larger than 0
+richness_1_noNorm <- as.data.frame(apply(df_counts,
+                           2,
+                           function(x) length(which(x>0))))
+
+summary(richness_1_noNorm)
+colnames(richness_1_noNorm) <- 'Richness'
+richness_1_noNorm$Treatment <- df_info$Treatment
+
+#perform an anova for the functional groups richness in each treatment group 
+richness_anova <- aov(Richness ~ Treatment, data=richness_1_noNorm)
+summary(richness_anova)
+
+#Tukey Honest Significant Differences 
+#diff: difference between means of the two groups
+#lwr, upr: the lower and the upper end point of the confidence interval at 95% (default)
+#p adj: p-value after adjustment for the multiple comparisons.
+TukeyHSD(richness_anova)
+
+ggplot(richness_1_noNorm, aes(Treatment, Richness)) + 
+  geom_boxplot(aes(fill = factor(Treatment)), show.legend = FALSE)
+
+#residuals versus fits plot - can be used to check the homogeneity of variances
+plot(richness_anova, 1)
+#no evident relationships between residuals and fitted values (the mean of each groups) ->  we can assume the homogeneity of variances
+#
+
+#Normality plot of residuals - the quantiles of the residuals are plotted against the quantiles of the normal distribution. A 45-degree reference line is also plotted
+#used to check the assumption that the residuals are normally distributed. It should approximately follow a straight line.
+plot(richness_anova, 2)
+
+#plot for each treatment 
+boxplot(richness_1_noNorm ~ df_info$Treatment,
+        ylab="Number of Observed Families",
+        xlab="Tomato Lines",
+        border=c("royalblue1","tomato1","firebrick4"),
+        las=1)
+```
+We can observe that even though samples from the 712 group have the lowest mapped read counts the number of functional groups/families are not affected as they seem to be quite well distributed compared to the other types of samples. The EmptyPot group has the highest number of functional groups mapped, which is expected and good confirmation of the data. 
+
+In how many samples are the functional groups observed?
+
+```{r}
+#maybe, completeness of dataset
+hist(apply(df_counts,
+           1,
+           function(x) 100*length(which(x>0))/length(x)),
+     xlab="% samples with species",main="",las=1,breaks=20)
+```
+
+```{r}
+#get the index of the functional group with the max value count for the first sample
+maxx <- which.max(df_counts[,1])
+#what is the value count and the name of the functional group for the first sample
+cat(df_counts[maxx,1], rownames(df_counts[maxx,]))
+#get the index of the functional group with the max calue for each of the samples
+apply(df_counts,2,which.max)
+```
+
+All the samples have the same family as their highest mapped read count, which is: 
+
+```{r}
+#get the max value functional group for all the samples
+#print the name of the functional groups 
+#print the value 
+for (i in 1:ncol(df_counts))
+{
+  maxx <- which.max(df_counts[,i])
+  #print(df_counts[[maxx]])
+  print(names(df_counts)[i])
+  cat(colnames(df_counts[,i]), df_counts[maxx,i], rownames(df_counts[maxx,]), "\n")
+}
+#ABC_tran
+```
+
+
+```{r}
+#plot distribution of 2 samples 
+plot(df_counts[,"T_722_9"], col = 'yellow')
+points(df_counts[,"T_GUS_18"], col = 'orange')
+points(df_counts[,"T_CCD8_10"], col = 'red')
+points(df_counts[,"T_712_2"], col='blue')
+points(df_counts[,"T_MMA_1"], col = 'purple')
+points(df_counts[,"T_EP_1"], col = 'green')
+#clearly skewed as shown in the boxplot 
+
+#pairwise plot between 2 samples
+#plot(df_counts[,1], df_counts[,30], col = 'red')
+
+#plot(df_counts, col = c("royalblue1","tomato1","firebrick4","yellow","purple","green")[as.numeric(as.factor(treatments_df$Treatment))])
+
+#plot(df_datascience)
+
+#ggplot() +
+#  geom_point(df_datascience)
+```
+
+```{r}
+#d <- density(df_counts$T_MMA_12) 
+#plot(d)
+barplot(df_counts$T_MMA_12, col = 'red')
+
+#another way to observe the distribution of a single sample - skewed 
+```
+
+## FILTERING
+
+
+```{r}
+#a dataframe with the count of 0 values each functional group has
+zero_df <- as.data.frame(rowSums(df_counts == 0))
+#exclude functional groups that don't have any 0s, so they have a zero value in this df because all samples have a count for that functional groups, 
+length(which(zero_df!=0))
+#plot distribution of zeros in the rows shows that there is a large amount of funct families that have a low amount of 0s 
+hist(zero_df[,1], xlab='# of Samples', main="Histogram of zero distribution in dataset")
+```
+
+
+```{r}
+#sets functional groups columns as X
+df = read.csv("Pfam_profile.csv")
+
+#gather specific original columns to new columns except the X where the functional groups are, names_to contains original column names, values_to will contain entries from the original columns  
+df_new <- pivot_longer(df,names_to="treatment",values_to="counts", -X )
+
+#split based on sample name pattern, keeping all but the T from the sample name, into 2 new columns with the specified names
+df_new <- separate(df_new, treatment, into=c('t','treatment','sample'), sep='[_]') %>% select(!t)
+#replace pseudo count zeros to 1
+df_new$counts[df_new$counts == 0] <- 1
+#boxplot with mapped counts plotted as a function of treatment. 
+boxplot(counts~treatment, data=df_new, col='grey')
+
+#boxplot with logarith of mapped counts plotted as a function of treatment. previous 0 values are not included as the log function cannot be applied to them
+boxplot(log(counts)~treatment, data=df_new, col='grey')
+
+```
+
+**summarize the NA counts per treatment type, by counting the values for each functional group**
+df_na1 <- df_new %>% filter(is.na(counts)) %>% group_by(treatment)  %>% count(X)
+
+df_na <- df_new %>% filter(is.na(counts)) %>% group_by(treatment)  %>% count(X) %>%
+  pivot_wider(names_from = X, values_from = n)
+
+df_na <- df_na %>% remove_rownames %>% column_to_rownames(var="treatment")
+df_na[is.na(df_na)] <- 0
+
+df_percent <- t(sapply(1:nrow(df_na), function(x) (df_na[x, ]/max(df_na[x, ]))*100 ))
+rownames(df_percent) <- c("712",  "722",  "CCD8", "EP",   "GUS",  "MMA")
+
+####
+rownames(df_na)
+
+
+```{r}
+funct_dist
+#visualize the distance matrix as a heatmap 
+image(funct_dist)
+
+heatmap(funct_dist, Colv = NA, Rowv = NA)
+```
+
+```{r}
+heatmap(t(df_counts))
+```
+
+
+```{r}
+data <- as.matrix(df_counts)
+heatmap(data)
+
+#scaling on row and column bases, column most useful since we need to capture variation between columns
+heatmap(data, scale = 'row')
+#scaling by column doesn't do anything
+
+heatmap(data, scale = 'column')
+#scaling by column doesn't show anything, don't know why
+
+#heatmap() reorders both variables and observations using a clustering algorithm: it computes the distance between each pair of rows and columns and try to order them by similarity.
+
+#cluster <- agnes(df_counts$T_MMA_12, diss = TRUE, method = "average")
+#plot(cluster, which.plots = 2, hang = -1, label = sample, main = "", axes = FALSE, xlab = "", ylab = "", sub = "")
+#heatmap(df_counts$T_MMA_12, scale = "none")
+```
+
+
+```{r}
+heatmap(data, Colv = NA)
+```
+
+
+## Normalization 
+- different genes and genomes come in different sizes, which means that at equal coverage, the number of mapped reads to a certain gene or region will be directly dependent on the length of that region (the latter scenario is not a huge issue for Pfam families)
+- the interesting changes in bacterial composition might be drowned by genetic material from the host plant. That will then have a huge impact on the gene abundances of the bacteria, even if those abundances are actually the same. The same applies to complex microbial communities with both bacteria, single-cell eukaryotes and viruses. In such cases, it might be better to consider a normalization to the number of bacteria in the sample (or eukaryotes if that is what you want to study). One way of doing that is to count the number of reads mapping to the 16S rRNA gene in each sample. You can then divide each gene count with the number of 16S rRNA counts, to yield a genes per 16S proportion: (counts of gene X / counts of 16S rRNA gene)
+
+### Counts/rates per million 
+Every sample has a different number of total counts: it will influence the counts for a specific gene.
+
+We are interested in the rate/ percentage of counts for a given gene –> what is the sequence depth of each of the samples (total counts):
+```{r}
+totalcounts <- colSums(df_counts)
+totalcounts
+```
+
+If we want to be able to compare the sample counts, we should calculate the observed rates (NORMALIZATION OF TOTAL COUNTS FOR EACH TREATMENT)
+
+We calculate the observed rates per million total counts to obtain readable numbers:
+```{r}
+# sweep: divide values of df counts (million), by the totalcounts of each column
+ratespermillion <- as.data.frame(sweep(10^6*df_counts,2,totalcounts,FUN="/"))
+head(ratespermillion)
+tail(ratespermillion)
+```
+
+```{r}
+barplot(ratespermillion$T_MMA_12)
+```
+
+
+```{r}
+#count zeros
+colSums(ratespermillion==0)
+#all the zeros are still there 
+```
+
+### VARIANCE STABILIZATION TRANSFORM ATTEMPT 
+
+```{r}
+# creating the vectors with the names of the treatments with 
+# all their samples --> "to be able to call them after in group"
+
+#distinguish between the types of samples in the columns, as the means and and standard deviations will be calculated per group 
+# 2nd element is a vector with the values that will follow the text, in this case the specific number of the samples
+
+T_712.names <- paste('T_712', c(2,4,6,7,8,9,11,13,14,16,18), sep = '_')
+T_722.names <- paste('T_722', c(1,5,6,9,12,13,14,15,16,17), sep = '_')
+T_CCD8.names <- paste('T_CCD8', c(1,3,5,7,8,9,10,13,14,15,16), sep = '_')
+#vector control (no gene silencing)
+T_GUS.names <- paste('T_GUS', c(10,12,13,16,18,20,21,23,25,26), sep = '_')
+#transformation control (no vector)
+T_MMA.names <- paste('T_MMA', c(1,3,4,5,6,11,12,13), sep = '_') 
+#no plant 
+T_EP.names <- paste('T_EP', c(1,2,3,4), sep = '_') 
+
+```
+
+```{r}
+treatment.names <- c(T_712.names, T_722.names, T_CCD8.names) 
+#strsplit(c(T_712.names, T_722.names, T_CCD8.names), " ") <- use to make a list 
+#controls is not really useful since they serve different comparative purposes in the analysis against the treatment samples 
+controls.names <- c(T_GUS.names, T_MMA.names, T_EP.names)
+```
+
+```{r}
+treatment.mean <- apply(ratespermillion[treatment.names], 1, mean)
+control.mean <- apply(ratespermillion[controls.names], 1, mean)
+
+treatment.sd <- apply(ratespermillion[treatment.names], 1, sd)
+control.sd <- apply(ratespermillion[controls.names], 1, sd)
+
+
+```
+
+
+calculate the average rates of the groups of samples, as well as the standard deviation of the average rates. Meaning we are calculating the mean, sd for each gene and for each treatment: calculating it among the samples/replicates that we have for each treatment.
+```{r}
+# mean is the function applied for each row: 
+# going to have a mean for each KO for the T_712 treatment
+# "unifying all the samples" related to a KO with one of treatments' replicates 
+T_712.mean <- apply(ratespermillion[T_712.names], 1, mean)
+T_712.sd = apply(ratespermillion[T_712.names], 1, sd)
+
+T_722.mean <- apply(ratespermillion[T_722.names], 1, mean) 
+T_722.sd = apply(ratespermillion[T_722.names], 1, sd)
+
+T_CCD8.mean <- apply(ratespermillion[T_CCD8.names], 1, mean) 
+T_CCD8.sd = apply(ratespermillion[T_CCD8.names], 1, sd)
+
+T_GUS.mean <- apply(ratespermillion[T_GUS.names], 1, mean) 
+T_GUS.sd = apply(ratespermillion[T_GUS.names], 1, sd)
+
+T_MMA.mean <- apply(ratespermillion[T_MMA.names], 1, mean) 
+T_MMA.sd = apply(ratespermillion[T_MMA.names], 1, sd)
+```
+
+Plot the results in a double log scale (in many experimental data sets the sd is proportional to a power of the mean) \(log(sd)= log(10^6 / A) + b*log ( \text{observed mean rate})\):
+
+```{r}
+# Plot results for T_712 samples in blue 
+plot(T_712.mean, T_712.sd, log = 'xy', pch = 20, cex=.5, col='blue', xlab = 'Mean Rate', ylab = 'Stand dev') 
+
+# Plot and the T_722 samples in red 
+points(T_722.mean, T_722.sd, pch=20, cex=0.5, col='red') 
+
+# Plot and the T_CCD8 samples in pink 
+points(T_CCD8.mean, T_CCD8.sd, pch=20, cex=0.5, col='pink') 
+
+# Plot and the T_GUS samples in yellow 
+points(T_GUS.mean, T_GUS.sd, pch=20, cex=0.5, col='yellow') 
+
+# Plot and the T_MMA samples in orange
+points(T_MMA.mean, T_MMA.sd, pch=20, cex=0.5, col='orange') 
+
+title('Standard deviation vs mean rate') 
+```
+
+We can see that the mean and sd are correlated. Therefore the variance is not independent from the mean samples, meaning theere’s no homoscedasticity between samples.
+
+```{r}
+#indexthing <- grep("Inf", T_712.mean)
+#T_712.mean[[indexthing]]
+indx <- apply(as.data.frame(T_712.mean), 2, function(x) any(is.na(x) | is.infinite(x)))
+#indx prints FALSE 
+T_712_df <- as.data.frame(T_712.mean)
+T_712_df$T_712.sd <- T_712.sd
+T_712_df
+#which(T_712.mean=='Inf')
+T_722_df <- as.data.frame(T_722.mean)
+T_722_df$T_722.sd <- T_722.sd
+
+T_CCD8_df <- as.data.frame(T_CCD8.mean)
+T_CCD8_df$T_CCD8.sd <- T_CCD8.sd
+
+T_GUS_df <- as.data.frame(T_GUS.mean)
+T_GUS_df$T_GUS.sd <- T_GUS.sd
+
+T_MMA_df <- as.data.frame(T_MMA.mean)
+T_MMA_df$T_MMA.sd <- T_MMA.sd
+```
+
+```{r}
+#check if Inf values in df and change to NA
+T_712_df[is.na(T_712_df) | T_712_df=='Inf'] = NA
+#check if NAs in df
+T_712_df[rowSums(is.na(T_712_df))>0,]
+#check number of 0s in dataframe 
+colSums(T_712_df==0)
+```
+
+```{r}
+#change zero values to 1 to avoid taking logs of 0 and getting an Inf or undefined value for model fitting
+T_712_logt <- replace(T_712_df, T_712_df==0, 1)
+#check how many are NAs
+T_712_logt[rowSums(is.na(T_712_logt))>0,]
+#log transform data
+T_712_logt <- log(as.data.frame((T_712_logt)))
+colSums(T_712_logt)
+#log transform MEAN AND STANDARD DEVIATION TO FIT A STRAIGHT LINE THROUGH THE LOG-TRANSFORMED DATA, TO THEN EXTRACT THE SLOPE - FOR EACH TREATMENT GROUP AGAINST A CONTROL - USED TO TRANSFORM THE DATA AROUND THE VARIANCE SO THAT DATA IS STABLE (THE RATES PER MILLION DATA) USING THE FITTED COEFFICIENT (MEAN VALUE) THEN TAKE THE MEAN AND SD AGAIN FROM THE TRANSFORMED VALUES AND PLOT TO SHOW HOMOSCEDASTICITY 
+#T_712_logt[is.na(T_712_logt) | T_712_logt=='Inf'] = NA
+#check that the number of zeros after transformation is the same as in the original dataset 
+colSums(T_712_logt==0)
+```
+
+```{r}
+#apply to all other dfs
+T_722_logt <- log(as.data.frame(replace(T_722_df, T_722_df==0, 1)))
+T_CCD8_logt <- log(as.data.frame(replace(T_CCD8_df, T_CCD8_df==0, 1)))
+T_GUS_logt <- log(as.data.frame(replace(T_GUS_df, T_GUS_df==0, 1)))
+T_MMA_logt <- log(as.data.frame(replace(T_MMA_df, T_MMA_df==0, 1)))
+```
+
+
+```{r}
+#all.fit = lm(sd~mean, data.frame(mean=log(c(T_712.mean, T_722.mean, T_CCD8.mean, T_GUS.mean, T_MMA.mean)), sd=log(c(T_712.sd, T_722.sd, T_CCD8.sd, T_GUS.sd, T_MMA.sd)))) 
+
+#THIS IS WRONG BC IT'S NOT FITTING AGAINST A CONTROL GROUP 
+#model fit to original data as well as log transformed
+all.fit <- lm(T_712.sd~T_712.mean, T_712_df)
+all.fitlog <- lm(T_712.sd~T_712.mean, T_712_logt)
+
+coef(all.fit)
+coef(all.fitlog) 
+```
+
+Log transformed data slope is larger than 0.5 -> NB distribution 
+
+```{r}
+#try to fit all types of samples together - DID NOT WORK
+#fit.all <- lm(T_*.sd~T_*.*mean, data.frame(mean=c(T_712_logt$T_712.mean, T_722_logt$T_722.mean, T_CCD8_logt$T_CCD8.mean, T_GUS_logt$T_GUS.mean, T_MMA_logt$T_MMA.mean), sd=c(T_712_logt$T_712.sd, T_722_logt$T_722.sd, T_CCD8_logt$T_CCD8.sd, T_GUS_logt$T_GUS.sd, T_MMA_logt$T_MMA.sd)))
+```
+
+### SUM NORMALIZATION
+
+```{r}
+#SUM NORMALIZATION 
+sum_norm_counts <- as.data.frame(sweep(df_counts,2,totalcounts,FUN="/"))
+barplot(sum_norm_counts$T_MMA_12)
+sum_norm_counts
+```
+
+
+### HELLINGER TRANSFORM 
+
+
+
+### CLR FOR PCA - CENTERED LOG-RATIO TRANFORMATION - PCA
+
+```{r}
+#data exploration for PCA
+mappability <- as.matrix(df_counts)
+#matplot(1:11,mappability, type="l", lwd=1)
+#df_counts[is.na(df_counts) | df_counts=='Inf'] = NA
+#df_counts[rowSums(is.na(df_counts))>0,]
+df_counts_1 <- replace(df_counts, df_counts==0, 1)
+
+log_data_1 <- log(df_counts_1)
+log_data <- log(df_counts)
+sqrt_data <- sqrt(df_counts)
+par(mfrow=c(1,4))
+
+
+hist(df_counts[,1])
+hist(log_data[,1])
+hist(log_data_1[,1])
+hist(sqrt_data[,1])
+
+```
+
+```{r}
+#par(mfrow=c(1,4))
+boxplot(df_counts)
+#boxplot(log_data)
+#boxplot(log_data_1)
+#boxplot(sqrt_data)
+```
+
+```{r}
+#clr on data
+clr_data <- as.data.frame(clr(df_counts))
+typeof(clr_data)
+tail(clr_data)
+
+```
+
+```{r}
+boxplot(clr_data)
+```
+
