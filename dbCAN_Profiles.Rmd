@@ -346,7 +346,7 @@ legend("topright",col=rainbow(6),
        lty=1,
        bty="n")
 
-autoplot(few0_plant_pca_sum, data=t(df_few0_plant_sum), colour = rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))])
+autoplot(few0_plant_pca_sum, data=t(df_few0_plant_sum), colour = rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))], label = TRUE)
 ```
 
 

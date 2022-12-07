@@ -1,3 +1,5 @@
+#Script to build the Functional Profiles from directory of tsv files of database annotation
+#to include all the functions together into a matrix with the mapped count reads for each function observed 
 #import libraries
 import glob 
 import pandas as pd 
@@ -5,17 +7,22 @@ import re
 import numpy as np
 import sys 
 
-#list of files from directory folder 
-#The glob module finds all the pathnames matching a specified pattern
+
+
+
+#take the input argument - directory path to where all the files to read are 
 input_path = sys.argv[1]
-#output_file = sys.argv[2]
 
-
+#The glob module finds all the pathnames matching a specified pattern
+#list of files from directory folder 
 filenames = glob.glob(input_path + "/T*.tsv") 
 
 file_list = []
+#for each file(by calling the name) in the list of file names
 for file in filenames:
+    #get the portion of the file name which is unique - sample name
     name = re.search('output/(.+?).tsv', file)
+    #
     if name:
         column_name = name.group(1)
     sample_df = pd.read_table(file, sep='\t', skiprows = 1, index_col='Geneid', usecols=['Geneid','Assembly/mg.reads.sorted.bam'], header = 0)

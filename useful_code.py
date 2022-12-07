@@ -28,8 +28,9 @@ ls -ltrh
 conda activate /zfs/omics/projects/metatools/TOOLS/miniconda3/envs/antismash6/ 
     #TO GET HELP FOR ANTISMASH
     > antismash -h (to learn how to run it with flags and everything)
-    antismash mg.assembly.merged.length_filtered.fa --genefinding-gff3 annotation.assembly_filt.gff -c 8 --output-dir 
+    antismash mg.assembly.merged.length_filtered.fa --genefinding-gff3 annotation.assembly_filt.gff -c 8 --output-dir t
     #TO CLOSE ANTISMASH 
+    antismash mg.assembly.merged.fa --genefinding-gff3 annotation.filt.gff -c 8 --allow-long-headers --minlength 10000 --asf --clusterhmmer --cb-knownclusters --rre --cb-subcluster
     > conda deactivate once done using it 
 
 #code ran for antismash - multiple parameters - took 50 mins 
