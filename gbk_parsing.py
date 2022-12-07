@@ -2,9 +2,6 @@
 
 #import libraries 
 import glob 
-import pandas as pd 
-import re 
-import numpy as np
 import sys 
 from Bio import SeqIO
 
@@ -91,6 +88,12 @@ with open(r'./mg.Pfam.counts.gff', 'w') as Pfam_out:
         if line.__contains__('PFAM_domain'):
             Pfam_out.write(line + '\n')
 
+with open(r'./mg.aSDomain.counts.gff', 'w') as aSDomain_out:
+    for line in file_list:
+        if line.__contains__(' aSDomain	'):
+            aSDomain_out.write(line + '\n')
+
 out.close()
 CDS_out.close()
 Pfam_out.close() 
+aSDomain_out.close()
