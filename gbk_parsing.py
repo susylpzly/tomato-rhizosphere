@@ -38,20 +38,20 @@ def make_lines(file_path):
         if genome_record.features[i].qualifiers.__contains__('phase'):
             #check if annotation is from a 'tool' a 'aStool' or a 'source' to include in the second column 
             if genome_record.features[i].qualifiers.__contains__('tool'):
-                string = str(genome_record.description) + '\t' + str(genome_record.features[i].qualifiers['tool'][0]) + ' ' + str(genome_record.features[i].type) + '\t' + str(genome_record.features[i].location.start) + '\t' + str(genome_record.features[i].location.end) + '\t' + '.' + '\t' + str(genome_record.features[i].location)[-2] + '\t' + str(genome_record.features[i].qualifiers['phase'][0]) + '\t'
+                string = str(genome_record.description) + '\t' + str(genome_record.features[i].qualifiers['tool'][0]) + '\t' + str(genome_record.features[i].type) + '\t' + str(genome_record.features[i].location.start + 1) + '\t' + str(genome_record.features[i].location.end + 1) + '\t' + '.' + '\t' + str(genome_record.features[i].location)[-2] + '\t' + str(genome_record.features[i].qualifiers['phase'][0]) + '\t'
             else:
                 if genome_record.features[i].qualifiers.__contains__('aStool'):
-                    string = str(genome_record.description) + '\t' + str(genome_record.features[i].qualifiers['aStool'][0]) + ' ' + str(genome_record.features[i].type) + '\t' + str(genome_record.features[i].location.start) + '\t' + str(genome_record.features[i].location.end) + '\t' + '.' + '\t' + str(genome_record.features[i].location)[-2] + '\t' + str(genome_record.features[i].qualifiers['phase'][0]) + '\t'
+                    string = str(genome_record.description) + '\t' + str(genome_record.features[i].qualifiers['aStool'][0]) + '\t' + str(genome_record.features[i].type) + '\t' + str(genome_record.features[i].location.start + 1) + '\t' + str(genome_record.features[i].location.end + 1) + '\t' + '.' + '\t' + str(genome_record.features[i].location)[-2] + '\t' + str(genome_record.features[i].qualifiers['phase'][0]) + '\t'
                 else:
-                    string = str(genome_record.description) + '\t' + str(genome_record.features[i].qualifiers['source'][0]) + ' ' + str(genome_record.features[i].type) + '\t' + str(genome_record.features[i].location.start) + '\t' + str(genome_record.features[i].location.end) + '\t' + '.' + '\t' + str(genome_record.features[i].location)[-2] + '\t' + str(genome_record.features[i].qualifiers['phase'][0]) + '\t'
+                    string = str(genome_record.description) + '\t' + str(genome_record.features[i].qualifiers['source'][0]) + '\t' + str(genome_record.features[i].type) + '\t' + str(genome_record.features[i].location.start + 1) + '\t' + str(genome_record.features[i].location.end + 1) + '\t' + '.' + '\t' + str(genome_record.features[i].location)[-2] + '\t' + str(genome_record.features[i].qualifiers['phase'][0]) + '\t'
         else:
             if genome_record.features[i].qualifiers.__contains__('tool'):
-                string = str(genome_record.description) + '\t' + str(genome_record.features[i].qualifiers['tool'][0]) + ' ' + str(genome_record.features[i].type) + '\t' + str(genome_record.features[i].location.start) + '\t' + str(genome_record.features[i].location.end) + '\t' + '.' + '\t' + str(genome_record.features[i].location)[-2] + '\t' 
+                string = str(genome_record.description) + '\t' + str(genome_record.features[i].qualifiers['tool'][0]) + '\t' + str(genome_record.features[i].type) + '\t' + str(genome_record.features[i].location.start + 1) + '\t' + str(genome_record.features[i].location.end + 1) + '\t' + '.' + '\t' + str(genome_record.features[i].location)[-2] + '\t' + str(0) + '\t'
             else:
                 if genome_record.features[i].qualifiers.__contains__('aStool'):
-                    string = str(genome_record.description) + '\t' + str(genome_record.features[i].qualifiers['aStool'][0]) + ' ' + str(genome_record.features[i].type) + '\t' + str(genome_record.features[i].location.start) + '\t' + str(genome_record.features[i].location.end) + '\t' + '.' + '\t' + str(genome_record.features[i].location)[-2] + '\t'
+                    string = str(genome_record.description) + '\t' + str(genome_record.features[i].qualifiers['aStool'][0]) + '\t' + str(genome_record.features[i].type) + '\t' + str(genome_record.features[i].location.start + 1) + '\t' + str(genome_record.features[i].location.end + 1) + '\t' + '.' + '\t' + str(genome_record.features[i].location)[-2] + '\t' + str(0) + '\t'
                 else:
-                    string = str(genome_record.description) + '\t' + str(genome_record.features[i].qualifiers['source'][0]) + ' ' + str(genome_record.features[i].type) + '\t' + str(genome_record.features[i].location.start) + '\t' + str(genome_record.features[i].location.end) + '\t' + '.' + '\t' + str(genome_record.features[i].location)[-2] + '\t'
+                    string = str(genome_record.description) + '\t' + str(genome_record.features[i].qualifiers['source'][0]) + '\t' + str(genome_record.features[i].type) + '\t' + str(genome_record.features[i].location.start + 1) + '\t' + str(genome_record.features[i].location.end + 1) + '\t' + '.' + '\t' + str(genome_record.features[i].location)[-2] + '\t' + str(0) + '\t'
         
 
         #collect all additional information of each line as one string
@@ -137,21 +137,23 @@ with open(r'./mg.all.gff', 'w') as out:
     out.write('\n'.join(file_list))
 
 #write gff outfile for CDS regions which have actual annotated locus tags with identified gene_functions
-with open(r'./mg.CDS.counts.gff', 'w') as CDS_out:
+with open(r'./mg.gene_functions.counts.gff', 'w') as CDS_out:
     for line in file_list:
         if line.__contains__('gene_functions'):
             CDS_out.write(line + '\n')
 
 #write gff outfile for found regions from Pfam database 
-with open(r'./mg.Pfam.counts.gff', 'w') as Pfam_out:
+with open(r'./mg.db_xref.counts.gff', 'w') as Pfam_out:
     for line in file_list:
         if line.__contains__('PFAM_domain'):
+            line = line.replace('PFAM_domain', 'CDS')
             Pfam_out.write(line + '\n')
 
 #write gff outfile for aSDomain regions 
 with open(r'./mg.aSDomain.counts.gff', 'w') as aSDomain_out:
     for line in file_list:
-        if line.__contains__(' aSDomain	'):
+        if line.__contains__('	aSDomain	'):
+            line = line.replace('	aSDomain	', 'CDS')
             aSDomain_out.write(line + '\n')
 
 #close all files when done with them
