@@ -267,7 +267,7 @@ legend("topright",col=rainbow(6),
        lty=1,
        bty="n")
 
-autoplot(few0_funct_pca_log, data=t(df_few0_funct_log), colour = rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
+autoplot(few0_funct_pca_log, data=t(log(df_few0_funct_psc)), colour = rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
 
 ### PCA with hellinger
 few0_funct_pca_hellinger <- prcomp(t(df_few0_funct_hellinger))
@@ -282,7 +282,7 @@ legend("topright",col=rainbow(6),
 autoplot(few0_funct_pca_hellinger, data=t(df_few0_funct_hellinger), colour = rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
 
 
-### PCA with sum
+### PCA with sum normalization 
 few0_funct_pca_sum <- prcomp(t(df_few0_funct_sum))
 plot(few0_funct_pca_sum$x,
      col=rainbow(6)[as.numeric(as.factor(df_info$Treatment))],
@@ -393,8 +393,8 @@ source("ancom_v2.1_noTidy.R")
 #occurrence rate
 #library size
 #logistic
-prepro <- feature_table_pre_process(feature_table = df_counts[rowSums(df_few0_funct[,df_info$Treatment %in% c("GUS","712")])>0,df_info$Treatment %in% c("GUS","MMA")], 
-                                   meta_data = df_info[df_info$Treatment %in% c("GUS","MMA"),], 
+prepro <- feature_table_pre_process(feature_table = df_counts[rowSums(df_few0_funct[,df_info$Treatment %in% c("GUS","712")])>0,df_info$Treatment %in% c("GUS","712")], 
+                                   meta_data = df_info[df_info$Treatment %in% c("GUS","712"),], 
                                    sample_var = "Sample", 
                                    group_var = "Treatment", 
                                    out_cut = 0.05, 
@@ -435,6 +435,10 @@ prepro_differential
 ```{r}
 #DESeq2
 #df_info_712_GUS <- df_info[df_info$Treatment=='712' | df_info$Treatment=='GUS',]
+
+df_few0_712_GUS_clr <- as.matrix(as.data.frame(t(clr(min(df_few0_712_GUS[df_few0_712_GUS>0])/10+t(df_few0_712_GUS)))))
+df_few0_712_GUS_hellinger <- decostand(df_few0_712_GUS,method = "hellinger",2)
+
 library(DESeq2)
 
 dds1_712_GUS <- DESeqDataSetFromMatrix(countData=df_few0_712_GUS,
@@ -443,9 +447,9 @@ dds1_712_GUS <- DESeqDataSetFromMatrix(countData=df_few0_712_GUS,
 dds1_712_GUS <- estimateSizeFactors(dds1_712_GUS)
 
 #for visualization
-DS_712_GUS <- counts(dds1_712_GUS,normalized=T) #DESeq2-normalized data
-DS_712_GUS_Log <- log2(DS_712_GUS+1) 
-boxplot(DS_712_GUS_Log)
+#DS_712_GUS <- counts(dds1_712_GUS,normalized=T) #DESeq2-normalized data
+#DS_712_GUS_Log <- log2(DS_712_GUS+1) 
+#boxplot(DS_712_GUS_Log)
 
 
 #differential analysis
@@ -456,7 +460,7 @@ plotDispEsts(dds1_712_GUS)
 
 #get results
 resultsNames(dds1_712_GUS)
-res_712_GUS <- results(dds1_712_GUS, contrast=c("Treatment","712","GUS")) #these are the names of the two groups
+#res_712_GUS <- results(dds1_712_GUS, contrast=c("Treatment","712","GUS")) #these are the names of the two groups
 length(which(res_712_GUS$padj < 0.05 & !is.na(res_712_GUS$padj)))
 
 #visualize
@@ -467,6 +471,10 @@ plotCounts(dds1_712_GUS, gene=which.min(res_712_GUS$padj), intgroup="Treatment")
 
 #After calling plotMA, one can use the function identify to interactively detect the row number of individual genes by clicking on the plot. One can then recover the gene identifiers by saving the resulting indices:
 
+
+```
+
+```{r}
 #idx <- identify(res$baseMean, res$log2FoldChange)
 #rownames(res)[idx]
 plotMA(res_722_GUS, alpha=0.05)
@@ -537,7 +545,7 @@ df_712_GUS_long <- pivot_longer(df_few0_712_GUS_clr,names_to="Sample",values_to=
 df_712_GUS_long <- separate(df_712_GUS_long, Sample, into=c('t','Treatment','Sample'), sep='[_]') %>% select(!t)
 
 #anova
-model <- lm(X~Treatment, df_712_GUS_long)
+# model <- lm(X~Treatment, df_712_GUS_long)
 #making this model is not useful because i was trying to model what the data is actually doing. an effect on the functional groups between the treatments. maybe stick to doing the functional groups individually between the treatments or doing the ancom which automatically considers all of the functional groups as features between the treatments. 
 ```
 
@@ -607,7 +615,7 @@ boxplot(df_few0_funct_hellinger, col = rainbow(6)[as.numeric(as.factor(df_info$T
 #pseudo count replace 0 values for 1 
 df_counts_1 <- replace(df_counts, df_counts==0, 1)
 #plot the distribution of all mapped counts per sample on a logarithmic scale
-boxplot(log(df_counts_1), col = c("royalblue1","tomato1","firebrick4","yellow","purple","green")[as.numeric(as.factor(treatments_df$Treatment))])
+boxplot(log(df_counts_1), col = c("royalblue1","tomato1","firebrick4","yellow","purple","green")[as.numeric(as.factor(df_info$Treatment))])
 
 #sample 31, which is T_CCD8_8 has a different boxplot compared to the rest 
 ```
@@ -618,10 +626,10 @@ Perform a rarefaction analysis.
 ```{r}
 rarecurve(as.data.frame(t(df_counts)), step=1000000, label = FALSE, ylim= c(7000,10000), xlim = c(5000000, 40000000), cex=0.6,
 #quickRareCurve(as.data.frame(t(df_counts)), max.cores = F, nCores = 6)
-          col = c("royalblue1","tomato1","firebrick4","yellow","purple","green")[as.numeric(as.factor(treatments_df$Treatment))])
+          col = c("royalblue1","tomato1","firebrick4","yellow","purple","green")[as.numeric(as.factor(df_info$Treatment))])
 abline(v=min(colSums(df_counts)),lty=3)
 legend("bottomright",col=c("royalblue1","tomato1","firebrick4","yellow","purple","green"),
-       legend=levels(as.factor(treatments_df$Treatment)),
+       legend=levels(as.factor(df_info$Treatment)),
        lty=1,
        bty="n")
 ```
@@ -865,9 +873,7 @@ head(ratespermillion)
 tail(ratespermillion)
 ```
 
-```{r}
-barplot(ratespermillion$T_MMA_12)
-```
+
 
 
 ```{r}
@@ -875,6 +881,133 @@ barplot(ratespermillion$T_MMA_12)
 colSums(ratespermillion==0)
 #all the zeros are still there 
 ```
+
+### Maaslin2 analysis 
+
+```{r}
+library(Maaslin2)
+#MaAsLin2 requires two input files, one for taxonomic or functional feature abundances, and one for sample metadata.
+#Microbiome Multivariable Association with Linear Models
+
+ko <- read.delim("dbCAN_profile.csv",sep=",",row.names=1)
+ko[is.na(ko)] <- 0
+
+summary(colSums(ko))
+
+sInfo <- data.frame("sampleID"=colnames(ko))
+sInfo$group <- gsub("_[^_]+$","",sInfo$sampleID)
+sInfo <- sInfo[order(rownames(sInfo)),]
+ko <- ko[,order(colnames(ko))]
+
+ko_T <- ko[,sInfo$group %in% c("T_GUS","T_712","T_CCD8","T_722")]
+ko_T <- ko_T[rowSums(ko_T)>0,]
+
+sInfo_T <- sInfo[sInfo$group %in% c("T_GUS","T_712","T_CCD8","T_722"),]
+
+ko_T712 <- ko[,sInfo$group %in% c("T_GUS","T_712")]
+ko_T712 <- ko_T712[rowSums(ko_T712)>0,]
+
+sInfo_T712 <- sInfo[sInfo$group %in% c("T_GUS","T_712"),]
+rownames(sInfo_T712) <- sInfo_T712$sampleID
+
+rownames(sInfo) <- sInfo$sampleID
+
+fitfil_data_clr = Maaslin2(
+input_data = t(df_few0_712_GUS),
+input_metadata = sInfo,
+min_prevalence = 0,
+transform = "NONE",
+normalization = "CLR",
+analysis_method = "LM",
+output = "testfiltered_output_clr",
+fixed_effects = c("group"),
+reference = c("group,T_GUS"))
+
+fit_data_clr = Maaslin2(
+input_data = t(ko_T712),
+input_metadata = sInfo_T712,
+min_prevalence = 0,
+transform = "NONE",
+normalization = "CLR",
+analysis_method = "LM",
+output = "test_output_clr",
+fixed_effects = c("group"),
+reference = c("T_GUS"))
+
+fit_data_css = Maaslin2(
+  input_data = t(ko_T712), 
+  input_metadata = sInfo_T712, 
+  min_prevalence = 0,
+  transform = "LOG",
+  normalization = "CSS",
+  analysis_method = "LM",
+  output = "test_output_CSS", 
+  fixed_effects = c("group"),
+  reference = c("T_GUS"))
+
+library(statmod)
+fit_data_tmm = Maaslin2(
+  input_data = t(ko_T712), 
+  input_metadata = sInfo_T712, 
+  min_prevalence = 0,
+  transform = "NONE",
+  normalization = "TMM",
+  analysis_method = "CPLM",
+  output = "test_output_TMM", 
+  fixed_effects = c("group"),
+  reference = c("T_GUS"))
+
+fit_data_tss = Maaslin2(
+  input_data = t(ko_T712), 
+  input_metadata = sInfo_T712, 
+  min_prevalence = 0,
+  transform = "NONE",
+  normalization = "TSS",
+  analysis_method = "CPLM",
+  output = "test_output_TSS", 
+  fixed_effects = c("group"),
+  reference = c("T_GUS"))
+
+
+#rownames(fit_data_clr[['results']])
+#list if sig. results from maaslin 
+MSLres_712_GUS <- fit_data_clr$results$feature[which(fit_data_clr$results$pval<0.05)]
+
+MSL_712_GUS <- fitfil_data_clr$results$feature[which(fitfil_data_clr$results$pval<0.05)]
+fitfil_data_clr$results$feature[which(MSL_712_GUS %in% dds1_712_GUS_res)]
+```
+
+
+
+```{r}
+resultsNames(dds1_712_GUS)
+res_712_GUS <- results(dds1_712_GUS, contrast=c("Treatment","712","GUS")) #these are the names of the two groups
+length(which(res_712_GUS$padj < 0.05 & !is.na(res_712_GUS$padj)))
+dds1_712_GUS_res <- rownames(res_712_GUS)[which(res_712_GUS$padj<0.05)]
+
+
+
+#visualize
+plotMA(res_712_GUS, alpha=0.05)
+plotCounts(dds1_712_GUS, gene=which.min(res_712_GUS$padj), intgroup="Treatment")
+#for(i in which(res_722_GUS$padj < 0.05 & !is.na(res_712_GUS$padj))) plotCounts(dds1_712_GUS, gene=i, intgroup="Treatment")
+
+
+#After calling plotMA, one can use the function identify to interactively detect the row number of individual genes by clicking on the plot. One can then recover the gene identifiers by saving the resulting indices:
+
+#idx <- identify(res$baseMean, res$log2FoldChange)
+#rownames(res)[idx]
+plotMA(res_722_GUS, alpha=0.05)
+MMA_GUS_sig <- rownames(res_722_GUS)[which(res_722_GUS$padj<0.05)]
+sig_712_GUS <- rownames(res_712_GUS)[which(res_712_GUS$padj<0.05)]
+idx <- identify(res_712_GUS$baseMean, res_712_GUS$log2FoldChange)
+rownames(res_712_GUS)[idx]
+length(which(MMA_GUS_sig %in% sig_712_GUS))
+rownames(res_712_GUS)[which(res_712_GUS$padj<0.05)]
+length(which(res_712_GUS$padj<0.05))
+```
+
+
 
 ### VARIANCE STABILIZATION TRANSFORM ATTEMPT 
 

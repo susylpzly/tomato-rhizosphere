@@ -121,7 +121,7 @@ for key, value in locus_dict.items():
         #check if the dictionary key - locus_tag - is in the text file line 
         if key in line:
             #add the MiBig identifier to the line
-            line = line + value
+            line = line + 'MiBig=' + value + ';'
             #update the lines list 
             file_list[index] = line
              
@@ -153,7 +153,7 @@ with open(r'./mg.db_xref.counts.gff', 'w') as Pfam_out:
 with open(r'./mg.aSDomain.counts.gff', 'w') as aSDomain_out:
     for line in file_list:
         if line.__contains__('	aSDomain	'):
-            line = line.replace('	aSDomain	', 'CDS')
+            line = line.replace('	aSDomain	', '	CDS	')
             aSDomain_out.write(line + '\n')
 
 #close all files when done with them

@@ -45,3 +45,7 @@ reformat.sh in=mg.assembly.merged.fa out=mg.assembly.merged.length_filtered.fa m
 #to use python script to filter gff based on annotation file contigs 
 python3 gff_filtering.py T_712_2/annotation.filt.gff T_712_2/mg.assembly.merged.length_filtered.fa T_712_2/annotation.assembly_filt.gff
 
+
+conda activate /zfs/omics/projects/metatools/TOOLS/IMP3/conda/8fab667c26067cc13be382368594bb18
+
+featureCounts environment 

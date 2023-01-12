@@ -1,0 +1,663 @@
+2023-01-10 09:09:43 INFO::Writing function arguments to log file
+2023-01-10 09:09:43 DEBUG::Function arguments
+2023-01-10 09:09:43 DEBUG::Output folder: testfiltered_output_clr
+2023-01-10 09:09:43 DEBUG::Min Abundance: 0.000000
+2023-01-10 09:09:43 DEBUG::Min Prevalence: 0.000000
+2023-01-10 09:09:43 DEBUG::Normalization: CLR
+2023-01-10 09:09:43 DEBUG::Transform: NONE
+2023-01-10 09:09:43 DEBUG::Analysis method: LM
+2023-01-10 09:09:43 DEBUG::Max significance: 0.250000
+2023-01-10 09:09:43 DEBUG::Random effects:
+2023-01-10 09:09:43 DEBUG::Fixed effects: group
+2023-01-10 09:09:43 DEBUG::Correction method: BH
+2023-01-10 09:09:43 DEBUG::Standardize: TRUE
+2023-01-10 09:09:43 DEBUG::Cores: 1
+2023-01-10 09:09:43 INFO::Verifying options selected are valid
+2023-01-10 09:09:43 INFO::Determining format of input files
+2023-01-10 09:09:43 INFO::Input format is data samples as rows and metadata samples as rows
+2023-01-10 09:09:43 DEBUG::The following samples were found to have metadata but no features. They will be removed. T_722_1,T_722_12,T_722_13,T_722_14,T_722_15,T_722_16,T_722_17,T_722_5,T_722_6,T_722_9,T_CCD8_1,T_CCD8_10,T_CCD8_13,T_CCD8_14,T_CCD8_15,T_CCD8_16,T_CCD8_3,T_CCD8_5,T_CCD8_7,T_CCD8_8,T_CCD8_9,T_EP_1,T_EP_2,T_EP_3,T_EP_4,T_MMA_1,T_MMA_11,T_MMA_12,T_MMA_13,T_MMA_3,T_MMA_4,T_MMA_5,T_MMA_6
+2023-01-10 09:09:43 DEBUG::A total of 21 samples were found in both the data and metadata
+2023-01-10 09:09:43 DEBUG::Reordering data/metadata to use same sample ordering
+2023-01-10 09:09:43 INFO::Formula for fixed effects: expr ~  group
+2023-01-10 09:09:43 INFO::Filter data based on min abundance and min prevalence
+2023-01-10 09:09:43 INFO::Total samples in data: 21
+2023-01-10 09:09:43 INFO::Min samples required with min abundance for a feature not to be filtered: 0.000000
+2023-01-10 09:09:43 INFO::Total filtered features: 0
+2023-01-10 09:09:43 INFO::Filtered feature names from abundance and prevalence filtering:
+2023-01-10 09:09:43 INFO::Total filtered features with variance filtering: 0
+2023-01-10 09:09:43 INFO::Filtered feature names from variance filtering:
+2023-01-10 09:09:43 INFO::Running selected normalization method: CLR
+2023-01-10 09:09:43 INFO::Applying z-score to standardize continuous metadata
+2023-01-10 09:09:43 INFO::Running selected transform method: NONE
+2023-01-10 09:09:43 INFO::Running selected analysis method: LM
+2023-01-10 09:09:43 INFO::Fitting model to feature number 1, AA1_1.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 2, AA1_2.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 3, AA1_3.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 4, AA1.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 5, AA10.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 6, AA12.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 7, AA2.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 8, AA3_1.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 9, AA3_2.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 10, AA3_3.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 11, AA3_4.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 12, AA3.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 13, AA4.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 14, AA5_1.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 15, AA5_2.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 16, AA5.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 17, AA6.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 18, AA7.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 19, AA8.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 20, AA9.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 21, CBM1.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 22, CBM11.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 23, CBM12.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 24, CBM13.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 25, CBM14.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 26, CBM16.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 27, CBM18.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 28, CBM2.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 29, CBM20.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 30, CBM21.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 31, CBM22.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 32, CBM23.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 33, CBM25.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 34, CBM3.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 35, CBM30.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 36, CBM32.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 37, CBM34.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 38, CBM35.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 39, CBM37.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 40, CBM38.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 41, CBM4.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 42, CBM40.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 43, CBM41.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 44, CBM42.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 45, CBM44.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 46, CBM46.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 47, CBM47.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 48, CBM48.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 49, CBM5.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 50, CBM50.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 51, CBM51.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 52, CBM54.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 53, CBM56.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 54, CBM57.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 55, CBM59.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 56, CBM6.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 57, CBM60.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 58, CBM61.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 59, CBM62.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 60, CBM63.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 61, CBM66.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 62, CBM67.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 63, CBM69.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 64, CBM70.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 65, CBM73.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 66, CBM8.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 67, CBM9.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 68, CE1.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 69, CE10.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 70, CE11.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 71, CE12.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 72, CE13.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 73, CE14.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 74, CE15.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 75, CE16.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 76, CE2.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 77, CE3.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 78, CE4.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 79, CE5.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 80, CE6.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 81, CE7.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 82, CE8.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 83, CE9.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 84, cohesin.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 85, dockerin.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 86, GH1.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 87, GH10.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 88, GH100.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 89, GH101.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 90, GH102.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 91, GH103.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 92, GH104.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 93, GH105.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 94, GH106.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 95, GH107.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 96, GH108.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 97, GH109.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 98, GH11.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 99, GH110.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 100, GH111.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 101, GH113.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 102, GH114.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 103, GH115.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 104, GH116.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 105, GH117.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 106, GH119.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 107, GH12.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 108, GH120.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 109, GH121.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 110, GH123.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 111, GH125.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 112, GH127.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 113, GH128.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 114, GH129.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 115, GH13_1.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 116, GH13_10.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 117, GH13_11.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 118, GH13_13.hmm
+2023-01-10 09:09:43 INFO::Fitting model to feature number 119, GH13_14.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 120, GH13_15.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 121, GH13_16.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 122, GH13_17.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 123, GH13_18.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 124, GH13_19.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 125, GH13_2.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 126, GH13_20.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 127, GH13_21.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 128, GH13_22.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 129, GH13_23.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 130, GH13_24.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 131, GH13_25.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 132, GH13_26.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 133, GH13_3.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 134, GH13_30.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 135, GH13_31.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 136, GH13_32.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 137, GH13_33.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 138, GH13_36.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 139, GH13_38.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 140, GH13_39.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 141, GH13_4.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 142, GH13_40.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 143, GH13_42.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 144, GH13_5.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 145, GH13_6.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 146, GH13_7.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 147, GH13_8.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 148, GH13_9.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 149, GH13.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 150, GH130.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 151, GH133.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 152, GH134.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 153, GH135.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 154, GH136.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 155, GH137.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 156, GH138.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 157, GH139.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 158, GH140.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 159, GH141.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 160, GH142.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 161, GH143.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 162, GH144.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 163, GH145.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 164, GH15.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 165, GH16.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 166, GH17.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 167, GH18.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 168, GH19.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 169, GH2.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 170, GH20.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 171, GH22.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 172, GH23.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 173, GH24.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 174, GH25.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 175, GH26.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 176, GH27.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 177, GH28.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 178, GH29.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 179, GH3.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 180, GH30_1.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 181, GH30_2.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 182, GH30_3.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 183, GH30_4.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 184, GH30_5.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 185, GH30_7.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 186, GH30_8.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 187, GH30.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 188, GH31.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 189, GH32.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 190, GH33.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 191, GH35.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 192, GH36.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 193, GH37.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 194, GH38.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 195, GH39.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 196, GH4.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 197, GH42.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 198, GH43_1.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 199, GH43_10.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 200, GH43_11.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 201, GH43_12.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 202, GH43_13.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 203, GH43_14.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 204, GH43_15.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 205, GH43_17.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 206, GH43_18.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 207, GH43_19.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 208, GH43_2.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 209, GH43_20.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 210, GH43_21.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 211, GH43_22.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 212, GH43_23.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 213, GH43_24.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 214, GH43_26.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 215, GH43_27.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 216, GH43_28.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 217, GH43_29.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 218, GH43_3.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 219, GH43_30.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 220, GH43_31.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 221, GH43_32.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 222, GH43_33.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 223, GH43_34.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 224, GH43_36.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 225, GH43_37.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 226, GH43_4.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 227, GH43_5.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 228, GH43_7.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 229, GH43_8.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 230, GH43_9.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 231, GH43.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 232, GH44.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 233, GH46.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 234, GH47.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 235, GH48.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 236, GH49.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 237, GH5_1.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 238, GH5_10.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 239, GH5_12.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 240, GH5_13.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 241, GH5_18.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 242, GH5_19.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 243, GH5_2.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 244, GH5_22.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 245, GH5_24.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 246, GH5_25.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 247, GH5_26.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 248, GH5_27.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 249, GH5_28.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 250, GH5_29.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 251, GH5_35.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 252, GH5_36.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 253, GH5_38.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 254, GH5_39.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 255, GH5_4.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 256, GH5_40.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 257, GH5_41.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 258, GH5_42.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 259, GH5_43.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 260, GH5_46.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 261, GH5_48.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 262, GH5_5.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 263, GH5_51.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 264, GH5_7.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 265, GH5_8.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 266, GH5_9.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 267, GH5.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 268, GH50.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 269, GH51.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 270, GH52.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 271, GH53.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 272, GH54.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 273, GH55.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 274, GH57.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 275, GH59.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 276, GH6.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 277, GH62.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 278, GH63.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 279, GH64.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 280, GH65.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 281, GH66.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 282, GH67.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 283, GH68.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 284, GH7.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 285, GH71.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 286, GH72.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 287, GH73.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 288, GH74.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 289, GH75.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 290, GH76.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 291, GH77.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 292, GH78.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 293, GH79.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 294, GH8.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 295, GH81.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 296, GH82.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 297, GH84.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 298, GH85.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 299, GH87.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 300, GH88.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 301, GH89.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 302, GH9.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 303, GH91.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 304, GH92.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 305, GH93.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 306, GH94.hmm
+2023-01-10 09:09:44 INFO::Fitting model to feature number 307, GH95.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 308, GH97.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 309, GH98.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 310, GH99.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 311, GT1.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 312, GT10.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 313, GT102.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 314, GT103.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 315, GT104.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 316, GT11.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 317, GT12.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 318, GT13.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 319, GT14.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 320, GT15.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 321, GT17.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 322, GT19.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 323, GT2_Cellulose_synt.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 324, GT2.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 325, GT20.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 326, GT21.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 327, GT22.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 328, GT23.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 329, GT24.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 330, GT25.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 331, GT26.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 332, GT27.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 333, GT28.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 334, GT29.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 335, GT3.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 336, GT30.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 337, GT31.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 338, GT32.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 339, GT33.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 340, GT34.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 341, GT35.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 342, GT39.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 343, GT4.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 344, GT40.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 345, GT41.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 346, GT45.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 347, GT46.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 348, GT47.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 349, GT48.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 350, GT49.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 351, GT5.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 352, GT50.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 353, GT51.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 354, GT53.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 355, GT55.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 356, GT56.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 357, GT57.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 358, GT58.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 359, GT59.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 360, GT60.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 361, GT62.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 362, GT66.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 363, GT69.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 364, GT7.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 365, GT70.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 366, GT71.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 367, GT73.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 368, GT75.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 369, GT76.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 370, GT77.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 371, GT8.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 372, GT81.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 373, GT83.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 374, GT84.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 375, GT85.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 376, GT87.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 377, GT89.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 378, GT9.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 379, GT90.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 380, GT92.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 381, GT94.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 382, GT97.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 383, GT99.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 384, PL1_2.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 385, PL1_4.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 386, PL1_5.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 387, PL1_6.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 388, PL1_7.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 389, PL1_9.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 390, PL1.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 391, PL10_2.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 392, PL10_3.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 393, PL10.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 394, PL11_1.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 395, PL11_2.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 396, PL11.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 397, PL12_3.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 398, PL12.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 399, PL14_3.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 400, PL14.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 401, PL15.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 402, PL16.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 403, PL17_1.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 404, PL17.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 405, PL18.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 406, PL20.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 407, PL21.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 408, PL22_1.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 409, PL22_2.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 410, PL22.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 411, PL25.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 412, PL26.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 413, PL27.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 414, PL3_1.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 415, PL3_2.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 416, PL3_4.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 417, PL3.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 418, PL4_1.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 419, PL4_2.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 420, PL4_3.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 421, PL4_4.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 422, PL4_5.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 423, PL4.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 424, PL5_1.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 425, PL5.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 426, PL6_1.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 427, PL6_2.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 428, PL6.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 429, PL7_1.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 430, PL7_3.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 431, PL7_4.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 432, PL7.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 433, PL8_2.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 434, PL8_3.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 435, PL8.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 436, PL9_1.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 437, PL9_2.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 438, PL9_3.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 439, PL9_4.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 440, PL9.hmm
+2023-01-10 09:09:45 INFO::Fitting model to feature number 441, SLH.hmm
+2023-01-10 09:09:45 INFO::Counting total values for each feature
+2023-01-10 09:09:45 INFO::Writing residuals to file testfiltered_output_clr/residuals.rds
+2023-01-10 09:09:45 INFO::Writing fitted values to file testfiltered_output_clr/fitted.rds
+2023-01-10 09:09:45 INFO::Writing all results to file (ordered by increasing q-values): testfiltered_output_clr/all_results.tsv
+2023-01-10 09:09:45 INFO::Writing the significant results (those which are less than or equal to the threshold of 0.250000 ) to file (ordered by increasing q-values): testfiltered_output_clr/significant_results.tsv
+2023-01-10 09:09:45 INFO::Writing heatmap of significant results to file: testfiltered_output_clr/heatmap.pdf
+2023-01-10 09:09:45 INFO::Writing association plots (one for each significant association) to output folder: testfiltered_output_clr
+2023-01-10 09:09:45 INFO::Plotting associations from most to least significant, grouped by metadata
+2023-01-10 09:09:45 INFO::Plotting data for metadata number 1, group
+2023-01-10 09:09:45 INFO::Creating boxplot for categorical data, group vs CBM11.hmm
+2023-01-10 09:09:45 INFO::Creating boxplot for categorical data, group vs CBM47.hmm
+2023-01-10 09:09:46 INFO::Creating boxplot for categorical data, group vs GH100.hmm
+2023-01-10 09:09:46 INFO::Creating boxplot for categorical data, group vs GH107.hmm
+2023-01-10 09:09:46 INFO::Creating boxplot for categorical data, group vs GH125.hmm
+2023-01-10 09:09:46 INFO::Creating boxplot for categorical data, group vs GH20.hmm
+2023-01-10 09:09:46 INFO::Creating boxplot for categorical data, group vs GH24.hmm
+2023-01-10 09:09:47 INFO::Creating boxplot for categorical data, group vs GH47.hmm
+2023-01-10 09:09:47 INFO::Creating boxplot for categorical data, group vs GH5_36.hmm
+2023-01-10 09:09:47 INFO::Creating boxplot for categorical data, group vs PL1_4.hmm
+2023-01-10 09:09:47 INFO::Creating boxplot for categorical data, group vs PL1.hmm
+2023-01-10 09:09:47 INFO::Creating boxplot for categorical data, group vs PL10_2.hmm
+2023-01-10 09:09:47 INFO::Creating boxplot for categorical data, group vs PL11.hmm
+2023-01-10 09:09:48 INFO::Creating boxplot for categorical data, group vs PL20.hmm
+2023-01-10 09:09:48 INFO::Creating boxplot for categorical data, group vs PL26.hmm
+2023-01-10 09:09:48 INFO::Creating boxplot for categorical data, group vs CE15.hmm
+2023-01-10 09:09:48 INFO::Creating boxplot for categorical data, group vs GH52.hmm
+2023-01-10 09:09:48 INFO::Creating boxplot for categorical data, group vs GH66.hmm
+2023-01-10 09:09:48 INFO::Creating boxplot for categorical data, group vs AA3_1.hmm
+2023-01-10 09:09:49 INFO::Creating boxplot for categorical data, group vs GH43_17.hmm
+2023-01-10 09:09:49 INFO::Creating boxplot for categorical data, group vs CBM61.hmm
+2023-01-10 09:09:49 INFO::Creating boxplot for categorical data, group vs GH13_2.hmm
+2023-01-10 09:09:49 INFO::Creating boxplot for categorical data, group vs GH5_13.hmm
+2023-01-10 09:09:49 INFO::Creating boxplot for categorical data, group vs GT14.hmm
+2023-01-10 09:09:49 INFO::Creating boxplot for categorical data, group vs GT77.hmm
+2023-01-10 09:09:50 INFO::Creating boxplot for categorical data, group vs PL11_2.hmm
+2023-01-10 09:09:50 INFO::Creating boxplot for categorical data, group vs CBM63.hmm
+2023-01-10 09:09:50 INFO::Creating boxplot for categorical data, group vs GH13_36.hmm
+2023-01-10 09:09:50 INFO::Creating boxplot for categorical data, group vs GH43_31.hmm
+2023-01-10 09:09:50 INFO::Creating boxplot for categorical data, group vs GH43_9.hmm
+2023-01-10 09:09:50 INFO::Creating boxplot for categorical data, group vs PL22_2.hmm
+2023-01-10 09:09:51 INFO::Creating boxplot for categorical data, group vs GH44.hmm
+2023-01-10 09:09:51 INFO::Creating boxplot for categorical data, group vs GH13_4.hmm
+2023-01-10 09:09:51 INFO::Creating boxplot for categorical data, group vs GH133.hmm
+2023-01-10 09:09:51 INFO::Creating boxplot for categorical data, group vs GT25.hmm
+2023-01-10 09:09:51 INFO::Creating boxplot for categorical data, group vs CBM59.hmm
+2023-01-10 09:09:51 INFO::Creating boxplot for categorical data, group vs GH97.hmm
+2023-01-10 09:09:52 INFO::Creating boxplot for categorical data, group vs GH145.hmm
+2023-01-10 09:09:52 INFO::Creating boxplot for categorical data, group vs GH81.hmm
+2023-01-10 09:09:52 INFO::Creating boxplot for categorical data, group vs GT46.hmm
+2023-01-10 09:09:52 INFO::Creating boxplot for categorical data, group vs GT89.hmm
+2023-01-10 09:09:52 INFO::Creating boxplot for categorical data, group vs GH143.hmm
+2023-01-10 09:09:52 INFO::Creating boxplot for categorical data, group vs CE12.hmm
+2023-01-10 09:09:53 INFO::Creating boxplot for categorical data, group vs CBM50.hmm
+2023-01-10 09:09:53 INFO::Creating boxplot for categorical data, group vs CE4.hmm
+2023-01-10 09:09:53 INFO::Creating boxplot for categorical data, group vs GH13_21.hmm
+2023-01-10 09:09:53 INFO::Creating boxplot for categorical data, group vs GH30.hmm
+2023-01-10 09:09:53 INFO::Creating boxplot for categorical data, group vs GH43_11.hmm
+2023-01-10 09:09:53 INFO::Creating boxplot for categorical data, group vs GH5_2.hmm
+2023-01-10 09:09:54 INFO::Creating boxplot for categorical data, group vs GT51.hmm
+2023-01-10 09:09:54 INFO::Creating boxplot for categorical data, group vs PL6_2.hmm
+2023-01-10 09:09:54 INFO::Creating boxplot for categorical data, group vs CBM23.hmm
+2023-01-10 09:09:54 INFO::Creating boxplot for categorical data, group vs GT104.hmm
+2023-01-10 09:09:54 INFO::Creating boxplot for categorical data, group vs PL4.hmm
+2023-01-10 09:09:54 INFO::Creating boxplot for categorical data, group vs PL7_4.hmm
+2023-01-10 09:09:54 INFO::Creating boxplot for categorical data, group vs GT20.hmm
+2023-01-10 09:09:55 INFO::Creating boxplot for categorical data, group vs GH75.hmm
+2023-01-10 09:09:55 INFO::Creating boxplot for categorical data, group vs GH17.hmm
+2023-01-10 09:09:55 INFO::Creating boxplot for categorical data, group vs GH23.hmm
+2023-01-10 09:09:55 INFO::Creating boxplot for categorical data, group vs GH43_29.hmm
+2023-01-10 09:09:55 INFO::Creating boxplot for categorical data, group vs GH89.hmm
+2023-01-10 09:09:55 INFO::Creating boxplot for categorical data, group vs GH121.hmm
+2023-01-10 09:09:56 INFO::Creating boxplot for categorical data, group vs GH5_10.hmm
+2023-01-10 09:09:56 INFO::Creating boxplot for categorical data, group vs AA3.hmm
+2023-01-10 09:09:56 INFO::Creating boxplot for categorical data, group vs PL5_1.hmm
+2023-01-10 09:09:56 INFO::Creating boxplot for categorical data, group vs CE6.hmm
+2023-01-10 09:09:56 INFO::Creating boxplot for categorical data, group vs GH140.hmm
+2023-01-10 09:09:57 INFO::Creating boxplot for categorical data, group vs CBM4.hmm
+2023-01-10 09:09:57 INFO::Creating boxplot for categorical data, group vs AA6.hmm
+2023-01-10 09:09:57 INFO::Creating boxplot for categorical data, group vs GH26.hmm
+2023-01-10 09:09:57 INFO::Creating boxplot for categorical data, group vs GH8.hmm
+2023-01-10 09:09:57 INFO::Creating boxplot for categorical data, group vs GT15.hmm
+2023-01-10 09:09:57 INFO::Creating boxplot for categorical data, group vs PL10.hmm
+2023-01-10 09:09:58 INFO::Creating boxplot for categorical data, group vs PL3.hmm
+2023-01-10 09:09:58 INFO::Creating boxplot for categorical data, group vs GH109.hmm
+2023-01-10 09:09:58 INFO::Creating boxplot for categorical data, group vs PL9_4.hmm
+2023-01-10 09:09:58 INFO::Creating boxplot for categorical data, group vs GH135.hmm
+2023-01-10 09:09:58 INFO::Creating boxplot for categorical data, group vs GH36.hmm
+2023-01-10 09:09:58 INFO::Creating boxplot for categorical data, group vs GH65.hmm
+2023-01-10 09:09:59 INFO::Creating boxplot for categorical data, group vs GH13_13.hmm
+2023-01-10 09:09:59 INFO::Creating boxplot for categorical data, group vs GH92.hmm
+2023-01-10 09:09:59 INFO::Creating boxplot for categorical data, group vs AA2.hmm
+2023-01-10 09:09:59 INFO::Creating boxplot for categorical data, group vs GH43_8.hmm
+2023-01-10 09:09:59 INFO::Creating boxplot for categorical data, group vs GH5.hmm
+2023-01-10 09:09:59 INFO::Creating boxplot for categorical data, group vs GH3.hmm
+2023-01-10 09:10:00 INFO::Creating boxplot for categorical data, group vs GH13_23.hmm
+2023-01-10 09:10:00 INFO::Creating boxplot for categorical data, group vs GT103.hmm
+2023-01-10 09:10:00 INFO::Creating boxplot for categorical data, group vs PL3_1.hmm
+2023-01-10 09:10:00 INFO::Creating boxplot for categorical data, group vs GH30_4.hmm
+2023-01-10 09:10:00 INFO::Creating boxplot for categorical data, group vs GH138.hmm
+2023-01-10 09:10:00 INFO::Creating boxplot for categorical data, group vs GH5_41.hmm
+2023-01-10 09:10:00 INFO::Creating boxplot for categorical data, group vs PL9_3.hmm
+2023-01-10 09:10:01 INFO::Creating boxplot for categorical data, group vs GH31.hmm
+2023-01-10 09:10:01 INFO::Creating boxplot for categorical data, group vs CBM5.hmm
+2023-01-10 09:10:01 INFO::Creating boxplot for categorical data, group vs GT66.hmm
+2023-01-10 09:10:01 INFO::Creating boxplot for categorical data, group vs GH68.hmm
+2023-01-10 09:10:01 INFO::Creating boxplot for categorical data, group vs GH13.hmm
+2023-01-10 09:10:02 INFO::Creating boxplot for categorical data, group vs GH30_2.hmm
+2023-01-10 09:10:02 INFO::Creating boxplot for categorical data, group vs GT30.hmm
+2023-01-10 09:10:02 INFO::Creating boxplot for categorical data, group vs PL8.hmm
+2023-01-10 09:10:02 INFO::Creating boxplot for categorical data, group vs GH106.hmm
+2023-01-10 09:10:02 INFO::Creating boxplot for categorical data, group vs GH13_19.hmm
+2023-01-10 09:10:02 INFO::Creating boxplot for categorical data, group vs GH13_6.hmm
+2023-01-10 09:10:03 INFO::Creating boxplot for categorical data, group vs GH49.hmm
+2023-01-10 09:10:03 INFO::Creating boxplot for categorical data, group vs GT19.hmm
+2023-01-10 09:10:03 INFO::Creating boxplot for categorical data, group vs GT81.hmm
+2023-01-10 09:10:03 INFO::Creating boxplot for categorical data, group vs GT33.hmm
+2023-01-10 09:10:03 INFO::Creating boxplot for categorical data, group vs CBM9.hmm
+2023-01-10 09:10:04 INFO::Creating boxplot for categorical data, group vs GH104.hmm
+2023-01-10 09:10:04 INFO::Creating boxplot for categorical data, group vs GH43_3.hmm
+2023-01-10 09:10:04 INFO::Creating boxplot for categorical data, group vs GH30_5.hmm
+2023-01-10 09:10:04 INFO::Creating boxplot for categorical data, group vs GH72.hmm
+2023-01-10 09:10:04 INFO::Creating boxplot for categorical data, group vs GH93.hmm
+2023-01-10 09:10:04 INFO::Creating boxplot for categorical data, group vs GH43_18.hmm
+2023-01-10 09:10:05 INFO::Creating boxplot for categorical data, group vs GT40.hmm
+2023-01-10 09:10:05 INFO::Creating boxplot for categorical data, group vs AA5_1.hmm
+2023-01-10 09:10:05 INFO::Creating boxplot for categorical data, group vs GH13_14.hmm
+2023-01-10 09:10:05 INFO::Creating boxplot for categorical data, group vs GT94.hmm
+2023-01-10 09:10:05 INFO::Creating boxplot for categorical data, group vs GT29.hmm
+2023-01-10 09:10:05 INFO::Creating boxplot for categorical data, group vs GH35.hmm
+2023-01-10 09:10:06 INFO::Creating boxplot for categorical data, group vs CE11.hmm
+2023-01-10 09:10:06 INFO::Creating boxplot for categorical data, group vs GH103.hmm
+2023-01-10 09:10:06 INFO::Creating boxplot for categorical data, group vs PL22.hmm
+2023-01-10 09:10:06 INFO::Creating boxplot for categorical data, group vs GT2_Cellulose_synt.hmm
+2023-01-10 09:10:06 INFO::Creating boxplot for categorical data, group vs GH120.hmm
+2023-01-10 09:10:06 INFO::Creating boxplot for categorical data, group vs PL17_1.hmm
+2023-01-10 09:10:06 INFO::Creating boxplot for categorical data, group vs PL1_2.hmm
+2023-01-10 09:10:07 INFO::Creating boxplot for categorical data, group vs GH123.hmm
+2023-01-10 09:10:07 INFO::Creating boxplot for categorical data, group vs GH73.hmm
+2023-01-10 09:10:07 INFO::Creating boxplot for categorical data, group vs GT75.hmm
+2023-01-10 09:10:07 INFO::Creating boxplot for categorical data, group vs GH13_1.hmm
+2023-01-10 09:10:07 INFO::Creating boxplot for categorical data, group vs GH43_37.hmm
+2023-01-10 09:10:07 INFO::Creating boxplot for categorical data, group vs dockerin.hmm
+2023-01-10 09:10:08 INFO::Creating boxplot for categorical data, group vs GH13_22.hmm
+2023-01-10 09:10:08 INFO::Creating boxplot for categorical data, group vs GH32.hmm
+2023-01-10 09:10:08 INFO::Creating boxplot for categorical data, group vs GT3.hmm
+2023-01-10 09:10:08 INFO::Creating boxplot for categorical data, group vs PL1_7.hmm
+2023-01-10 09:10:08 INFO::Creating boxplot for categorical data, group vs CE16.hmm
+2023-01-10 09:10:08 INFO::Creating boxplot for categorical data, group vs PL6.hmm
+2023-01-10 09:10:08 INFO::Creating boxplot for categorical data, group vs GH43_7.hmm
+2023-01-10 09:10:09 INFO::Creating boxplot for categorical data, group vs GT56.hmm
+2023-01-10 09:10:09 INFO::Creating boxplot for categorical data, group vs GH74.hmm
+2023-01-10 09:10:09 INFO::Creating boxplot for categorical data, group vs CE9.hmm
+2023-01-10 09:10:09 INFO::Creating boxplot for categorical data, group vs PL1_6.hmm
+2023-01-10 09:10:09 INFO::Creating boxplot for categorical data, group vs PL6_1.hmm
+2023-01-10 09:10:09 INFO::Creating boxplot for categorical data, group vs GH13_40.hmm
+2023-01-10 09:10:10 INFO::Creating boxplot for categorical data, group vs PL9.hmm
+2023-01-10 09:10:10 INFO::Creating boxplot for categorical data, group vs CBM62.hmm
+2023-01-10 09:10:10 INFO::Creating boxplot for categorical data, group vs AA7.hmm
+2023-01-10 09:10:10 INFO::Creating boxplot for categorical data, group vs GH51.hmm
+2023-01-10 09:10:10 INFO::Creating boxplot for categorical data, group vs GH130.hmm
+2023-01-10 09:10:10 INFO::Creating boxplot for categorical data, group vs GH5_46.hmm
+2023-01-10 09:10:11 INFO::Creating boxplot for categorical data, group vs GH9.hmm
+2023-01-10 09:10:11 INFO::Creating boxplot for categorical data, group vs GH18.hmm
+2023-01-10 09:10:11 INFO::Creating boxplot for categorical data, group vs AA1_2.hmm
+2023-01-10 09:10:11 INFO::Creating boxplot for categorical data, group vs GH1.hmm
+2023-01-10 09:10:11 INFO::Creating boxplot for categorical data, group vs GH28.hmm
+2023-01-10 09:10:11 INFO::Creating boxplot for categorical data, group vs GH38.hmm
+2023-01-10 09:10:12 INFO::Creating boxplot for categorical data, group vs PL7.hmm
+2023-01-10 09:10:12 INFO::Creating boxplot for categorical data, group vs PL27.hmm
+2023-01-10 09:10:12 INFO::Creating boxplot for categorical data, group vs GH43_28.hmm
+2023-01-10 09:10:12 INFO::Creating boxplot for categorical data, group vs GH53.hmm
+2023-01-10 09:10:12 INFO::Creating boxplot for categorical data, group vs PL16.hmm
+2023-01-10 09:10:12 INFO::Creating boxplot for categorical data, group vs GH5_27.hmm
+2023-01-10 09:10:12 INFO::Creating boxplot for categorical data, group vs GT45.hmm
+2023-01-10 09:10:13 INFO::Creating boxplot for categorical data, group vs GH114.hmm
+2023-01-10 09:10:13 INFO::Creating boxplot for categorical data, group vs GH43.hmm
+2023-01-10 09:10:13 INFO::Creating boxplot for categorical data, group vs PL4_2.hmm
+2023-01-10 09:10:13 INFO::Creating boxplot for categorical data, group vs GT41.hmm
+2023-01-10 09:10:13 INFO::Creating boxplot for categorical data, group vs PL25.hmm
+2023-01-10 09:10:13 INFO::Creating boxplot for categorical data, group vs AA3_2.hmm
+2023-01-10 09:10:14 INFO::Creating boxplot for categorical data, group vs CBM12.hmm
+2023-01-10 09:10:14 INFO::Creating boxplot for categorical data, group vs CBM34.hmm
+2023-01-10 09:10:14 INFO::Creating boxplot for categorical data, group vs CBM57.hmm
+2023-01-10 09:10:14 INFO::Creating boxplot for categorical data, group vs GH13_5.hmm
+2023-01-10 09:10:14 INFO::Creating boxplot for categorical data, group vs GT1.hmm
+2023-01-10 09:10:14 INFO::Creating boxplot for categorical data, group vs GT48.hmm
+2023-01-10 09:10:14 INFO::Creating boxplot for categorical data, group vs AA1_1.hmm
+2023-01-10 09:10:15 INFO::Creating boxplot for categorical data, group vs GT58.hmm
+2023-01-10 09:10:15 INFO::Creating boxplot for categorical data, group vs GT57.hmm
+2023-01-10 09:10:15 INFO::Creating boxplot for categorical data, group vs AA1.hmm

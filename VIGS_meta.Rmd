@@ -1,0 +1,85 @@
+---
+title: "VIGS_meta"
+author: "Susana Lopez Lemarroy"
+date: "2023-01-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### VIGS metadata of strigolactone levels
+
+```{r}
+#libraries
+library(ggplot2)
+```
+
+
+```{r}
+VIGS_meta <- read.csv("VIGS_meta.csv")
+VIGS_meta <- subset(VIGS_meta, select = -c(X))
+```
+
+
+```{r}
+VIGS_filt <- VIGS_meta[VIGS_meta$Sample_ID %in% sInfo$sampleID,]
+VIGS_filt <- subset(VIGS_filt, VIGS_gene != 'EP')
+VIGS_filt <- VIGS_filt[order(VIGS_filt$Sample_ID),]
+rownames(VIGS_filt) <- VIGS_filt$Sample_ID
+```
+
+
+```{r}
+ggplot(data=VIGS_filt) + 
+  geom_boxplot(mapping = aes(x=Orb_pmol_ml_g, y=VIGS_gene, color = VIGS_gene))
+```
+
+
+```{r}
+sInfo_plants <- subset(sInfo, group != 'T_EP')
+VIGS_712_GUS <- VIGS_filt[sInfo_plants$group %in% c("T_GUS","T_712"),]
+VIGS_722_GUS <- VIGS_filt[sInfo_plants$group %in% c("T_GUS","T_722"),]
+VIGS_CCD8_GUS <- VIGS_filt[sInfo_plants$group %in% c("T_GUS","T_CCD8"),]
+
+modelOrb <- lm(Orb_pmol_ml_g~VIGS_gene, VIGS_filt)
+coefficients(modelOrb)
+
+modelOrb_712_GUS <- lm(Orb_pmol_ml_g~VIGS_gene, VIGS_712_GUS)
+coefficients(modelOrb_712_GUS)
+
+modelOrb_722_GUS <- lm(Orb_pmol_ml_g~VIGS_gene, VIGS_722_GUS)
+coefficients(modelOrb_722_GUS)
+
+modelOrb_CCD8_GUS <- lm(Orb_pmol_ml_g~VIGS_gene, VIGS_CCD8_GUS)
+coefficients(modelOrb_CCD8_GUS)
+```
+
+
+```{r}
+ggplot(data=VIGS_filt) + 
+  geom_boxplot(mapping = aes(x=Sol_pmol_ml_g, y=VIGS_gene, color = VIGS_gene))
+```
+
+
+```{r}
+modelSol <- lm(Sol_pmol_ml_g~VIGS_gene, VIGS_filt)
+coefficients(modelSol)
+
+modelSol_712_GUS <- lm(Sol_pmol_ml_g~VIGS_gene, VIGS_712_GUS)
+coefficients(modelSol_712_GUS)
+
+modelSol_722_GUS <- lm(Sol_pmol_ml_g~VIGS_gene, VIGS_722_GUS)
+coefficients(modelSol_722_GUS)
+
+modelSol_CCD8_GUS <- lm(Sol_pmol_ml_g~VIGS_gene, VIGS_CCD8_GUS)
+coefficients(modelSol_CCD8_GUS)
+```
+
+## Compare models between the measurements of 2 types of strigolactones 
+
+```{r}
+
+```
+

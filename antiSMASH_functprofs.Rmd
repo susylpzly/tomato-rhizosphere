@@ -1,0 +1,151 @@
+---
+title: "antiSMASH_FunctProfs"
+author: "Susana Lopez Lemarroy"
+date: "2023-01-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#libraries
+library(ggplot2)
+library(stats)
+```
+
+
+### antiSMASH functional profiles annotations analysis 
+- Pfam (db_xref)
+- aSDomain (antiSMASH Domain)
+- MiBig 
+
+#### MiBig
+
+```{r}
+#missing EP_2 = there is nothing on the knownclusterblastoutput.txt file, something either went wrong with 
+#antismash or it didn't find any MiBig annotations for those locus tags 
+df_mibig <- read.csv('MiBig_profile.csv', row.names = 'X')
+df_mibig[is.na(df_mibig)] <- 0
+df_mibig <- df_mibig[,order(colnames(df_mibig))]
+df_mibig
+```
+
+
+```{r}
+df_info_mibig <- as.data.frame(colnames(df_mibig)) %>%
+  'colnames<-'(c('Sample'))
+df_info_mibig <- separate(df_info_mibig, Sample, into=c('t','Treatment','sample'), sep='[_]', remove = FALSE) %>% select(c(Sample,Treatment))
+df_info_mibig
+```
+
+
+```{r}
+df_mb_712GUS <- df_mibig[,df_info_mibig$Treatment %in% unique(df_info_mibig$Treatment)[c(1,5)]]
+df_mb_712GUS <- df_mb_712GUS[rowSums(df_mb_712GUS)>0,]
+
+mb_richness <- df_info_mibig 
+mb_richness$Richness <- colSums(df_mibig != 0)
+mb_richness
+
+```
+
+```{r}
+#plot richness (numbers per sample) between the treatments 
+
+ggplot(data=mb_richness, aes(x=Treatment, y=Richness, color=Treatment)) +
+  geom_boxplot() +
+  ggtitle('Sample Richness by Treatment') +
+  xlab('Treatment') +
+  ylab('Richness') +
+  theme(legend.position = "none") 
+
+#total counts per sample for all MiBig IDs found - this would be sample 'abundance' but could also
+#be a way of talking about sequencing depth
+colSums(df_mibig)
+
+#richnes: number of different components in a sample - so number of MiBig hits per sample
+#length of a list of functional groups that have counts larger than 0
+#richness_mb <- as.data.frame(apply(df_mibig,
+#                           2,
+#                           function(x) length(which(x>0))))
+
+summary(mb_richness$Richness)
+#colnames(richness_mb) <- 'Richness'
+#richness_mb$Treatment <- df_info_mibig$Treatment
+#richness_mb
+
+#perform an anova for the functional groups richness in each treatment group 
+richness_anova <- aov(Richness ~ Treatment, data=mb_richness)
+summary(richness_anova)
+
+#The Kruskal-Wallis test is a non-parametric statistical test that is used to compare the median of two or more independent groups. It can be used to determine whether there is a significant difference in the sample richness among the different groups.
+
+#Kruskal-Wallis chi-squared: This is the test statistic. It is calculated as the sum of the squared ranks divided by the sample size.
+#df: This is the degrees of freedom. It is calculated as the number of groups minus one.
+#p-value: This is the probability of obtaining the observed or a more extreme test statistic by chance if the null hypothesis is true.
+
+#The Kruskal-Wallis test is used to test the null hypothesis that the medians of the groups are equal. The test statistic, called the H-statistic, is calculated as follows:
+
+#H = n(n+1) / 12 * Σ(Ri^2 / ni) - 3(n + 1)
+
+#Where:
+
+#n: the total number of observations
+#Ri: the rank of the i-th observation
+#ni: the number of observations in the i-th group
+
+# Kruskal Wallis + posthoc test 
+# Perform the Kruskal-Wallis test
+kruskal.test(Richness ~ Treatment, data = richness_mb)
+
+# fail to reject the null hypothesis that there is no significant difference in the median sample richness among the groups. In other words, the output suggests that there is not enough evidence to suggest that the medians of the groups are different from each other.
+
+```
+
+
+#### Pfam (db_xref)
+
+```{r}
+#missing 722_12, 722_13, 722_14, GUS_10 
+df_pfam <- read.csv('db_xref_profile.csv', row.names = 'X')
+df_pfam[is.na(df_pfam)] <- 0
+df_pfam <- df_pfam[,order(colnames(df_pfam))]
+df_pfam
+```
+
+```{r}
+df_info_pfam <- as.data.frame(colnames(df_pfam)) %>%
+  'colnames<-'(c('Sample'))
+df_info_pfam <- separate(df_info_pfam, Sample, into=c('t','Treatment','sample'), sep='[_]', remove = FALSE) %>% select(c(Sample,Treatment))
+df_info_pfam
+```
+
+```{r}
+
+```
+
+
+
+#### aSDomain
+
+```{r}
+df_asdomain <- read.csv('aSDomain_profile.csv', row.names = 'X')
+df_asdomain[is.na(df_asdomain)] <- 0
+df_asdomain <- df_asdomain[,order(colnames(df_asdomain))]
+df_asdomain
+```
+
+```{r}
+df_info_asdomain <- as.data.frame(colnames(df_asdomain)) %>%
+  'colnames<-'(c('Sample'))
+df_info_asdomain <- separate(df_info_asdomain, Sample, into=c('t','Treatment','sample'), sep='[_]', remove = FALSE) %>% select(c(Sample,Treatment))
+df_info_asdomain
+```
+
+
+```{r}
+rowSums(df_asdomain == 0)
+```
+

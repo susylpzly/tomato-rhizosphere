@@ -115,7 +115,7 @@ which(perc0_funct_all>funct_cutoff)
 ```{r}
 #for a 0 count cutoff within treatments of 25% and a functional group treatment cutoff of 75% (at least 75% of treatment groups
 #have enough 0s, less than 25%)
-df_few0_funct <- df_counts[filter_fun(df_counts,df_info$Treatment, 0.25, 0.75),]
+df_few0_funct <- df_counts[filter_fun(df_counts,df_info$Treatment, 0.18, 0.85),]
 unique(df_info$Treatment)
 ```
 
@@ -131,55 +131,49 @@ unique(df_info$Treatment)
 #one Treatment with one Control 
 #712-GUS
 df_712_GUS <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(1,5)]]
-df_few0_712_GUS <- df_712_GUS[filter_fun(df_712_GUS,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(1,5)]],0.25, 0.75),]
+df_few0_712_GUS <- df_712_GUS[filter_fun(df_712_GUS,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(1,5)]],0.18, 0.85),]
 
 #712-MMA
-df_712_MMA <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(1,6)]]
-df_few0_712_MMA <- df_712_MMA[filter_fun(df_712_MMA,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(1,6)]],0.25, 0.75),]
+#df_712_MMA <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(1,6)]]
+#df_few0_712_MMA <- df_712_MMA[filter_fun(df_712_MMA,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(1,6)]],0.25, 0.75),]
 
 #712_EP
-df_712_EP <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(1,4)]]
-df_few0_712_EP <- df_712_EP[filter_fun(df_712_EP,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(1,4)]],0.25, 0.75),]
-
-
+#df_712_EP <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(1,4)]]
+#df_few0_712_EP <- df_712_EP[filter_fun(df_712_EP,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(1,4)]],0.25, 0.75),]
 
 #722-GUS
 df_722_GUS <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(2,5)]]
-df_few0_722_GUS <- df_722_GUS[filter_fun(df_722_GUS,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(2,5)]],0.25, 0.75),]
+df_few0_722_GUS <- df_722_GUS[filter_fun(df_722_GUS,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(2,5)]],0.18, 0.85),]
 
 #722-MMA
-df_722_MMA <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(2,6)]]
-df_few0_722_MMA <- df_722_MMA[filter_fun(df_722_MMA,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(2,6)]],0.25, 0.75),]
+#df_722_MMA <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(2,6)]]
+#df_few0_722_MMA <- df_722_MMA[filter_fun(df_722_MMA,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(2,6)]],0.18, 0.85),]
 
 #722_EP
-df_722_EP <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(2,4)]]
-df_few0_722_EP <- df_722_EP[filter_fun(df_722_EP,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(2,4)]],0.25, 0.75),]
-
-
+#df_722_EP <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(2,4)]]
+#df_few0_722_EP <- df_722_EP[filter_fun(df_722_EP,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(2,4)]],0.18, 0.85),]
 
 #CCD8-GUS
 df_CCD8_GUS <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(3,5)]]
-df_few0_CCD8_GUS <- df_CCD8_GUS[filter_fun(df_CCD8_GUS,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(3,5)]],0.25, 0.75),]
+df_few0_CCD8_GUS <- df_CCD8_GUS[filter_fun(df_CCD8_GUS,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(3,5)]],0.18, 0.85),]
 
 #CCD8-MMA
-df_CCD8_MMA <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(3,6)]]
-df_few0_CCD8_MMA <- df_CCD8_MMA[filter_fun(df_CCD8_MMA,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(3,6)]],0.25, 0.75),]
+#df_CCD8_MMA <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(3,6)]]
+#df_few0_CCD8_MMA <- df_CCD8_MMA[filter_fun(df_CCD8_MMA,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(3,6)]],0.18, 0.85),]
 
 #CCD8_EP
-df_CCD8_EP <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(3,4)]]
-df_few0_CCD8_EP <- df_CCD8_EP[filter_fun(df_CCD8_EP,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(3,4)]],0.25, 0.75),]
-
-
+#df_CCD8_EP <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(3,4)]]
+#df_few0_CCD8_EP <- df_CCD8_EP[filter_fun(df_CCD8_EP,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(3,4)]],0.18, 0.85),]
 
 #2 Controls 
 #GUS-MMA 
 df_GUS_MMA <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(5,6)]]
-df_few0_GUS_MMA <- df_GUS_MMA[filter_fun(df_GUS_MMA,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(5,6)]],0.25, 0.75),]
+df_few0_GUS_MMA <- df_GUS_MMA[filter_fun(df_GUS_MMA,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(5,6)]],0.18, 0.85),]
 
 
 #all but EP
 df_all_plant <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(1,2,3,5,6)]]
-df_few0_plant <- df_all_plant[filter_fun(df_all_plant,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(1,2,3,5,6)]],0.25, 0.75),]
+df_few0_plant <- df_all_plant[filter_fun(df_all_plant,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(1,2,3,5,6)]],0.18, 0.85),]
 df_info_plant <- df_info[df_info$Treatment!= 'EP',]
 
 ```
@@ -256,17 +250,17 @@ legend("topright",col=rainbow(6),
 autoplot(few0_funct_pca_clr, data=t(df_few0_funct_clr), colour = rainbow(6)[as.numeric(as.factor(df_info$Treatment))]) 
 
 
-#### PCA with sum normalization 
-few0_funct_pca_sum <- prcomp(t(df_few0_funct_sum))
-plot(few0_funct_pca_sum$x,
+#### PCA with log transformed 0 to 1 pseudocount data
+few0_funct_pca_log <- prcomp(t(log(df_few0_funct_psc)))
+plot(few0_funct_pca_log$x,
      col=rainbow(6)[as.numeric(as.factor(df_info$Treatment))],
-     main='PCA of Sum normalized data', pch=19)
+     main='PCA of log transformed 1-PSC data')
 legend("topright",col=rainbow(6),
        legend=levels(as.factor(df_info$Treatment)),
        lty=1,
        bty="n")
 
-autoplot(few0_funct_pca_sum, data=t(df_few0_funct_sum), colour = rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
+autoplot(few0_funct_pca_log, data=t(log(df_few0_funct_psc)), colour = rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
 
 
 ### PCA with hellinger transformation
@@ -280,8 +274,22 @@ legend("topright",col=rainbow(6),
        bty="n")
 
 autoplot(few0_funct_pca_hellinger, data=t(df_few0_funct_hellinger), colour = rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
+
+
+### PCA with sum normalization 
+few0_funct_pca_sum <- prcomp(t(df_few0_funct_sum))
+plot(few0_funct_pca_sum$x,
+     col=rainbow(6)[as.numeric(as.factor(df_info$Treatment))],
+     main='PCA of log transformed 1-PSC data')
+legend("topright",col=rainbow(6),
+       legend=levels(as.factor(df_info$Treatment)),
+       lty=1,
+       bty="n")
+
+autoplot(few0_funct_pca_sum, data=t(df_few0_funct_sum), colour = rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
 ```
 
+### PCA for plant groups 
 ```{r}
 #plant treatment groups
 ###PCA with clr data
@@ -297,61 +305,47 @@ legend("topright",col=rainbow(6),
 autoplot(few0_plant_pca_clr, data=t(df_few0_plant_clr), colour = rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))]) 
 
 
-#### PCA with sum transformed data
-few0_plant_pca_sum <- prcomp(t(df_few0_plant_sum))
-plot(few0_plant_pca_sum$x,
-     col=rainbow(5)[as.numeric(as.factor(df_info_plant$Treatment))],
-     main='PCA of Sum normalized data', pch=19)
-legend("topright",col=rainbow(5),
+#### PCA with log transformed 0 to 1 pseudocount data
+few0_plant_pca_log <- prcomp(t(log(df_few0_plant_psc)))
+plot(few0_plant_pca_log$x,
+     col=rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))],
+     main='PCA of log transformed 1-PSC data')
+legend("topright",col=rainbow(6),
        legend=levels(as.factor(df_info_plant$Treatment)),
        lty=1,
        bty="n")
 
-autoplot(few0_plant_pca_sum, data=t(df_few0_plant_sum), colour = rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))])
+autoplot(few0_plant_pca_log, data=t(df_few0_plant_psc), colour = rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))])
 
 
-#### PCA with hellinger tranform
+### PCA with hellinger 
 few0_plant_pca_hellinger <- prcomp(t(df_few0_plant_hellinger))
 plot(few0_plant_pca_hellinger$x,
-     col=rainbow(5)[as.numeric(as.factor(df_info_plant$Treatment))],
-     main='PCA of Hellinger transformed data', pch=19)
-legend("topright",col=rainbow(5),
+     col=rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))],
+     main='PCA of log transformed 1-PSC data')
+legend("topright",col=rainbow(6),
        legend=levels(as.factor(df_info_plant$Treatment)),
        lty=1,
        bty="n")
 
 autoplot(few0_plant_pca_hellinger, data=t(df_few0_plant_hellinger), colour = rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))])
+
+
+### PCA with sum 
+few0_plant_pca_sum <- prcomp(t(df_few0_plant_sum))
+plot(few0_plant_pca_sum$x,
+     col=rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))],
+     main='PCA of log transformed 1-PSC data')
+legend("topright",col=rainbow(6),
+       legend=levels(as.factor(df_info_plant$Treatment)),
+       lty=1,
+       bty="n")
+
+autoplot(few0_plant_pca_sum, data=t(df_few0_plant_sum), colour = rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))], label = TRUE)
 ```
 
 
-```{r}
-#calculate pairwise distances between the samples based on their functional composition. In ecology pairwise distance between samples is referred to as beta-diversity, although typically based on taxonomic composition rather than functional
-funct_dist <- as.matrix(vegdist(t(log(df_few0_funct_psc)), method="bray", binary=FALSE, diag=TRUE, upper=TRUE, na.rm = FALSE))
-```
 
-```{r}
-#bray curtis dissimilarity matrix on log transformed zero-filtered data with 0 to 1 replace pseudocounts
-bc1 <- vegdist(t(df_few0_funct_sum))
-#don't do bray curtis with log data or with data containing negative counts because it does not consider that distance
-euc1 <- vegdist(t(df_few0_funct_hellinger))
-```
-
-#Principal Coordinate Analysis 
-```{r}
-pcoa1 <- pcoa(bc1)
-pcoa_val1 <- 100*c(pcoa1$values[pcoa1$values[,2]>0,2]/sum(pcoa1$values[pcoa1$values[,2]>0,2]))
-plot(pcoa1$vector[,1:2],
-     col=rainbow(6)[as.numeric(as.factor(df_info$Treatment))],
-     axes=F,
-     xlab=paste0("PC1 (",round(pcoa_val1[1],digits = 1),"%)"),
-     ylab=paste0("PC2 (",round(pcoa_val1[2],digits = 1),"%)"))
-legend("topleft",col=rainbow(6),
-       legend=levels(as.factor(df_info$Treatment)),
-       pch=1,
-       bty="n",cex=0.8)
-box()
-#looks the same if applied with the funct_dist matrix 
-```
 
 #ANCOM: Analysis of Composition of Microbiomes - Differential Abundance Testing 
 ```{r}
@@ -415,19 +409,6 @@ prepro_differential <- ANCOM(feature_table = prepro$feature_table,
                       rand_formula = NULL)
 ```
 
-```{r}
-library(Rtsne)
-set.seed(423542)
-tsne_out <- Rtsne(euc1, perplexity=5)
-
-proj <- tsne_out$Y
-
-rownames(proj) <- rownames(t(df_few0_funct_hellinger))
-
-plot_landscape(proj, size = 1, col=rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
-
-
-```
 
 ```{r}
 permanova <- adonis(t(df_few0_funct_clr) ~ Treatment,
