@@ -31,42 +31,45 @@ library(parallel)
 library(ggfortify)
 library(phyloseq)
 library(microbiome)
+library(DESeq2)
+library(Maaslin2)
 ```
 
 
 ```{r}
 #read the functional profile table 
-df_counts <- read.csv("Pfam_profile.csv", row.names = 'X')
+df_kegg <- read.csv("KEGG_profile.csv", row.names = 'X')
 
 #change NA values from empty spaces to 0 values
-df_counts[is.na(df_counts)] <- 0
+df_kegg[is.na(df_kegg)] <- 0
 
 #sort the rows and columns by alphabetical order
-df_counts <- df_counts[order(rownames(df_counts)),order(colnames(df_counts))]
+df_kegg <- df_kegg[order(rownames(df_kegg)),order(colnames(df_kegg))]
 
 #transform dataframe to make it data sciency format 
-df_datascience <- as.data.frame(t(df_counts))
+#df_datascience <- as.data.frame(t(df_kegg))
 ```
 
 ```{r}
 #make a dataframe with only the sample names and change the column name to Sample 
-df_info <- as.data.frame(colnames(df_counts)) %>% 
+df_info_kegg<- as.data.frame(colnames(df_kegg)) %>% 
   'colnames<-'(c('Sample'))
 
 #make Treatment column based on the Sample name, which includes the type of treatment 
-df_info <- separate(df_info, Sample, into=c('t','Treatment','sample'), sep='[_]', remove = FALSE) %>% select(c(Sample,Treatment))
+df_info_kegg<- separate(df_info_kegg
+                        , Sample, into=c('t','Treatment','sample'), sep='[_]', remove = FALSE) %>% select(c(Sample,Treatment))
 ```
 
 *THIS ALSO MADE THE INFO DATAFRAME BUT A BIT MORE COMPLICATED*
-treatments_df <- as.data.frame(colnames(df_counts))
+treatments_df <- as.data.frame(colnames(df_kegg))
 treatments_df <- treatments_df %>% 
   mutate(Treatment = case_when(
-    grepl("712", `colnames(df_counts)`, fixed = TRUE) ~ "712",
-    grepl("722", `colnames(df_counts)`, fixed = TRUE) ~ "722",
-    grepl("CCD8", `colnames(df_counts)`, fixed = TRUE) ~ "CCD8",
-    grepl("MMA", `colnames(df_counts)`, fixed = TRUE) ~ "MMA",
-    grepl("GUS", `colnames(df_counts)`, fixed = TRUE) ~ "GUS",
-    grepl("EP", `colnames(df_counts)`, fixed = TRUE) ~ "EP",
+    grepl("712", `colnames(df_kegg)`, fixed = TRUE) ~ "712",
+    grepl("722", `colnames(df_kegg)`, fixed = TRUE) ~ "722",
+    grepl("CCD8", `colnames(df_kegg)`, fixed = TRUE) ~ "CCD8",
+    grepl("MMA", `colnames(df_kegg)`, fixed = TRUE) ~ "MMA",
+    grepl("GUS", `colnames(df_kegg)`, fixed = TRUE) ~ "GUS",
+    grepl("EP", `colnames(df_kegg)`, fixed = TRUE) ~ "EP",
   )) %>%
   'colnames<-' c("Sample", "Treatment")
 
@@ -87,7 +90,7 @@ treatments_df <- treatments_df %>%
 #and between treatment groups for each functional group 
 #ARGUMENTS
 #x = dataframe 
-#treat_group_factor = treatment groups from info df, as df_info$Treatment
+#treat_group_factor = treatment groups from info df, as df_info_kegg$Treatment
 #per_treat_cutoff = number/percentage of treatment groups that have less than this value of 0s overall 
 #funct_cutoff = 
 filter_fun <- function(x,treat_group_factor,per_treat_cutoff,funct_cutoff){
@@ -115,8 +118,8 @@ which(perc0_funct_all>funct_cutoff)
 ```{r}
 #for a 0 count cutoff within treatments of 25% and a functional group treatment cutoff of 75% (at least 75% of treatment groups
 #have enough 0s, less than 25%)
-df_few0_funct <- df_counts[filter_fun(df_counts,df_info$Treatment, 0.25, 0.75),]
-unique(df_info$Treatment)
+df_few0_kegg <- df_kegg[filter_fun(df_kegg,df_info_kegg$Treatment, 0.25, 0.75),]
+df_fewer0_kegg <- df_kegg[filter_fun(df_kegg,df_info_kegg$Treatment, 0.18, 0.85),]
 ```
 
 ##FOR MAKING PAIRWISE DATAFRAMES WITH ONE TREATMENT VS ONE CONTROL DATAFRAMES 
@@ -130,58 +133,120 @@ unique(df_info$Treatment)
 
 #one Treatment with one Control 
 #712-GUS
-df_712_GUS <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(1,5)]]
-df_few0_712_GUS <- df_712_GUS[filter_fun(df_712_GUS,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(1,5)]],0.25, 0.75),]
+df_712_GUS <- df_kegg[,df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(1,5)]]
+df_few0_712_GUS <- df_712_GUS[filter_fun(df_712_GUS,df_info_kegg$Treatment[df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(1,5)]],0.25, 0.75),]
 
 #712-MMA
-df_712_MMA <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(1,6)]]
-df_few0_712_MMA <- df_712_MMA[filter_fun(df_712_MMA,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(1,6)]],0.25, 0.75),]
+df_712_MMA <- df_kegg[,df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(1,6)]]
+df_few0_712_MMA <- df_712_MMA[filter_fun(df_712_MMA,df_info_kegg$Treatment[df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(1,6)]],0.25, 0.75),]
 
 #712_EP
-df_712_EP <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(1,4)]]
-df_few0_712_EP <- df_712_EP[filter_fun(df_712_EP,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(1,4)]],0.25, 0.75),]
+df_712_EP <- df_kegg[,df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(1,4)]]
+df_few0_712_EP <- df_712_EP[filter_fun(df_712_EP,df_info_kegg$Treatment[df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(1,4)]],0.25, 0.75),]
 
 
 
 #722-GUS
-df_722_GUS <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(2,5)]]
-df_few0_722_GUS <- df_722_GUS[filter_fun(df_722_GUS,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(2,5)]],0.25, 0.75),]
+df_722_GUS <- df_kegg[,df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(2,5)]]
+df_few0_722_GUS <- df_722_GUS[filter_fun(df_722_GUS,df_info_kegg$Treatment[df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(2,5)]],0.25, 0.75),]
 
 #722-MMA
-df_722_MMA <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(2,6)]]
-df_few0_722_MMA <- df_722_MMA[filter_fun(df_722_MMA,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(2,6)]],0.25, 0.75),]
+df_722_MMA <- df_kegg[,df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(2,6)]]
+df_few0_722_MMA <- df_722_MMA[filter_fun(df_722_MMA,df_info_kegg$Treatment[df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(2,6)]],0.25, 0.75),]
 
 #722_EP
-df_722_EP <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(2,4)]]
-df_few0_722_EP <- df_722_EP[filter_fun(df_722_EP,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(2,4)]],0.25, 0.75),]
+df_722_EP <- df_kegg[,df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(2,4)]]
+df_few0_722_EP <- df_722_EP[filter_fun(df_722_EP,df_info_kegg$Treatment[df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(2,4)]],0.25, 0.75),]
 
 
 
 #CCD8-GUS
-df_CCD8_GUS <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(3,5)]]
-df_few0_CCD8_GUS <- df_CCD8_GUS[filter_fun(df_CCD8_GUS,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(3,5)]],0.25, 0.75),]
+df_CCD8_GUS <- df_kegg[,df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(3,5)]]
+df_few0_CCD8_GUS <- df_CCD8_GUS[filter_fun(df_CCD8_GUS,df_info_kegg$Treatment[df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(3,5)]],0.25, 0.75),]
 
 #CCD8-MMA
-df_CCD8_MMA <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(3,6)]]
-df_few0_CCD8_MMA <- df_CCD8_MMA[filter_fun(df_CCD8_MMA,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(3,6)]],0.25, 0.75),]
+df_CCD8_MMA <- df_kegg[,df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(3,6)]]
+df_few0_CCD8_MMA <- df_CCD8_MMA[filter_fun(df_CCD8_MMA,df_info_kegg$Treatment[df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(3,6)]],0.25, 0.75),]
 
 #CCD8_EP
-df_CCD8_EP <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(3,4)]]
-df_few0_CCD8_EP <- df_CCD8_EP[filter_fun(df_CCD8_EP,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(3,4)]],0.25, 0.75),]
+df_CCD8_EP <- df_kegg[,df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(3,4)]]
+df_few0_CCD8_EP <- df_CCD8_EP[filter_fun(df_CCD8_EP,df_info_kegg$Treatment[df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(3,4)]],0.25, 0.75),]
 
 
 
 #2 Controls 
 #GUS-MMA 
-df_GUS_MMA <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(5,6)]]
-df_few0_GUS_MMA <- df_GUS_MMA[filter_fun(df_GUS_MMA,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(5,6)]],0.25, 0.75),]
+df_GUS_MMA <- df_kegg[,df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(5,6)]]
+df_few0_GUS_MMA <- df_GUS_MMA[filter_fun(df_GUS_MMA,df_info_kegg$Treatment[df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(5,6)]],0.25, 0.75),]
 
 
 #all but EP
-df_all_plant <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(1,2,3,5,6)]]
-df_few0_plant <- df_all_plant[filter_fun(df_all_plant,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(1,2,3,5,6)]],0.25, 0.75),]
-df_info_plant <- df_info[df_info$Treatment!= 'EP',]
+df_plant_kegg <- df_kegg[,df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(1,2,3,5,6)]]
+df_few0_plant_kegg <- df_plant_kegg[filter_fun(df_plant_kegg,df_info_kegg$Treatment[df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(1,2,3,5,6)]],0.25, 0.75),]
+df_fewer0_plant_kegg <- df_plant_kegg[filter_fun(df_plant_kegg,df_info_kegg$Treatment[df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(1,2,3,5,6)]],0.18, 0.85),]
+df_info_kegg_plant <- df_info_kegg[df_info_kegg$Treatment!= 'EP',]
 
+```
+
+
+
+# VIGS dataset with strigolactones concentrations information 
+```{r}
+VIGS_meta <- read.csv("VIGS_meta.csv")
+VIGS_meta <- subset(VIGS_meta, select = -c(X))
+```
+
+```{r}
+#make a dataframe with only the sample names and change the column name to Sample 
+sInfo <- data.frame("sampleID"=colnames(df_kegg))
+sInfo$group <- gsub("_[^_]+$","",sInfo$sampleID)
+sInfo <- sInfo[order(rownames(sInfo)),]
+rownames(sInfo) <- sInfo$sampleID
+```
+
+
+```{r}
+VIGS <- VIGS_meta[VIGS_meta$Sample_ID %in% sInfo$sampleID,]
+VIGS <- VIGS[order(VIGS$Sample_ID),]
+rownames(VIGS) <- VIGS$Sample_ID
+VIGS[is.na(VIGS)] <- 0
+
+VIGS_filt <- VIGS_meta[VIGS_meta$Sample_ID %in% sInfo$sampleID,]
+VIGS_filt <- subset(VIGS_filt, VIGS_gene != 'EP')
+VIGS_filt <- VIGS_filt[order(VIGS_filt$Sample_ID),]
+rownames(VIGS_filt) <- VIGS_filt$Sample_ID
+```
+
+
+## ASSEMBLY ASSESSMENT FROM all_stats.tsv file in Stats directory of IMP3 output 
+
+```{r}
+library("readxl")
+
+
+ass_stats <- as.data.frame(read_excel('./assemblynode_commitment.xlsx', sheet='Sheet2'))
+ass_stats_samples <- ass_stats[1:54,]
+ass_stats_samples <- ass_stats_samples[order(ass_stats_samples$sample),]
+rownames(ass_stats_samples) <- ass_stats_samples$sample
+colnames(ass_stats_samples) <- c('Sample_ID', 'N50', 'CDSs', 'KEGG_CDSs', 'seq_depth', 'dbCAN_CDSs')
+
+ass_stats_big <- merge(VIGS, ass_stats_samples, by='Sample_ID')
+
+ass_stats_big$VIGS_gene[ass_stats_big$VIGS_gene == 'CYP712'] <- '712'
+ass_stats_big$VIGS_gene[ass_stats_big$VIGS_gene == 'CYP722'] <- '722'
+
+ass_stats_big <- ass_stats_big[order(ass_stats_big$Sample_ID),]
+
+```
+
+```{r}
+
+
+ggplot(data=ass_stats_big, aes(x=VIGS_gene, y=seq_depth)) +
+  geom_boxplot(fill=c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC'), show.legend = FALSE) +
+  theme(text = element_text(size=14)) +
+  xlab('Treatment') +
+  ylab('# of Reads')
 ```
 
 
@@ -201,20 +266,22 @@ df_info_plant <- df_info[df_info$Treatment!= 'EP',]
 #norm and transform zero-filtered dataframe with all treatment groups
 
 #Sum normalization 
-df_few0_funct_sum <- decostand(df_few0_funct,method = "total",2)
+df_few0_kegg_sum <- decostand(df_few0_kegg,method = "total",2)
 
 #Hellinger transform
-df_few0_funct_hellinger <- decostand(df_few0_funct,method = "hellinger",2)
+df_few0_kegg_hellinger <- decostand(df_few0_kegg,method = "hellinger",2)
 
 #Small pseudocount of 1/10th of the smallest value bigger than zero, adding it to all values in the df
 #to maintain comparable sizes between the values, then apply center-log ratio transform 
-df_few0_funct_clr <- as.matrix(as.data.frame(t(clr(min(df_few0_funct[df_few0_funct>0])/10+t(df_few0_funct)))))
+df_few0_kegg_clr <- as.matrix(as.data.frame(t(clr(min(df_few0_kegg[df_few0_kegg>0])/10+t(df_few0_kegg)))))
+
+df_fewer0_kegg_clr <- as.matrix(as.data.frame(t(clr(min(df_fewer0_kegg[df_fewer0_kegg>0])/10+t(df_fewer0_kegg)))))
 
 #presudocount: replacing zero values by 1 
-df_few0_funct_psc <- df_few0_funct
-df_few0_funct_psc[df_few0_funct_psc==0] <- 1
+df_few0_kegg_psc <- df_few0_kegg
+df_few0_kegg_psc[df_few0_kegg_psc==0] <- 1
 #then apply CLR to the dataframe 
-gems_few0groups2_clr2 <- as.matrix(as.data.frame(t(clr(t(df_few0_funct_psc)))))
+#gems_few0groups2_clr2 <- as.matrix(as.data.frame(t(clr(t(df_few0_kegg_psc)))))
 
 ```
 
@@ -222,21 +289,128 @@ gems_few0groups2_clr2 <- as.matrix(as.data.frame(t(clr(t(df_few0_funct_psc)))))
 #plant treatments transformations and normalizations 
 
 #Sum normalization 
-df_few0_plant_sum <- decostand(df_few0_plant,method = "total",2)
+df_few0_plant_kegg_sum <- decostand(df_few0_plant_kegg,method = "total",2)
 
 #Hellinger transform
-df_few0_plant_hellinger <- decostand(df_few0_plant,method = "hellinger",2)
+df_few0_plant_kegg_hellinger <- decostand(df_few0_plant_kegg,method = "hellinger",2)
 
 #Small pseudocount of 1/10th of the smallest value bigger than zero, adding it to all values in the df
 #to maintain comparable sizes between the values, then apply center-log ratio transform 
-df_few0_plant_clr <- as.matrix(as.data.frame(t(clr(min(df_few0_plant[df_few0_plant>0])/10+t(df_few0_plant)))))
+df_few0_plant_kegg_clr <- as.matrix(as.data.frame(t(clr(min(df_few0_plant_kegg[df_few0_plant_kegg>0])/10+t(df_few0_plant_kegg)))))
 
 #presudocount: replacing zero values by 1 
-df_few0_plant_psc <- df_few0_plant
-df_few0_plant_psc[df_few0_plant_psc==0] <- 1
+df_few0_plant_kegg_psc <- df_few0_plant_kegg
+df_few0_plant_kegg_psc[df_few0_plant_kegg_psc==0] <- 1
 #then apply CLR to the dataframe 
-gems_few0plant2_clr2 <- as.matrix(as.data.frame(t(clr(t(df_few0_plant_psc)))))
+#gems_few0plant2_clr2 <- as.matrix(as.data.frame(t(clr(t(df_few0_plant_kegg_kegg_psc)))))
 
+```
+
+## Percentage of zero values in the data frames before and after filtering 
+
+
+```{r}
+#length of list of functional groups that have 0 value counts, divided by the total number of functional groups, multiplied by the number of samples -> approximate percentage of values in the dataset that are 0s 
+length(which(df_kegg==0))/(nrow(df_kegg) * ncol(df_kegg))
+
+#for filtered data
+length(which(df_few0_kegg==0))/(nrow(df_few0_kegg) * ncol(df_few0_kegg))
+```
+
+## Richness and TukeyHSD test - ALL samples
+
+
+**Estimated species per sample, difference in richness -> alpha diversity for each treatment group**
+
+```{r}
+#length of a list of functional groups that have counts larger than 0
+richness_1_noNorm <- as.data.frame(apply(df_kegg,
+                           2,
+                           function(x) length(which(x>0))))
+
+summary(richness_1_noNorm)
+colnames(richness_1_noNorm) <- 'Richness'
+richness_1_noNorm$Treatment <- df_info_kegg$Treatment
+
+#perform an anova for the functional groups richness in each treatment group 
+richness_anova <- aov(Richness ~ Treatment, data=richness_1_noNorm)
+summary(richness_anova)
+
+#Tukey Honest Significant Differences 
+#diff: difference between means of the two groups
+#lwr, upr: the lower and the upper end point of the confidence interval at 95% (default)
+#p adj: p-value after adjustment for the multiple comparisons.
+tukey_allkegg <- TukeyHSD(richness_anova)
+tukey_allkegg <- tukey_allkegg$Treatment[,c(1,4)]
+
+colnames(tukey_allkegg) <- c('Raw Diff', 'Raw P-adj')
+tukey_allkegg
+
+ggplot(richness_1_noNorm, aes(Treatment, Richness)) + 
+  geom_boxplot(fill=c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC'), show.legend = FALSE) +
+  theme(text = element_text(size=14)) +
+  ylab('Functional Richness (#KOs)') 
+
+#residuals versus fits plot - can be used to check the homogeneity of variances
+plot(richness_anova, 1)
+#no evident relationships between residuals and fitted values (the mean of each groups) ->  we can assume the homogeneity of variances
+#
+
+#Normality plot of residuals - the quantiles of the residuals are plotted against the quantiles of the normal distribution. A 45-degree reference line is also plotted
+#used to check the assumption that the residuals are normally distributed. It should approximately follow a straight line.
+plot(richness_anova, 2)
+
+#plot for each treatment 
+# boxplot(richness_1_noNorm ~ df_info_kegg$Treatment,
+#         ylab="Number of Observed Families",
+#         xlab="Tomato Lines",
+#         border=c("royalblue1","tomato1","firebrick4"),
+#         las=1)
+```
+
+
+We can observe that even though samples from the 712 group have the lowest mapped read counts the number of functional groups/families are not affected as they seem to be quite well distributed compared to the other types of samples. The EmptyPot group has the highest number of functional groups mapped, which is expected and good confirmation of the data. 
+
+## Richness and TukeyHSD test - filtered ALL samples
+
+```{r}
+#length of a list of functional groups that have counts larger than 0
+richness_1_fewnoNorm <- as.data.frame(apply(df_few0_kegg,
+                           2,
+                           function(x) length(which(x>0))))
+
+summary(richness_1_fewnoNorm)
+colnames(richness_1_fewnoNorm) <- 'Richness'
+richness_1_fewnoNorm$Treatment <- df_info_kegg$Treatment
+
+#perform an anova for the functional groups richness in each treatment group 
+richness_fewanova <- aov(Richness ~ Treatment, data=richness_1_fewnoNorm)
+summary(richness_fewanova)
+
+#Tukey Honest Significant Differences 
+#diff: difference between means of the two groups
+#lwr, upr: the lower and the upper end point of the confidence interval at 95% (default)
+#p adj: p-value after adjustment for the multiple comparisons.
+tukey_filtkegg <- TukeyHSD(richness_fewanova)
+tukey_filtkegg <- tukey_filtkegg$Treatment[,c(1,4)]
+
+colnames(tukey_filtkegg) <- c('Filt Diff', 'Filt P-adj')
+tukey_filtkegg
+
+tukey_complete <- as.data.frame(tukey_allkegg)
+df_tukey_filtkegg <- as.data.frame(tukey_filtkegg)
+tukey_complete$'Filt Diff' <- df_tukey_filtkegg$`Filt Diff`
+tukey_complete$'Filt P-adj' <- df_tukey_filtkegg$`Filt P-adj`
+tail(tukey_complete)
+
+
+ggplot(richness_1_fewnoNorm, aes(Treatment, Richness)) + 
+  geom_boxplot(fill=c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC'), show.legend = FALSE) +
+  theme(text = element_text(size=14)) +
+  ylab('Functional Richness (#KOs)') 
+
+#residuals versus fits plot - can be used to check the homogeneity of variances
+plot(richness_fewanova, 1)
 ```
 
 
@@ -244,86 +418,609 @@ gems_few0plant2_clr2 <- as.matrix(as.data.frame(t(clr(t(df_few0_plant_psc)))))
 
 ```{r}
 ###PCA with clr data
-few0_funct_pca_clr <- prcomp(t(df_few0_funct_clr))
-plot(few0_funct_pca_clr$x,
-     col=rainbow(6)[as.numeric(as.factor(df_info$Treatment))],
-     main='PCA of CLR transformed data')
-legend("topright",col=rainbow(6),
-       legend=levels(as.factor(df_info$Treatment)),
+few0_kegg_pca_clr <- prcomp(t(df_few0_kegg_clr))
+
+# plot(few0_kegg_pca_clr$x,
+#      col=c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC')[as.numeric(as.factor(df_info_kegg$Treatment))], pch=19, xlab='', ylab='')
+# title(ylab='PC2 (6.39%)', line=2.5, cex.lab=1.2)
+# title(xlab='PC1 (10.63%)', line=2.5, cex.lab=1.2)
+# legend("topright",col=c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC'),
+#        legend=levels(as.factor(df_info_kegg$Treatment)),
+#        lty=1,
+#        bty="n")
+
+plot(few0_kegg_pca_clr$x,col=alpha(c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC')[as.numeric(as.factor(df_info_kegg$Treatment))],0.7), pch=19, xlab='', ylab='', 
+     cex= 16*(sqrt(VIGS$Orb_pmol_ml_g+0.0005)))
+title(ylab='PC2 (6.39%)', line=2.5, cex.lab=1.2)
+title(xlab='PC1 (10.63%)', line=2.5, cex.lab=1.2)
+legend("topright",col=c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC'),
+       legend=levels(as.factor(df_info_kegg$Treatment)),
+       lty=1,
+      lwd=0,
+       pch=16,
+       bty="n")
+legend("bottomright",col="grey",
+       lwd=0,
+       pch=16,
+       title="orobanchol [pmol/ml/g]",
+       pt.cex=16*(sqrt(sort(VIGS$Orb_pmol_ml_g+0.0005)))[round(seq.int(1,nrow(VIGS),length.out=5))],
+       legend=round(sort(VIGS$Orb_pmol_ml_g)[round(seq.int(1,nrow(VIGS),length.out=5))],digits = 4),
        lty=1,
        bty="n")
 
-autoplot(few0_funct_pca_clr, data=t(df_few0_funct_clr), colour = rainbow(6)[as.numeric(as.factor(df_info$Treatment))]) 
+autoplot(few0_kegg_pca_clr, data=t(df_few0_kegg_clr), colour = rainbow(6)[as.numeric(as.factor(df_info_kegg$Treatment))]) 
+
+# 
+# #### PCA with log transformed 0 to 1 pseudocount data
+# few0_kegg_pca_log <- prcomp(t(log(df_few0_kegg_psc)))
+# plot(few0_kegg_pca_log$x,
+#      col=rainbow(6)[as.numeric(as.factor(df_info_kegg$Treatment))],
+#      main='PCA of log transformed 1-PSC data')
+# legend("topright",col=rainbow(6),
+#        legend=levels(as.factor(df_info_kegg$Treatment)),
+#        lty=1,
+#        bty="n")
+# 
+# autoplot(few0_kegg_pca_log, data=t(df_few0_kegg_psc), colour = rainbow(6)[as.numeric(as.factor(df_info_kegg$Treatment))])
+# 
+# ### PCA with hellinger
+# few0_kegg_pca_hellinger <- prcomp(t(df_few0_kegg_hellinger))
+# plot(few0_kegg_pca_hellinger$x,
+#      col=rainbow(6)[as.numeric(as.factor(df_info_kegg$Treatment))],
+#      main='PCA of Hellinger Normalized data')
+# legend("topright",col=rainbow(6),
+#        legend=levels(as.factor(df_info_kegg$Treatment)),
+#        lty=1,
+#        bty="n")
+# 
+# autoplot(few0_kegg_pca_hellinger, data=t(df_few0_kegg_hellinger), colour = rainbow(6)[as.numeric(as.factor(df_info_kegg$Treatment))])
 
 
-#### PCA with log transformed 0 to 1 pseudocount data
-few0_funct_pca_log <- prcomp(t(log(df_few0_funct_psc)))
-plot(few0_funct_pca_log$x,
-     col=rainbow(6)[as.numeric(as.factor(df_info$Treatment))],
-     main='PCA of log transformed 1-PSC data')
-legend("topright",col=rainbow(6),
-       legend=levels(as.factor(df_info$Treatment)),
+### PCA with sum normalization 
+few0_kegg_pca_sum <- prcomp(t(df_few0_kegg_sum))
+# plot(few0_kegg_pca_sum$x,
+#      col=c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC')[as.numeric(as.factor(df_info_kegg$Treatment))], pch=19, xlab='', ylab='')
+# title(ylab='PC2 (23.24%)', line=2.5, cex.lab=1.2)
+# title(xlab='PC1 (40.73%)', line=2.5, cex.lab=1.2)
+# legend("topright",col=c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC'),
+#        legend=levels(as.factor(df_info_kegg$Treatment)),
+#        lty=1,
+#        bty="n")
+
+plot(few0_kegg_pca_sum$x,col=alpha(c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC')[as.numeric(as.factor(df_info_kegg$Treatment))],0.7), pch=19, xlab='', ylab='', 
+     cex= 16*(sqrt(VIGS$Orb_pmol_ml_g+0.0005)))
+title(ylab='PC2 (23.24%)', line=2.5, cex.lab=1.2)
+title(xlab='PC1 (40.73%)', line=2.5, cex.lab=1.2)
+legend("topright",col=c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC'),
+       legend=levels(as.factor(df_info_kegg$Treatment)),
+       lty=1,
+      lwd=0,
+       pch=16,
+       bty="n")
+legend("bottomright",col="grey",
+       lwd=0,
+       pch=16,
+       title="orobanchol [pmol/ml/g]",
+       pt.cex=16*(sqrt(sort(VIGS$Orb_pmol_ml_g+0.0005)))[round(seq.int(1,nrow(VIGS),length.out=5))],
+       legend=round(sort(VIGS$Orb_pmol_ml_g)[round(seq.int(1,nrow(VIGS),length.out=5))],digits = 4),
        lty=1,
        bty="n")
 
-autoplot(few0_funct_pca_log, data=t(df_few0_funct_clr), colour = rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
+
+autoplot(few0_kegg_pca_sum, data=t(df_few0_kegg_sum), colour = rainbow(6)[as.numeric(as.factor(df_info_kegg$Treatment))])
 ```
+
+**PLANT treatment lines PCA**
+
 
 ```{r}
 #plant treatment groups
 ###PCA with clr data
-few0_plant_pca_clr <- prcomp(t(df_few0_plant_clr))
-plot(few0_plant_pca_clr$x,
-     col=rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))],
-     main='PCA of CLR transformed data')
-legend("topright",col=rainbow(6),
-       legend=levels(as.factor(df_info_plant$Treatment)),
+few0_plant_kegg_pca_clr <- prcomp(t(df_few0_plant_kegg_clr))
+# plot(few0_plant_kegg_pca_clr$x,col=c('#EB5D5A', '#A8912E', '#51B334', '#EBAA36', '#EA3BDC')[as.numeric(as.factor(df_info_kegg_plant$Treatment))], pch=19, xlab='', ylab='')
+# title(ylab='PC2 (5.78%)', line=2.5, cex.lab=1.2)
+# title(xlab='PC1 (9.42%)', line=2.5, cex.lab=1.2)
+# legend("topright",col=c('#EB5D5A', '#A8912E', '#51B334', '#EBAA36', '#EA3BDC'),
+#        legend=levels(as.factor(df_info_kegg_plant$Treatment)),
+#        lty=1,
+#        bty="n")
+
+plot(few0_plant_kegg_pca_clr$x,col=alpha(c('#EB5D5A', '#A8912E', '#51B334', '#EBAA36', '#EA3BDC')[as.numeric(as.factor(df_info_kegg_plant$Treatment))],0.7), pch=19, xlab='', ylab='', 
+     cex= 16*(sqrt(VIGS_filt$Orb_pmol_ml_g+0.0005)))
+title(ylab='PC2 (5.78%)', line=2.5, cex.lab=1.2)
+title(xlab='PC1 (9.42%)', line=2.5, cex.lab=1.2)
+legend("topright",col=c('#EB5D5A', '#A8912E', '#51B334', '#EBAA36', '#EA3BDC'),
+       legend=levels(as.factor(df_info_kegg_plant$Treatment)),
+       lty=1,
+      lwd=0,
+       pch=16,
+       bty="n")
+legend("bottomright",col="grey",
+       lwd=0,
+       pch=16,
+       title="orobanchol[pmol/ml/g]",
+       pt.cex=16*(sqrt(sort(VIGS_filt$Orb_pmol_ml_g+0.0005)))[round(seq.int(1,nrow(VIGS_filt),length.out=5))],
+       legend=round(sort(VIGS_filt$Orb_pmol_ml_g)[round(seq.int(1,nrow(VIGS_filt),length.out=5))],digits = 4),
        lty=1,
        bty="n")
 
-autoplot(few0_plant_pca_clr, data=t(df_few0_plant_clr), colour = rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))]) 
+autoplot(few0_plant_kegg_pca_clr, data=t(df_few0_plant_kegg_clr), colour = rainbow(5)[as.numeric(as.factor(df_info_kegg_plant$Treatment))]) 
+
+# 
+# #### PCA with log transformed 0 to 1 pseudocount data
+# few0_plant_kegg_pca_log <- prcomp(t(log(df_few0_plant_kegg_psc)))
+# plot(few0_plant_kegg_pca_log$x,
+#      col=rainbow(5)[as.numeric(as.factor(df_info_kegg_plant$Treatment))],
+#      main='PCA of log transformed 1-PSC data')
+# legend("topright",col=rainbow(5),
+#        legend=levels(as.factor(df_info_kegg_plant$Treatment)),
+#        lty=1,
+#        bty="n")
+# 
+# autoplot(few0_plant_kegg_pca_log, data=t(df_few0_plant_kegg_psc), colour = rainbow(5)[as.numeric(as.factor(df_info_kegg_plant$Treatment))])
+# 
+# ### PCA with hellinger
+# few0_plant_kegg_pca_hellinger <- prcomp(t(df_few0_plant_kegg_hellinger))
+# plot(few0_plant_kegg_pca_hellinger$x,
+#      col=rainbow(5)[as.numeric(as.factor(df_info_kegg_plant$Treatment))],
+#      main='PCA of Hellinger Normalized data')
+# legend("topright",col=rainbow(5),
+#        legend=levels(as.factor(df_info_kegg_plant$Treatment)),
+#        lty=1,
+#        bty="n")
+# 
+# autoplot(few0_plant_kegg_pca_hellinger, data=t(df_few0_plant_kegg_hellinger), colour = rainbow(5)[as.numeric(as.factor(df_info_kegg_plant$Treatment))])
+
+group.colors = c('712' = '#EB5D5A', '722' = '#A8912E', 'CCD8' = '#51B334', 'GUS' = '#EBAA36', 'MMA' = '#EA3BDC')
+### PCA with sum normalization 
+few0_plant_kegg_pca_sum <- prcomp(t(df_few0_plant_kegg_sum))
+# PC_scores <- data.frame(few0_plant_kegg_pca_sum$x[,1:2])
+# explained_variance <- few0_plant_kegg_pca_sum$sdev^2 / sum(few0_plant_kegg_pca_sum$sdev^2)
+# explained_variance
+# summary(few0_plant_kegg_pca_sum)
+# colnames(PC_scores) <- c('PC1','PC2')
+# 
+# ggplot(PC_scores, aes(x=PC1, y=PC2, color = df_info_kegg_plant$Treatment, size=VIGS_filt$Orb_pmol_ml_g)) +
+#   geom_point() +
+#   scale_fill_manual(values=c('#EB5D5A', '#A8912E', '#51B334', '#EBAA36', '#EA3BDC')) +
+#   xlab('PC1')+
+#   ylab('PC2')
 
 
-#### PCA with log transformed 0 to 1 pseudocount data
-few0_plant_pca_log <- prcomp(t(log(df_few0_plant_psc)))
-plot(few0_plant_pca_log$x,
-     col=rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))],
-     main='PCA of log transformed 1-PSC data')
-legend("topright",col=rainbow(6),
-       legend=levels(as.factor(df_info_plant$Treatment)),
+plot(few0_plant_kegg_pca_sum$x,col=alpha(c('#EB5D5A', '#A8912E', '#51B334', '#EBAA36', '#EA3BDC')[as.numeric(as.factor(df_info_kegg_plant$Treatment))],0.7), pch=19, xlab='', ylab='', 
+     cex= 16*(sqrt(VIGS_filt$Orb_pmol_ml_g+0.0005)))
+title(ylab='PC2 (24.17%)', line=2.5, cex.lab=1.2)
+title(xlab='PC1 (37.34%)', line=2.5, cex.lab=1.2)
+legend("topright",col=c('#EB5D5A', '#A8912E', '#51B334', '#EBAA36', '#EA3BDC'),
+       legend=levels(as.factor(df_info_kegg_plant$Treatment)),
+       lty=1,
+      lwd=0,
+       pch=16,
+       bty="n")
+legend("bottomright",col="grey",
+       lwd=0,
+       pch=16,
+       title="orobanchol[pmol/ml/g]",
+       pt.cex=16*(sqrt(sort(VIGS_filt$Orb_pmol_ml_g+0.0005)))[round(seq.int(1,nrow(VIGS_filt),length.out=5))],
+       legend=round(sort(VIGS_filt$Orb_pmol_ml_g)[round(seq.int(1,nrow(VIGS_filt),length.out=5))],digits = 4),
        lty=1,
        bty="n")
 
-autoplot(few0_plant_pca_log, data=t(df_few0_plant_clr), colour = rainbow(6)[as.numeric(as.factor(df_info_plant$Treatment))])
+
+autoplot(few0_plant_kegg_pca_sum, data=t(df_few0_plant_kegg_sum)) +
+geom_point(aes(color = df_info_kegg_plant$Treatment, size = VIGS_filt$Orb_pmol_ml_g)) +
+  scale_fill_manual(values=group.colors) +
+  scale_color_discrete(name = "Treatment") +
+  scale_size_continuous(name = "Size")
+```
+
+
+## Permanova tests 
+
+```{r}
+permanova_clr <- adonis(t(df_few0_kegg_clr) ~ Treatment,
+               data = df_info_kegg, permutations=99, method = "euclidian")
+
+# P-value
+#print(as.data.frame(permanova$aov.tab)["Treatment", "Pr(>F)"])
+
+print(as.data.frame(permanova_clr$aov.tab))
+
+### sum norm data permanova
+permanova_sum <- adonis(t(df_few0_kegg_sum) ~ Treatment,
+               data = df_info_kegg, permutations=99, method = "bray")
+
+# P-value
+#print(as.data.frame(permanova$aov.tab)["Treatment", "Pr(>F)"])
+
+print(as.data.frame(permanova_sum$aov.tab))
+```
+
+```{r}
+permanova_plant_clr <- adonis(t(df_few0_plant_kegg_clr) ~ Treatment,
+               data = df_info_kegg_plant, permutations=99, method = "euclidian")
+
+# P-value
+#print(as.data.frame(permanova$aov.tab)["Treatment", "Pr(>F)"])
+
+print(as.data.frame(permanova_plant_clr$aov.tab))
+
+### sum norm data permanova
+permanova_plant_sum <- adonis(t(df_few0_plant_kegg_sum) ~ Treatment,
+               data = df_info_kegg_plant, permutations=99, method = "bray")
+
+# P-value
+#print(as.data.frame(permanova$aov.tab)["Treatment", "Pr(>F)"])
+
+print(as.data.frame(permanova_plant_sum$aov.tab))
+```
+
+## DESeq2 
+
+```{r}
+##712-GUS
+dds1_712_GUS <- DESeqDataSetFromMatrix(countData=df_few0_712_GUS,
+                               colData=df_info_kegg[df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(1,5)],],
+                               design = ~ Treatment)
+dds1_712_GUS <- estimateSizeFactors(dds1_712_GUS)
+
+#for visualization
+#DS_712_GUS <- counts(dds1_712_GUS,normalized=T) #DESeq2-normalized data
+#DS_712_GUS_Log <- log2(DS_712_GUS+1) 
+#boxplot(DS_712_GUS_Log)
+
+
+#differential analysis
+dds1_712_GUS <- DESeq(dds1_712_GUS)
+
+#plot dispersion 
+#plotDispEsts(dds1_712_GUS)
+
+#get results
+resultsNames(dds1_712_GUS)
+res_712_GUS <- results(dds1_712_GUS, contrast=c("Treatment","712","GUS")) #these are the names of the two groups
+length(which(res_712_GUS$padj < 0.05 & !is.na(res_712_GUS$padj)))
+dds_712_GUS_res <- rownames(res_712_GUS)[which(res_712_GUS$padj < 0.05 & !is.na(res_712_GUS$padj))]
+dds_712_GUS_res
+#visualize
+plotMA(res_712_GUS, alpha=0.05, colNonSig='lavender' , colSig='#EB5D5A', xlab='', ylab='')
+title(ylab='logFoldChange', line=2.5, cex.lab=1.2)
+title(xlab='Mean of Normalized Counts', line=2.5, cex.lab=1.2)
+```
+
+```{r}
+##722-GUS
+dds1_722_GUS <- DESeqDataSetFromMatrix(countData=df_few0_722_GUS,
+                               colData=df_info_kegg[df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(2,5)],],
+                               design = ~ Treatment)
+dds1_722_GUS <- estimateSizeFactors(dds1_722_GUS)
+
+#for visualization
+#DS_712_GUS <- counts(dds1_712_GUS,normalized=T) #DESeq2-normalized data
+#DS_712_GUS_Log <- log2(DS_712_GUS+1) 
+#boxplot(DS_712_GUS_Log)
+
+
+#differential analysis
+dds1_722_GUS <- DESeq(dds1_722_GUS)
+
+#plot dispersion 
+#plotDispEsts(dds1_712_GUS)
+
+#get results
+resultsNames(dds1_722_GUS)
+res_722_GUS <- results(dds1_722_GUS, contrast=c("Treatment","722","GUS")) #these are the names of the two groups
+length(which(res_722_GUS$padj < 0.05 & !is.na(res_722_GUS$padj)))
+reslist_722_GUS <- rownames(res_722_GUS)[which(res_722_GUS$padj < 0.05 & !is.na(res_722_GUS$padj))]
+reslist_722_GUS
+#visualize
+plotMA(res_722_GUS, alpha=0.05, colNonSig='lavender',colSig='#A8912E', xlab='', ylab='')
+title(ylab='logFoldChange', line=2.5, cex.lab=1.2)
+title(xlab='Mean of Normalized Counts', line=2.5, cex.lab=1.2)
+```
+
+```{r}
+##CCD8-GUS
+dds1_CCD8_GUS <- DESeqDataSetFromMatrix(countData=df_few0_CCD8_GUS,
+                               colData=df_info_kegg[df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(3,5)],],
+                               design = ~ Treatment)
+dds1_CCD8_GUS <- estimateSizeFactors(dds1_CCD8_GUS)
+
+#for visualization
+#DS_712_GUS <- counts(dds1_712_GUS,normalized=T) #DESeq2-normalized data
+#DS_712_GUS_Log <- log2(DS_712_GUS+1) 
+#boxplot(DS_712_GUS_Log)
+
+
+#differential analysis
+dds1_CCD8_GUS <- DESeq(dds1_CCD8_GUS)
+
+#plot dispersion 
+#plotDispEsts(dds1_712_GUS)
+
+#get results
+resultsNames(dds1_CCD8_GUS)
+res_CCD8_GUS <- results(dds1_CCD8_GUS, contrast=c("Treatment","CCD8","GUS")) #these are the names of the two groups
+length(which(res_CCD8_GUS$padj < 0.05 & !is.na(res_CCD8_GUS$padj)))
+reslist_CCD8_GUS <- rownames(res_CCD8_GUS)[which(res_CCD8_GUS$padj < 0.05 & !is.na(res_CCD8_GUS$padj))]
+reslist_CCD8_GUS
+#visualize
+plotMA(res_CCD8_GUS, alpha=0.05, colNonSig='lavender',colSig='#51B334', xlab='', ylab='')
+title(ylab='logFoldChange', line=2.5, cex.lab=1.2)
+title(xlab='Mean of Normalized Counts', line=2.5, cex.lab=1.2)
+```
+
+```{r}
+##MMA-GUS
+dds1_MMA_GUS <- DESeqDataSetFromMatrix(countData=df_few0_GUS_MMA,
+                               colData=df_info_kegg[df_info_kegg$Treatment %in% unique(df_info_kegg$Treatment)[c(6,5)],],
+                               design = ~ Treatment)
+dds1_MMA_GUS <- estimateSizeFactors(dds1_MMA_GUS)
+
+#for visualization
+#DS_712_GUS <- counts(dds1_712_GUS,normalized=T) #DESeq2-normalized data
+#DS_712_GUS_Log <- log2(DS_712_GUS+1) 
+#boxplot(DS_712_GUS_Log)
+
+
+#differential analysis
+dds1_MMA_GUS <- DESeq(dds1_MMA_GUS)
+
+#plot dispersion 
+#plotDispEsts(dds1_712_GUS)
+
+#get results
+resultsNames(dds1_MMA_GUS)
+res_MMA_GUS <- results(dds1_MMA_GUS, contrast=c("Treatment","MMA","GUS")) #these are the names of the two groups
+length(which(res_MMA_GUS$padj < 0.05 & !is.na(res_MMA_GUS$padj)))
+reslist_MMA_GUS <- rownames(res_MMA_GUS)[which(res_MMA_GUS$padj < 0.05 & !is.na(res_MMA_GUS$padj))]
+reslist_MMA_GUS
+#visualize
+plotMA(res_MMA_GUS, alpha=0.05, colNonSig='lavender',colSig='#EA3BDC', xlab='', ylab='')
+title(ylab='logFoldChange', line=2.5, cex.lab=1.2)
+title(xlab='Mean of Normalized Counts', line=2.5, cex.lab=1.2)
+```
+
+```{r}
+length(which(res_MMA_GUS$padj < 0.05 & !is.na(res_MMA_GUS$padj)))
+reslist_MMA_GUS[which(reslist_MMA_GUS %in% dds_712_GUS_res)] #452 
+```
+
+
+```{r}
+
+
+
+DESEQ_sig_res <- rownames(res_712_GUS)[which(res_712_GUS$padj < 0.0005 & !is.na(res_712_GUS$padj))] #128 
+DESEQ_sig_res
+
+KO_deseq_counts <- as.data.frame(counts(dds1_712_GUS, normalized = TRUE, replaced = FALSE))
+KO_deseq_counts <- KO_deseq_counts[which(rownames(KO_deseq_counts) %in% DESEQ_sig_res),] 
+KO_deseq_712 <- KO_deseq_counts[,df_info_kegg$Treatment == '712']
+KO_deseq_712 <- setDT(as.data.frame(KO_deseq_712), keep.rownames = "X")
+
+KO_deseq_712_long <- pivot_longer(KO_deseq_712,names_to="Sample",values_to="Counts", -X)
+KO_deseq_712_long
+KO_deseq_712_longer <- merge(KO_deseq_712_long, VIGS_712_long, by='Sample')
+KO_deseq_712_longer
+summary(KO_deseq_712_longer)
+
+T_KO_des_712 <- as.data.frame(t(KO_deseq_712))
+T_KO_des_712
+VIGS_712$Orb_pmol_ml_g[which(VIGS_712$Sample_ID %in% KO_deseq_712_long$Sample)]
+```
+
+# Correlation plots
+
+```{r}
+df_712 <- MSL_dds_712_clr
+df_712 <- df_kegg[,df_info_kegg$Treatment == '712']
+sInfo_712 <- sInfo[sInfo$group %in% c("T_712"),]
+VIGS_712 <- VIGS_filt[VIGS_filt$VIGS_gene == 'CYP712',]
+T_VIGS_712 <- as.data.frame(t(VIGS_712))
+colnames(T_VIGS_712) <- T_VIGS_712[1,]
+T_VIGS_712 <- T_VIGS_712[-1, ] 
+T_VIGS_712 <- T_VIGS_712[4,]
+T_VIGS_712
+
+VIGS_712_long <- setDT(as.data.frame(T_VIGS_712), keep.rownames = "X")
+VIGS_712_long <- pivot_longer(VIGS_712_long,names_to="Sample",values_to="OrobancholConc", -X)
+VIGS_712_long <- VIGS_712_long[,c('Sample',"OrobancholConc")]
+VIGS_712_long_num <- as.data.frame(apply(VIGS_712_long, 2, as.numeric))
+VIGS_712_long$OrobancholConc <- VIGS_712_long_num$OrobancholConc
+VIGS_712_long
+summary(VIGS_712_long)
+
+# df_712
+# 
+# ggplot(data = T_KO_des_712) +
+#   geom_point(mapping = aes(x = VIGS_712$Orb_pmol_ml_g, y = 'K00010'))
+
+corr_plot <- ggplot(data = KO_deseq_712_longer, aes(x = OrobancholConc, y = Counts)) +
+  geom_point() +
+  facet_wrap(~ X, nrow = 16, ncol = 8)
+
+#View(corr_plot) on console to download and be able to visualize image 
+
+# ggplot(data = KO_deseq_712_longer) +
+#   geom_point(mapping=aes(y = 'Sample', x = 'Counts'))
+```
+
+
+## MaAslin2
+
+```{r}
+
+ko <- read.delim("KEGG_profile.csv",sep=",",row.names=1)
+ko[is.na(ko)] <- 0
+
+summary(colSums(ko))
+
+sInfo <- data.frame("sampleID"=colnames(ko))
+sInfo$group <- gsub("_[^_]+$","",sInfo$sampleID)
+sInfo <- sInfo[order(rownames(sInfo)),]
+ko <- ko[,order(colnames(ko))]
+
+ko_T <- ko[,sInfo$group %in% c("T_GUS","T_712","T_CCD8","T_722")]
+ko_T <- ko_T[rowSums(ko_T)>0,]
+
+sInfo_T <- sInfo[sInfo$group %in% c("T_GUS","T_712","T_CCD8","T_722"),]
+
+ko_T712 <- ko[,sInfo$group %in% c("T_GUS","T_712")]
+ko_T712 <- ko_T712[rowSums(ko_T712)>0,]
+
+sInfo_T712 <- sInfo[sInfo$group %in% c("T_GUS","T_712"),]
+rownames(sInfo_T712) <- sInfo_T712$sampleID
+
+rownames(sInfo) <- sInfo$sampleID
+
+MSLfilt_712_clrlm = Maaslin2(
+input_data = t(df_few0_712_GUS),
+input_metadata = sInfo_T712,
+min_prevalence = 0,
+transform = "NONE",
+normalization = "CLR",
+analysis_method = "LM",
+output = "kegg_clrlm",
+fixed_effects = c("group"),
+reference = c("T_GUS"))
+
+# 
+# MSLfilt_712_nb = Maaslin2(
+# input_data = t(df_few0_712_GUS),
+# input_metadata = sInfo_T712,
+# min_prevalence = 0,
+# transform = "NONE",
+# normalization = "NONE",
+# analysis_method = "NEGBIN",
+# output = "filtered_output_nb",
+# fixed_effects = c("group"),
+# reference = c("T_GUS"))
+# 
+# 
+# MSLfilt_712_loglm = Maaslin2(
+# input_data = t(df_few0_712_GUS),
+# input_metadata = sInfo_T712,
+# min_prevalence = 0,
+# transform = "LOG",
+# normalization = "CSS",
+# analysis_method = "LM",
+# output = "filtered_output_loglm",
+# fixed_effects = c("group"),
+# reference = c("T_GUS"))
+
+
+MSLfilt_712_cssnb = Maaslin2(
+input_data = t(df_few0_712_GUS),
+input_metadata = sInfo_T712,
+min_prevalence = 0,
+transform = "NONE",
+normalization = "CSS",
+analysis_method = "NEGBIN",
+output = "kegg_cssnbn",
+fixed_effects = c("group"),
+reference = c("T_GUS"))
+
+
+
+
+```
+
+
+```{r}
+ggplot(MSLfilt_712_clrlm$results, aes(y=-log10(pval), x=coef, color=qval<0.05 & (coef>1 | coef< -1))) + 
+  geom_point() 
+```
+
+
+```{r}
+ggplot(MSLfilt_712_clrlm$results, aes(x=qval, y=coef, color=qval<0.05 & (coef>1 | coef< -1))) + 
+  geom_point() 
+```
+
+```{r}
+ggplot(MSLfilt_712_cssnb$results, aes(y=-log10(pval), x=coef, color=qval<0.05 & (coef>1 | coef< -1))) + 
+  geom_point() 
+```
+
+```{r}
+MSLclrlm_712 <- MSLfilt_712_clrlm$results$feature[which(MSLfilt_712_clrlm$results$qval<0.05)] #2038
+MSLcssnb_712 <- MSLfilt_712_cssnb$results$feature[which(MSLfilt_712_cssnb$results$qval<0.05)] #36
+
+
+MSL_dds_712_clr <- as.data.frame(MSLfilt_712_clrlm$results$feature[which(MSLclrlm_712 %in% dds_712_GUS_res)]) #957
+list_MSL_dds_712_clr <- MSLfilt_712_clrlm$results$feature[which(MSLclrlm_712 %in% dds_712_GUS_res)]
+write.table(MSL_dds_712_clr, "./maaslin_clr_keggs.csv", row.names=TRUE, sep=",", col.names = FALSE)
+
+MSL_dds_712_cssnb <- as.data.frame(MSLfilt_712_cssnb$results$feature[which(MSLcssnb_712 %in% dds_712_GUS_res)]) #34
+list_MSL_dds_712_cssnb <- MSLfilt_712_cssnb$results$feature[which(MSLcssnb_712 %in% dds_712_GUS_res)]
+
+#MSLfilt_712_loglm$results$feature[which(MSLloglm_712 %in% dds1_712_GUS_res)] #103
+#MSLfilt_712_nb$results$feature[which(MSLnb_712 %in% dds1_712_GUS_res)] #79 
+
+colnames(MSL_dds_712_cssnb) <- 'KOs'
+
+MSL_dds_all <- as.data.frame(c(list_MSL_dds_712_clr, list_MSL_dds_712_cssnb))
+MSL_dds_all_2 <- as.data.frame(MSL_dds_all[!duplicated(MSL_dds_all), ])
+
+write.table(MSL_dds_all_2, "./MSL_dds_all_keggs.csv", row.names=TRUE, sep=",", col.names = FALSE)
+
+
+MSL_dds_all$KOs[which(MSL_dds_all$KOs %in% list_MSL_dds_712_cssnb)]
+
+MSLfilt_712_clrlm$results$feature[which(MSLclrlm_712 %in% MSLcssnb_712)] #33
+MSLfilt_712_cssnb$results$feature[which(MSLcssnb_712 %in% MSLclrlm_712)] #33
+```
+
+
+
+## Additional explorative analysis. 
+- can uncomment to run some of the code
+- ANCOM does not work for KEGG since there are too many KOs and it takes very long, could try to run on a server or something with more run power. 
+
+
+```{r}
+# Correlation plots
+# df_712 <- MSL_dds_712_clr
+# df_712 <- df_kegg[,df_info_kegg$Treatment == '712']
+# sInfo_712 <- sInfo[sInfo$group %in% c("T_712"),]
+# VIGS_712 <- VIGS_filt[VIGS_filt$VIGS_gene == 'CYP712',]
+# VIGS_712
+# df_712
+# 
+# 
+# ggplot(data = df_712) + 
+#   geom_point(mapping = aes(x = VIGS_712$Orb_pmol_ml_g, y = df_712[])) + 
+#   facet_wrap(~ class, nrow = 2)
 ```
 
 
 ```{r}
 #calculate pairwise distances between the samples based on their functional composition. In ecology pairwise distance between samples is referred to as beta-diversity, although typically based on taxonomic composition rather than functional
-funct_dist <- as.matrix(vegdist(t(log(df_few0_funct_psc)), method="bray", binary=FALSE, diag=TRUE, upper=TRUE, na.rm = FALSE))
+#funct_dist <- as.matrix(vegdist(t(log(df_few0_kegg_psc)), method="bray", binary=FALSE, diag=TRUE, upper=TRUE, na.rm = FALSE))
 ```
 
 ```{r}
 #bray curtis dissimilarity matrix on log transformed zero-filtered data with 0 to 1 replace pseudocounts
-bc1 <- vegdist(t(log(df_few0_funct_psc)))
+#bc1 <- vegdist(t(log(df_few0_kegg_psc)))
 #don't do bray curtis with log data or with data containing negative counts because it does not consider that distance
-euc1 <- vegdist(t(df_few0_funct_hellinger))
+#euc1 <- vegdist(t(df_few0_kegg_hellinger))
 ```
 
 #Principal Coordinate Analysis 
 ```{r}
-pcoa1 <- pcoa(bc1)
-pcoa_val1 <- 100*c(pcoa1$values[pcoa1$values[,2]>0,2]/sum(pcoa1$values[pcoa1$values[,2]>0,2]))
-plot(pcoa1$vector[,1:2],
-     col=rainbow(6)[as.numeric(as.factor(df_info$Treatment))],
-     axes=F,
-     xlab=paste0("PC1 (",round(pcoa_val1[1],digits = 1),"%)"),
-     ylab=paste0("PC2 (",round(pcoa_val1[2],digits = 1),"%)"))
-legend("topleft",col=rainbow(6),
-       legend=levels(as.factor(df_info$Treatment)),
-       pch=1,
-       bty="n",cex=0.8)
-box()
+#pcoa1 <- pcoa(bc1)
+# pcoa_val1 <- 100*c(pcoa1$values[pcoa1$values[,2]>0,2]/sum(pcoa1$values[pcoa1$values[,2]>0,2]))
+# plot(pcoa1$vector[,1:2],
+#      col=rainbow(6)[as.numeric(as.factor(df_info_kegg$Treatment))],
+#      axes=F,
+#      xlab=paste0("PC1 (",round(pcoa_val1[1],digits = 1),"%)"),
+#      ylab=paste0("PC2 (",round(pcoa_val1[2],digits = 1),"%)"))
+# legend("topleft",col=rainbow(6),
+#        legend=levels(as.factor(df_info_kegg$Treatment)),
+#        pch=1,
+#        bty="n",cex=0.8)
+# box()
 #looks the same if applied with the funct_dist matrix 
 ```
 
@@ -341,113 +1038,122 @@ source("ancom_v2.1_noTidy.R")
 #occurrence rate
 #library size
 #logistic
-prepro <- feature_table_pre_process(feature_table = df_few0_funct, 
-                                   meta_data = df_info, 
-                                   sample_var = "Sample", 
-                                   group_var = "Treatment", 
-                                   out_cut = 0.05, 
-                                   zero_cut = 0.90, 
-                                   lib_cut = 1000, 
-                                   neg_lb = T)
+# prepro <- feature_table_pre_process(feature_table = df_few0_kegg, 
+#                                    meta_data = df_info_kegg, 
+#                                    sample_var = "Sample", 
+#                                    group_var = "Treatment", 
+#                                    out_cut = 0.05, 
+#                                    zero_cut = 0.90, 
+#                                    lib_cut = 1000, 
+#                                    neg_lb = T)
 ```
 
 ```{r}
-dim(df_counts) # -> 12669   54
-dim(prepro$feature_table) # -> 10703   54
-#number of 0s that are specific to treatment groups and does not perform further tests on these 
-#not as strict as the previous filtration of zero values, could be because that is taxonomic data and this is more detailed functional group data
-sum(prepro$structure_zeros) # -> 5259     dim -> 10703  6
+# dim(df_kegg) # -> 12669   54
+# dim(prepro$feature_table) # -> 10703   54
+# #number of 0s that are specific to treatment groups and does not perform further tests on these 
+# #not as strict as the previous filtration of zero values, could be because that is taxonomic data and this is more detailed functional group data
+# sum(prepro$structure_zeros) # -> 5259     dim -> 10703  6
 ```
 
 ```{r}
 #which zeros identified in the feature table pre process were kept after zero filtering with the filter_fun function. 
-which(prepro$structure_zeros %in% df_few0_funct)
-print(prepro)
+# which(prepro$structure_zeros %in% df_few0_kegg)
+# print(prepro)
 #all of the structure zeros resulting from the feature table filtering were also removed from the treatment groups threshold filtering
 ```
 
 ```{r}
-differential <- ANCOM(feature_table = df_few0_funct_sum,
-                      meta_data = df_info,
-                      main_var = 'Treatment',
-                      p_adj_method = "BH",
-                      alpha = 0.5,
-                      adj_formula = NULL)
-                      #rand_formula = "~ 1 | Sample")
-                      #control = lmeControl(maxIter = 800, msMaxIter = 10000, opt = "optim"))
-
-
-```
-
-```{r}
-prepro_differential <- ANCOM(feature_table = prepro$feature_table,
-                      meta_data = prepro$meta_data,
-                      main_var = 'Treatment',
-                      p_adj_method = "BH",
-                      alpha = 0.05,
-                      adj_formula = NULL,
-                      rand_formula = NULL)
-```
-
-```{r}
-library(Rtsne)
-set.seed(423542)
-tsne_out <- Rtsne(euc1, perplexity=5)
-
-proj <- tsne_out$Y
-
-rownames(proj) <- rownames(t(df_few0_funct_hellinger))
-
-plot_landscape(proj, size = 1, col=rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
-
+# differential <- ANCOM(feature_table = df_few0_kegg_sum,
+#                       meta_data = df_info_kegg,
+#                       main_var = 'Treatment',
+#                       p_adj_method = "BH",
+#                       alpha = 0.5,
+#                       adj_formula = NULL)
+#                       #rand_formula = "~ 1 | Sample")
+#                       #control = lmeControl(maxIter = 800, msMaxIter = 10000, opt = "optim"))
+# 
 
 ```
 
 ```{r}
-permanova <- adonis(t(df_few0_funct_clr) ~ Treatment,
-               data = df_info, permutations=99, method = "euclidian")
-
-# P-value
-print(as.data.frame(permanova$aov.tab)["Treatment", "Pr(>F)"])
-
-print(as.data.frame(permanova$aov.tab))
+# prepro_differential <- ANCOM(feature_table = prepro$feature_table,
+#                       meta_data = prepro$meta_data,
+#                       main_var = 'Treatment',
+#                       p_adj_method = "BH",
+#                       alpha = 0.05,
+#                       adj_formula = NULL,
+#                       rand_formula = NULL)
 ```
 
 ```{r}
-#dispersion of the distance matrix of the dataframe used to apply permanova
-anova(betadisper(euc1, df_info$Treatment))
+# library(Rtsne)
+# set.seed(423542)
+# tsne_out <- Rtsne(euc1, perplexity=5)
+# 
+# proj <- tsne_out$Y
+# 
+# rownames(proj) <- rownames(t(df_few0_kegg_hellinger))
+# 
+# plot_landscape(proj, size = 1, col=rainbow(6)[as.numeric(as.factor(df_info_kegg$Treatment))])
+# 
+
+```
+
+```{r}
+# permanova_kegg <- adonis(t(df_few0_kegg_clr) ~ Treatment,
+#                data = df_info_kegg, permutations=99, method = "euclidian")
+# 
+# # P-value
+# print(as.data.frame(permanova_kegg$aov.tab)["Treatment", "Pr(>F)"])
+# 
+# print(as.data.frame(permanova_kegg$aov.tab))
+```
+
+```{r}
+# permanova_fewerkegg <- adonis(t(df_fewer0_kegg_clr) ~ Treatment,
+#                data = df_info_kegg, permutations=99, method = "euclidian")
+# 
+# # P-value
+# print(as.data.frame(permanova_fewerkegg$aov.tab)["Treatment", "Pr(>F)"])
+# 
+# print(as.data.frame(permanova_fewerkegg$aov.tab))
+```
+
+
+
+
+```{r}
+# permanova_plant_kegg <- adonis(t(df_few0_plant_kegg_clr) ~ Treatment,
+#                data = df_info_kegg_plant, permutations=99, method = "euclidian")
+# 
+# # P-value
+# #print(as.data.frame(permanova_kegg$aov.tab)["Treatment", "Pr(>F)"])
+# 
+# print(as.data.frame(permanova_plant_kegg$aov.tab))
+```
+
+
+```{r}
+#dispersion of the distance matrix of the dataframe used to apply permanova_kegg
+#anova(betadisper(euc1, df_info_kegg$Treatment))
 #similar spreads - assumptions hold 
 ```
 
 ```{r}
-df_few0_712_GUS_clr <- as.matrix(as.data.frame(t(clr(min(df_few0_712_GUS[df_few0_712_GUS>0])/10+t(df_few0_712_GUS)))))
-df_info_712_GUS <- df_info[df_info$Treatment=='712' | df_info$Treatment=='GUS',]
-
-permanova_712_GUS <- adonis(t(df_few0_712_GUS_clr) ~ Treatment,
-               data = df_info_712_GUS, permutations=99, method = "euclidian")
-
-# P-value
-#print(as.data.frame(permanova_712_GUS$aov.tab)["Treatment", "Pr(>F)"])
-
-print(as.data.frame(permanova_712_GUS$aov.tab))
+# df_few0_712_GUS_clr <- as.matrix(as.data.frame(t(clr(min(df_few0_712_GUS[df_few0_712_GUS>0])/10+t(df_few0_712_GUS)))))
+# df_info_kegg_712_GUS <- df_info_kegg[df_info_kegg$Treatment=='712' | df_info_kegg$Treatment=='GUS',]
+# 
+# permanova_kegg_712_GUS <- adonis(t(df_few0_712_GUS_clr) ~ Treatment,
+#                data = df_info_kegg_712_GUS, permutations=99, method = "euclidian")
+# 
+# # P-value
+# #print(as.data.frame(permanova_kegg_712_GUS$aov.tab)["Treatment", "Pr(>F)"])
+# 
+# print(as.data.frame(permanova_kegg_712_GUS$aov.tab))
 ```
 
-```{r}
-#df_new <- pivot_longer(df,names_to="treatment",values_to="counts", -X )
 
-#split based on sample name pattern, keeping all but the T from the sample name, into 2 new columns with the specified names
-#df_new <- separate(df_new, treatment, into=c('t','treatment','sample'), sep='[_]') %>% select(!t)
-df_few0_712_GUS_clr <- setDT(as.data.frame(df_few0_712_GUS_clr), keep.rownames = "X")
-#colnames(df_few0_712_GUS_clr)[0] <- 'X'
-df_712_GUS_long <- pivot_longer(df_few0_712_GUS_clr,names_to="Sample",values_to="Counts", -X)
-
-#split based on sample name pattern, keeping all but the T from the sample name, into 2 new columns with the specified names
-df_712_GUS_long <- separate(df_712_GUS_long, Sample, into=c('t','Treatment','Sample'), sep='[_]') %>% select(!t)
-
-#anova
-model <- lm(X~Treatment, df_712_GUS_long)
-#making this model is not useful because i was trying to model what the data is actually doing. an effect on the functional groups between the treatments. maybe stick to doing the functional groups individually between the treatments or doing the ancom which automatically considers all of the functional groups as features between the treatments. 
-```
 
 
 compare the controls with each other to observe transformation effect on the plant, just in general, is this a validation of controls? 
@@ -471,51 +1177,51 @@ PAIRWISE COMPARISON
 par(mfrow=c(2,2))
 
 #total mapped reads per sample - depth 
-col_counts <- as.data.frame(colSums(df_counts))
+col_counts <- as.data.frame(colSums(df_kegg))
 colnames(col_counts) <- c("Total_mapped_Reads")
 #Plot of total mapped counts per sample 
-plot(col_counts$`Total_mapped_Reads`, ylab = 'Total Mapped Reads', xlab = 'Sample', xlim = c(0,55), ylim = c(25000000,40000000), col =rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
+plot(col_counts$`Total_mapped_Reads`, ylab = 'Total Mapped Reads', xlab = 'Sample', xlim = c(0,55), ylim = c(25000000,40000000), col =rainbow(6)[as.numeric(as.factor(df_info_kegg$Treatment))])
 
-plot(colSums(df_few0_funct_clr), main= "CLR", col=rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
+plot(colSums(df_few0_kegg_clr), main= "CLR", col=rainbow(6)[as.numeric(as.factor(df_info_kegg$Treatment))])
 
-plot(colSums(df_few0_funct_sum), main ="SUM", col=rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
+plot(colSums(df_few0_kegg_sum), main ="SUM", col=rainbow(6)[as.numeric(as.factor(df_info_kegg$Treatment))])
 
-plot(colSums(df_few0_funct_hellinger), main="hellinger", col=rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
+plot(colSums(df_few0_kegg_hellinger), main="hellinger", col=rainbow(6)[as.numeric(as.factor(df_info_kegg$Treatment))])
 ```
 
 ```{r}
-par(mfrow=c(2,2))
-#COUNTS PER SAMPLE
-#distribution of total mapped counts per sample, showing that most of the samples have a total count at 35,000,000
-hist(col_counts[,1],xlab="Total Counts per Sample",main="Histogram of Total Mapped Counts Distribution",las=1)
-hist(colSums(df_few0_funct_clr),xlab="Total Counts per Sample",main="Histogram of CLR Mapped Counts Distribution",las=1)
-hist(colSums(df_few0_funct_sum),xlab="Total Counts per Sample",main="Histogram of SUM Mapped Counts Distribution",las=1)
-hist(colSums(df_few0_funct_hellinger),xlab="Total Counts per Sample",main="Histogram of Hellinger Mapped Counts Distribution",las=1)
+# par(mfrow=c(2,2))
+# #COUNTS PER SAMPLE
+# #distribution of total mapped counts per sample, showing that most of the samples have a total count at 35,000,000
+# hist(col_counts[,1],xlab="Total Counts per Sample",main="Histogram of Total Mapped Counts Distribution",las=1)
+# hist(colSums(df_few0_kegg_clr),xlab="Total Counts per Sample",main="Histogram of CLR Mapped Counts Distribution",las=1)
+# hist(colSums(df_few0_kegg_sum),xlab="Total Counts per Sample",main="Histogram of SUM Mapped Counts Distribution",las=1)
+# hist(colSums(df_few0_kegg_hellinger),xlab="Total Counts per Sample",main="Histogram of Hellinger Mapped Counts Distribution",las=1)
 
 ```
 
 
 ```{r}
-#ggplot(df_counts) +  
+#ggplot(df_kegg) +  
   #geom_boxplot(aes(x=T_712_11))
-par(mfrow=c(2,2))
-
-#Plot of distribution of counts for all functional profiles, per sample. Showing basically only the outliers since the data is heavily skewed
-boxplot(df_counts, col = rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
-#
-boxplot(df_few0_funct_clr, col = rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
-
-boxplot(df_few0_funct_sum, col = rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
-
-boxplot(df_few0_funct_hellinger, col = rainbow(6)[as.numeric(as.factor(df_info$Treatment))])
+# par(mfrow=c(2,2))
+# 
+# #Plot of distribution of counts for all functional profiles, per sample. Showing basically only the outliers since the data is heavily skewed
+# boxplot(df_kegg, col = rainbow(6)[as.numeric(as.factor(df_info_kegg$Treatment))])
+# #
+# boxplot(df_few0_kegg_clr, col = rainbow(6)[as.numeric(as.factor(df_info_kegg$Treatment))])
+# 
+# boxplot(df_few0_kegg_sum, col = rainbow(6)[as.numeric(as.factor(df_info_kegg$Treatment))])
+# 
+# boxplot(df_few0_kegg_hellinger, col = rainbow(6)[as.numeric(as.factor(df_info_kegg$Treatment))])
 
 ```
 
 ```{r}
 #pseudo count replace 0 values for 1 
-df_counts_1 <- replace(df_counts, df_counts==0, 1)
-#plot the distribution of all mapped counts per sample on a logarithmic scale
-boxplot(log(df_counts_1), col = c("royalblue1","tomato1","firebrick4","yellow","purple","green")[as.numeric(as.factor(treatments_df$Treatment))])
+# df_kegg_1 <- replace(df_kegg, df_kegg==0, 1)
+# #plot the distribution of all mapped counts per sample on a logarithmic scale
+# boxplot(log(df_kegg_1), col = c("royalblue1","tomato1","firebrick4","yellow","purple","green")[as.numeric(as.factor(treatments_df$Treatment))])
 
 #sample 31, which is T_CCD8_8 has a different boxplot compared to the rest 
 ```
@@ -524,22 +1230,22 @@ boxplot(log(df_counts_1), col = c("royalblue1","tomato1","firebrick4","yellow","
 Perform a rarefaction analysis.
 
 ```{r}
-rarecurve(as.data.frame(t(df_counts)), step=1000000, label = FALSE, ylim= c(7000,10000), xlim = c(5000000, 40000000), cex=0.6,
-#quickRareCurve(as.data.frame(t(df_counts)), max.cores = F, nCores = 6)
-          col = c("royalblue1","tomato1","firebrick4","yellow","purple","green")[as.numeric(as.factor(treatments_df$Treatment))])
-abline(v=min(colSums(df_counts)),lty=3)
-legend("bottomright",col=c("royalblue1","tomato1","firebrick4","yellow","purple","green"),
-       legend=levels(as.factor(treatments_df$Treatment)),
-       lty=1,
-       bty="n")
+# rarecurve(as.data.frame(t(df_kegg)), step=1000000, label = FALSE, ylim= c(7000,10000), xlim = c(5000000, 40000000), cex=0.6,
+# #quickRareCurve(as.data.frame(t(df_kegg)), max.cores = F, nCores = 6)
+#           col = c("royalblue1","tomato1","firebrick4","yellow","purple","green")[as.numeric(as.factor(df_info_kegg$Treatment))])
+# abline(v=min(colSums(df_kegg)),lty=3)
+# legend("bottomright",col=c("royalblue1","tomato1","firebrick4","yellow","purple","green"),
+#        legend=levels(as.factor(df_info_kegg$Treatment)),
+#        lty=1,
+#        bty="n")
 ```
 
 ```{r}
 #get row index of functional group based on name
-row_index <- grep("EutC", rownames(df_counts))
-row_index
-#get count value based on row index for a specific sample 
-df_counts$T_MMA_3[[row_index]]
+# row_index <- grep("EutC", rownames(df_kegg))
+# row_index
+# #get count value based on row index for a specific sample 
+# df_kegg$T_MMA_3[[row_index]]
 #there are multiple KOs with the rRNA name in them. 4 to be exact - error in rRNA
 #was counting the rRNA mapped counts in case normalization based to rRNA counts was a good idea. found the other annotated file for rRNAs, don't know if that is more useful 
 ```
@@ -547,76 +1253,28 @@ df_counts$T_MMA_3[[row_index]]
 
 ```{r}
 #count number of 0s per column
-colSums(df_counts==0)
+# colSums(df_kegg==0)
+# colSums(df_few0_kegg==0)
 #per 12669 rows per sample, so that is about 30% of the sample counts being 0 value 
 ```
-
-
-```{r}
-#length of list of functional groups that have 0 value counts, divided by the total number of functional groups, multiplied by the number of samples -> approximate percentage of values in the dataset that are 0s 
-length(which(df_counts==0))/(nrow(df_counts) * ncol(df_counts))
-```
-
-**Estimated species per sample, difference in richness -> alpha diversity for each treatment group**
-
-```{r}
-#length of a list of functional groups that have counts larger than 0
-richness_1_noNorm <- as.data.frame(apply(df_counts,
-                           2,
-                           function(x) length(which(x>0))))
-
-summary(richness_1_noNorm)
-colnames(richness_1_noNorm) <- 'Richness'
-richness_1_noNorm$Treatment <- df_info$Treatment
-
-#perform an anova for the functional groups richness in each treatment group 
-richness_anova <- aov(Richness ~ Treatment, data=richness_1_noNorm)
-summary(richness_anova)
-
-#Tukey Honest Significant Differences 
-#diff: difference between means of the two groups
-#lwr, upr: the lower and the upper end point of the confidence interval at 95% (default)
-#p adj: p-value after adjustment for the multiple comparisons.
-TukeyHSD(richness_anova)
-
-ggplot(richness_1_noNorm, aes(Treatment, Richness)) + 
-  geom_boxplot(aes(fill = factor(Treatment)), show.legend = FALSE)
-
-#residuals versus fits plot - can be used to check the homogeneity of variances
-plot(richness_anova, 1)
-#no evident relationships between residuals and fitted values (the mean of each groups) ->  we can assume the homogeneity of variances
-#
-
-#Normality plot of residuals - the quantiles of the residuals are plotted against the quantiles of the normal distribution. A 45-degree reference line is also plotted
-#used to check the assumption that the residuals are normally distributed. It should approximately follow a straight line.
-plot(richness_anova, 2)
-
-#plot for each treatment 
-boxplot(richness_1_noNorm ~ df_info$Treatment,
-        ylab="Number of Observed Families",
-        xlab="Tomato Lines",
-        border=c("royalblue1","tomato1","firebrick4"),
-        las=1)
-```
-We can observe that even though samples from the 712 group have the lowest mapped read counts the number of functional groups/families are not affected as they seem to be quite well distributed compared to the other types of samples. The EmptyPot group has the highest number of functional groups mapped, which is expected and good confirmation of the data. 
 
 In how many samples are the functional groups observed?
 
 ```{r}
 #maybe, completeness of dataset
-hist(apply(df_counts,
-           1,
-           function(x) 100*length(which(x>0))/length(x)),
-     xlab="% samples with species",main="",las=1,breaks=20)
+# hist(apply(df_kegg,
+#            1,
+#            function(x) 100*length(which(x>0))/length(x)),
+#      xlab="% samples with species",main="",las=1,breaks=20)
 ```
 
 ```{r}
 #get the index of the functional group with the max value count for the first sample
-maxx <- which.max(df_counts[,1])
-#what is the value count and the name of the functional group for the first sample
-cat(df_counts[maxx,1], rownames(df_counts[maxx,]))
-#get the index of the functional group with the max calue for each of the samples
-apply(df_counts,2,which.max)
+# maxx <- which.max(df_kegg[,1])
+# #what is the value count and the name of the functional group for the first sample
+# cat(df_kegg[maxx,1], rownames(df_kegg[maxx,]))
+# #get the index of the functional group with the max calue for each of the samples
+# apply(df_kegg,2,which.max)
 ```
 
 All the samples have the same family as their highest mapped read count, which is: 
@@ -625,31 +1283,31 @@ All the samples have the same family as their highest mapped read count, which i
 #get the max value functional group for all the samples
 #print the name of the functional groups 
 #print the value 
-for (i in 1:ncol(df_counts))
-{
-  maxx <- which.max(df_counts[,i])
-  #print(df_counts[[maxx]])
-  print(names(df_counts)[i])
-  cat(colnames(df_counts[,i]), df_counts[maxx,i], rownames(df_counts[maxx,]), "\n")
-}
+# for (i in 1:ncol(df_kegg))
+# {
+#   maxx <- which.max(df_kegg[,i])
+#   #print(df_kegg[[maxx]])
+#   print(names(df_kegg)[i])
+#   cat(colnames(df_kegg[,i]), df_kegg[maxx,i], rownames(df_kegg[maxx,]), "\n")
+# }
 #ABC_tran
 ```
 
 
 ```{r}
 #plot distribution of 2 samples 
-plot(df_counts[,"T_722_9"], col = 'yellow')
-points(df_counts[,"T_GUS_18"], col = 'orange')
-points(df_counts[,"T_CCD8_10"], col = 'red')
-points(df_counts[,"T_712_2"], col='blue')
-points(df_counts[,"T_MMA_1"], col = 'purple')
-points(df_counts[,"T_EP_1"], col = 'green')
+# plot(df_kegg[,"T_722_9"], col = 'yellow')
+# points(df_kegg[,"T_GUS_18"], col = 'orange')
+# points(df_kegg[,"T_CCD8_10"], col = 'red')
+# points(df_kegg[,"T_712_2"], col='blue')
+# points(df_kegg[,"T_MMA_1"], col = 'purple')
+# points(df_kegg[,"T_EP_1"], col = 'green')
 #clearly skewed as shown in the boxplot 
 
 #pairwise plot between 2 samples
-#plot(df_counts[,1], df_counts[,30], col = 'red')
+#plot(df_kegg[,1], df_kegg[,30], col = 'red')
 
-#plot(df_counts, col = c("royalblue1","tomato1","firebrick4","yellow","purple","green")[as.numeric(as.factor(treatments_df$Treatment))])
+#plot(df_kegg, col = c("royalblue1","tomato1","firebrick4","yellow","purple","green")[as.numeric(as.factor(treatments_df$Treatment))])
 
 #plot(df_datascience)
 
@@ -658,9 +1316,9 @@ points(df_counts[,"T_EP_1"], col = 'green')
 ```
 
 ```{r}
-#d <- density(df_counts$T_MMA_12) 
+#d <- density(df_kegg$T_MMA_12) 
 #plot(d)
-barplot(df_counts$T_MMA_12, col = 'red')
+# barplot(df_kegg$T_MMA_12, col = 'red')
 
 #another way to observe the distribution of a single sample - skewed 
 ```
@@ -669,31 +1327,33 @@ barplot(df_counts$T_MMA_12, col = 'red')
 
 
 ```{r}
-#a dataframe with the count of 0 values each functional group has
-zero_df <- as.data.frame(rowSums(df_counts == 0))
-#exclude functional groups that don't have any 0s, so they have a zero value in this df because all samples have a count for that functional groups, 
-length(which(zero_df!=0))
-#plot distribution of zeros in the rows shows that there is a large amount of funct families that have a low amount of 0s 
-hist(zero_df[,1], xlab='# of Samples', main="Histogram of zero distribution in dataset")
+# #a dataframe with the count of 0 values each functional group has
+# zero_df <- as.data.frame(rowSums(df_kegg == 0))
+# #exclude functional groups that don't have any 0s, so they have a zero value in this df because all samples have a count for that functional groups, 
+# length(which(zero_df!=0))
+# #plot distribution of zeros in the rows shows that there is a large amount of funct families that have a low amount of 0s 
+# hist(zero_df[,1], xlab='# of Samples', main="Histogram of zero distribution in dataset")
+# 
+
 ```
 
 
 ```{r}
 #sets functional groups columns as X
-df = read.csv("Pfam_profile.csv")
-
-#gather specific original columns to new columns except the X where the functional groups are, names_to contains original column names, values_to will contain entries from the original columns  
-df_new <- pivot_longer(df,names_to="treatment",values_to="counts", -X )
-
-#split based on sample name pattern, keeping all but the T from the sample name, into 2 new columns with the specified names
-df_new <- separate(df_new, treatment, into=c('t','treatment','sample'), sep='[_]') %>% select(!t)
-#replace pseudo count zeros to 1
-df_new$counts[df_new$counts == 0] <- 1
-#boxplot with mapped counts plotted as a function of treatment. 
-boxplot(counts~treatment, data=df_new, col='grey')
-
-#boxplot with logarith of mapped counts plotted as a function of treatment. previous 0 values are not included as the log function cannot be applied to them
-boxplot(log(counts)~treatment, data=df_new, col='grey')
+# df = read.csv("Pfam_profile.csv")
+# 
+# #gather specific original columns to new columns except the X where the functional groups are, names_to contains original column names, values_to will contain entries from the original columns  
+# df_new <- pivot_longer(df,names_to="treatment",values_to="counts", -X )
+# 
+# #split based on sample name pattern, keeping all but the T from the sample name, into 2 new columns with the specified names
+# df_new <- separate(df_new, treatment, into=c('t','treatment','sample'), sep='[_]') %>% select(!t)
+# #replace pseudo count zeros to 1
+# df_new$counts[df_new$counts == 0] <- 1
+# #boxplot with mapped counts plotted as a function of treatment. 
+# boxplot(counts~treatment, data=df_new, col='grey')
+# 
+# #boxplot with logarith of mapped counts plotted as a function of treatment. previous 0 values are not included as the log function cannot be applied to them
+# boxplot(log(counts)~treatment, data=df_new, col='grey')
 
 ```
 
@@ -714,286 +1374,43 @@ rownames(df_na)
 
 
 ```{r}
-funct_dist
-#visualize the distance matrix as a heatmap 
-image(funct_dist)
-
-heatmap(funct_dist, Colv = NA, Rowv = NA)
+# funct_dist
+# #visualize the distance matrix as a heatmap 
+# image(funct_dist)
+# 
+# heatmap(funct_dist, Colv = NA, Rowv = NA)
 ```
 
 ```{r}
-heatmap(t(df_counts))
+# heatmap(t(df_kegg))
 ```
 
 
 ```{r}
-data <- as.matrix(df_counts)
-heatmap(data)
-
-#scaling on row and column bases, column most useful since we need to capture variation between columns
-heatmap(data, scale = 'row')
-#scaling by column doesn't do anything
-
-heatmap(data, scale = 'column')
+# data <- as.matrix(df_kegg)
+# heatmap(data)
+# 
+# #scaling on row and column bases, column most useful since we need to capture variation between columns
+# heatmap(data, scale = 'row')
+# #scaling by column doesn't do anything
+# 
+# heatmap(data, scale = 'column')
 #scaling by column doesn't show anything, don't know why
 
 #heatmap() reorders both variables and observations using a clustering algorithm: it computes the distance between each pair of rows and columns and try to order them by similarity.
 
-#cluster <- agnes(df_counts$T_MMA_12, diss = TRUE, method = "average")
+#cluster <- agnes(df_kegg$T_MMA_12, diss = TRUE, method = "average")
 #plot(cluster, which.plots = 2, hang = -1, label = sample, main = "", axes = FALSE, xlab = "", ylab = "", sub = "")
-#heatmap(df_counts$T_MMA_12, scale = "none")
+#heatmap(df_kegg$T_MMA_12, scale = "none")
 ```
 
 
 ```{r}
-heatmap(data, Colv = NA)
+# heatmap(data, Colv = NA)
 ```
 
 
 ## Normalization 
 - different genes and genomes come in different sizes, which means that at equal coverage, the number of mapped reads to a certain gene or region will be directly dependent on the length of that region (the latter scenario is not a huge issue for Pfam families)
 - the interesting changes in bacterial composition might be drowned by genetic material from the host plant. That will then have a huge impact on the gene abundances of the bacteria, even if those abundances are actually the same. The same applies to complex microbial communities with both bacteria, single-cell eukaryotes and viruses. In such cases, it might be better to consider a normalization to the number of bacteria in the sample (or eukaryotes if that is what you want to study). One way of doing that is to count the number of reads mapping to the 16S rRNA gene in each sample. You can then divide each gene count with the number of 16S rRNA counts, to yield a genes per 16S proportion: (counts of gene X / counts of 16S rRNA gene)
-
-### Counts/rates per million 
-Every sample has a different number of total counts: it will influence the counts for a specific gene.
-
-We are interested in the rate/ percentage of counts for a given gene –> what is the sequence depth of each of the samples (total counts):
-```{r}
-totalcounts <- colSums(df_counts)
-totalcounts
-```
-
-If we want to be able to compare the sample counts, we should calculate the observed rates (NORMALIZATION OF TOTAL COUNTS FOR EACH TREATMENT)
-
-We calculate the observed rates per million total counts to obtain readable numbers:
-```{r}
-# sweep: divide values of df counts (million), by the totalcounts of each column
-ratespermillion <- as.data.frame(sweep(10^6*df_counts,2,totalcounts,FUN="/"))
-head(ratespermillion)
-tail(ratespermillion)
-```
-
-```{r}
-barplot(ratespermillion$T_MMA_12)
-```
-
-
-```{r}
-#count zeros
-colSums(ratespermillion==0)
-#all the zeros are still there 
-```
-
-### VARIANCE STABILIZATION TRANSFORM ATTEMPT 
-
-```{r}
-# creating the vectors with the names of the treatments with 
-# all their samples --> "to be able to call them after in group"
-
-#distinguish between the types of samples in the columns, as the means and and standard deviations will be calculated per group 
-# 2nd element is a vector with the values that will follow the text, in this case the specific number of the samples
-
-T_712.names <- paste('T_712', c(2,4,6,7,8,9,11,13,14,16,18), sep = '_')
-T_722.names <- paste('T_722', c(1,5,6,9,12,13,14,15,16,17), sep = '_')
-T_CCD8.names <- paste('T_CCD8', c(1,3,5,7,8,9,10,13,14,15,16), sep = '_')
-#vector control (no gene silencing)
-T_GUS.names <- paste('T_GUS', c(10,12,13,16,18,20,21,23,25,26), sep = '_')
-#transformation control (no vector)
-T_MMA.names <- paste('T_MMA', c(1,3,4,5,6,11,12,13), sep = '_') 
-#no plant 
-T_EP.names <- paste('T_EP', c(1,2,3,4), sep = '_') 
-
-```
-
-```{r}
-treatment.names <- c(T_712.names, T_722.names, T_CCD8.names) 
-#strsplit(c(T_712.names, T_722.names, T_CCD8.names), " ") <- use to make a list 
-#controls is not really useful since they serve different comparative purposes in the analysis against the treatment samples 
-controls.names <- c(T_GUS.names, T_MMA.names, T_EP.names)
-```
-
-```{r}
-treatment.mean <- apply(ratespermillion[treatment.names], 1, mean)
-control.mean <- apply(ratespermillion[controls.names], 1, mean)
-
-treatment.sd <- apply(ratespermillion[treatment.names], 1, sd)
-control.sd <- apply(ratespermillion[controls.names], 1, sd)
-
-
-```
-
-
-calculate the average rates of the groups of samples, as well as the standard deviation of the average rates. Meaning we are calculating the mean, sd for each gene and for each treatment: calculating it among the samples/replicates that we have for each treatment.
-```{r}
-# mean is the function applied for each row: 
-# going to have a mean for each KO for the T_712 treatment
-# "unifying all the samples" related to a KO with one of treatments' replicates 
-T_712.mean <- apply(ratespermillion[T_712.names], 1, mean)
-T_712.sd = apply(ratespermillion[T_712.names], 1, sd)
-
-T_722.mean <- apply(ratespermillion[T_722.names], 1, mean) 
-T_722.sd = apply(ratespermillion[T_722.names], 1, sd)
-
-T_CCD8.mean <- apply(ratespermillion[T_CCD8.names], 1, mean) 
-T_CCD8.sd = apply(ratespermillion[T_CCD8.names], 1, sd)
-
-T_GUS.mean <- apply(ratespermillion[T_GUS.names], 1, mean) 
-T_GUS.sd = apply(ratespermillion[T_GUS.names], 1, sd)
-
-T_MMA.mean <- apply(ratespermillion[T_MMA.names], 1, mean) 
-T_MMA.sd = apply(ratespermillion[T_MMA.names], 1, sd)
-```
-
-Plot the results in a double log scale (in many experimental data sets the sd is proportional to a power of the mean) \(log(sd)= log(10^6 / A) + b*log ( \text{observed mean rate})\):
-
-```{r}
-# Plot results for T_712 samples in blue 
-plot(T_712.mean, T_712.sd, log = 'xy', pch = 20, cex=.5, col='blue', xlab = 'Mean Rate', ylab = 'Stand dev') 
-
-# Plot and the T_722 samples in red 
-points(T_722.mean, T_722.sd, pch=20, cex=0.5, col='red') 
-
-# Plot and the T_CCD8 samples in pink 
-points(T_CCD8.mean, T_CCD8.sd, pch=20, cex=0.5, col='pink') 
-
-# Plot and the T_GUS samples in yellow 
-points(T_GUS.mean, T_GUS.sd, pch=20, cex=0.5, col='yellow') 
-
-# Plot and the T_MMA samples in orange
-points(T_MMA.mean, T_MMA.sd, pch=20, cex=0.5, col='orange') 
-
-title('Standard deviation vs mean rate') 
-```
-
-We can see that the mean and sd are correlated. Therefore the variance is not independent from the mean samples, meaning theere’s no homoscedasticity between samples.
-
-```{r}
-#indexthing <- grep("Inf", T_712.mean)
-#T_712.mean[[indexthing]]
-indx <- apply(as.data.frame(T_712.mean), 2, function(x) any(is.na(x) | is.infinite(x)))
-#indx prints FALSE 
-T_712_df <- as.data.frame(T_712.mean)
-T_712_df$T_712.sd <- T_712.sd
-T_712_df
-#which(T_712.mean=='Inf')
-T_722_df <- as.data.frame(T_722.mean)
-T_722_df$T_722.sd <- T_722.sd
-
-T_CCD8_df <- as.data.frame(T_CCD8.mean)
-T_CCD8_df$T_CCD8.sd <- T_CCD8.sd
-
-T_GUS_df <- as.data.frame(T_GUS.mean)
-T_GUS_df$T_GUS.sd <- T_GUS.sd
-
-T_MMA_df <- as.data.frame(T_MMA.mean)
-T_MMA_df$T_MMA.sd <- T_MMA.sd
-```
-
-```{r}
-#check if Inf values in df and change to NA
-T_712_df[is.na(T_712_df) | T_712_df=='Inf'] = NA
-#check if NAs in df
-T_712_df[rowSums(is.na(T_712_df))>0,]
-#check number of 0s in dataframe 
-colSums(T_712_df==0)
-```
-
-```{r}
-#change zero values to 1 to avoid taking logs of 0 and getting an Inf or undefined value for model fitting
-T_712_logt <- replace(T_712_df, T_712_df==0, 1)
-#check how many are NAs
-T_712_logt[rowSums(is.na(T_712_logt))>0,]
-#log transform data
-T_712_logt <- log(as.data.frame((T_712_logt)))
-colSums(T_712_logt)
-#log transform MEAN AND STANDARD DEVIATION TO FIT A STRAIGHT LINE THROUGH THE LOG-TRANSFORMED DATA, TO THEN EXTRACT THE SLOPE - FOR EACH TREATMENT GROUP AGAINST A CONTROL - USED TO TRANSFORM THE DATA AROUND THE VARIANCE SO THAT DATA IS STABLE (THE RATES PER MILLION DATA) USING THE FITTED COEFFICIENT (MEAN VALUE) THEN TAKE THE MEAN AND SD AGAIN FROM THE TRANSFORMED VALUES AND PLOT TO SHOW HOMOSCEDASTICITY 
-#T_712_logt[is.na(T_712_logt) | T_712_logt=='Inf'] = NA
-#check that the number of zeros after transformation is the same as in the original dataset 
-colSums(T_712_logt==0)
-```
-
-```{r}
-#apply to all other dfs
-T_722_logt <- log(as.data.frame(replace(T_722_df, T_722_df==0, 1)))
-T_CCD8_logt <- log(as.data.frame(replace(T_CCD8_df, T_CCD8_df==0, 1)))
-T_GUS_logt <- log(as.data.frame(replace(T_GUS_df, T_GUS_df==0, 1)))
-T_MMA_logt <- log(as.data.frame(replace(T_MMA_df, T_MMA_df==0, 1)))
-```
-
-
-```{r}
-#all.fit = lm(sd~mean, data.frame(mean=log(c(T_712.mean, T_722.mean, T_CCD8.mean, T_GUS.mean, T_MMA.mean)), sd=log(c(T_712.sd, T_722.sd, T_CCD8.sd, T_GUS.sd, T_MMA.sd)))) 
-
-#THIS IS WRONG BC IT'S NOT FITTING AGAINST A CONTROL GROUP 
-#model fit to original data as well as log transformed
-all.fit <- lm(T_712.sd~T_712.mean, T_712_df)
-all.fitlog <- lm(T_712.sd~T_712.mean, T_712_logt)
-
-coef(all.fit)
-coef(all.fitlog) 
-```
-
-Log transformed data slope is larger than 0.5 -> NB distribution 
-
-```{r}
-#try to fit all types of samples together - DID NOT WORK
-#fit.all <- lm(T_*.sd~T_*.*mean, data.frame(mean=c(T_712_logt$T_712.mean, T_722_logt$T_722.mean, T_CCD8_logt$T_CCD8.mean, T_GUS_logt$T_GUS.mean, T_MMA_logt$T_MMA.mean), sd=c(T_712_logt$T_712.sd, T_722_logt$T_722.sd, T_CCD8_logt$T_CCD8.sd, T_GUS_logt$T_GUS.sd, T_MMA_logt$T_MMA.sd)))
-```
-
-### SUM NORMALIZATION
-
-```{r}
-#SUM NORMALIZATION 
-sum_norm_counts <- as.data.frame(sweep(df_counts,2,totalcounts,FUN="/"))
-barplot(sum_norm_counts$T_MMA_12)
-sum_norm_counts
-```
-
-
-### HELLINGER TRANSFORM 
-
-
-
-### CLR FOR PCA - CENTERED LOG-RATIO TRANFORMATION - PCA
-
-```{r}
-#data exploration for PCA
-mappability <- as.matrix(df_counts)
-#matplot(1:11,mappability, type="l", lwd=1)
-#df_counts[is.na(df_counts) | df_counts=='Inf'] = NA
-#df_counts[rowSums(is.na(df_counts))>0,]
-df_counts_1 <- replace(df_counts, df_counts==0, 1)
-
-log_data_1 <- log(df_counts_1)
-log_data <- log(df_counts)
-sqrt_data <- sqrt(df_counts)
-par(mfrow=c(1,4))
-
-
-hist(df_counts[,1])
-hist(log_data[,1])
-hist(log_data_1[,1])
-hist(sqrt_data[,1])
-
-```
-
-```{r}
-#par(mfrow=c(1,4))
-boxplot(df_counts)
-#boxplot(log_data)
-#boxplot(log_data_1)
-#boxplot(sqrt_data)
-```
-
-```{r}
-#clr on data
-clr_data <- as.data.frame(clr(df_counts))
-typeof(clr_data)
-tail(clr_data)
-
-```
-
-```{r}
-boxplot(clr_data)
-```
 

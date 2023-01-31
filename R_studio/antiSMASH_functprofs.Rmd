@@ -1,0 +1,509 @@
+---
+title: "antiSMASH_FunctProfs"
+author: "Susana Lopez Lemarroy"
+date: "2023-01-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#libraries
+library(ggplot2)
+library(stats)
+library(PMCMRplus)
+```
+
+
+### antiSMASH functional profiles annotations analysis 
+- Pfam (db_xref)
+- aSDomain (antiSMASH Domain)
+- MiBig 
+
+#### MiBig
+
+```{r}
+#missing EP_2 = there is nothing on the knownclusterblastoutput.txt file, something either went wrong with 
+#antismash or it didn't find any MiBig annotations for those locus tags 
+df_mibig <- read.csv('MiBig_profile.csv', row.names = 'X')
+df_mibig[is.na(df_mibig)] <- 0
+df_mibig <- df_mibig[,order(colnames(df_mibig))]
+df_mibig
+```
+
+
+```{r}
+df_info_mibig <- as.data.frame(colnames(df_mibig)) %>%
+  'colnames<-'(c('Sample'))
+df_info_mibig <- separate(df_info_mibig, Sample, into=c('t','Treatment','sample'), sep='[_]', remove = FALSE) %>% select(c(Sample,Treatment))
+df_info_mibig
+```
+
+
+```{r}
+df_mb_712GUS <- df_mibig[,df_info_mibig$Treatment %in% unique(df_info_mibig$Treatment)[c(1,5)]]
+df_mb_712GUS <- df_mb_712GUS[rowSums(df_mb_712GUS)>0,]
+
+mb_richness <- df_info_mibig 
+mb_richness$Richness <- colSums(df_mibig != 0)
+mb_richness
+
+```
+
+```{r}
+#plot richness (numbers per sample) between the treatments 
+
+ggplot(data=mb_richness, aes(x=Treatment, y=Richness, color=Treatment)) +
+  geom_boxplot() +
+  ggtitle('Sample Richness by Treatment') +
+  xlab('Treatment') +
+  ylab('Richness') +
+  theme(legend.position = "none") 
+
+#total counts per sample for all MiBig IDs found - this would be sample 'abundance' but could also
+#be a way of talking about sequencing depth
+colSums(df_mibig)
+
+#richnes: number of different components in a sample - so number of MiBig hits per sample
+#length of a list of functional groups that have counts larger than 0
+#richness_mb <- as.data.frame(apply(df_mibig,
+#                           2,
+#                           function(x) length(which(x>0))))
+
+summary(mb_richness$Richness)
+#colnames(richness_mb) <- 'Richness'
+#richness_mb$Treatment <- df_info_mibig$Treatment
+#richness_mb
+
+#perform an anova for the functional groups richness in each treatment group 
+richness_anova <- aov(Richness ~ Treatment, data=mb_richness)
+summary(richness_anova)
+
+#The Kruskal-Wallis test is a non-parametric statistical test that is used to compare the median of two or more independent groups. It can be used to determine whether there is a significant difference in the sample richness among the different groups.
+
+#Kruskal-Wallis chi-squared: This is the test statistic. It is calculated as the sum of the squared ranks divided by the sample size.
+#df: This is the degrees of freedom. It is calculated as the number of groups minus one.
+#p-value: This is the probability of obtaining the observed or a more extreme test statistic by chance if the null hypothesis is true.
+
+#The Kruskal-Wallis test is used to test the null hypothesis that the medians of the groups are equal. The test statistic, called the H-statistic, is calculated as follows:
+
+#H = n(n+1) / 12 * Σ(Ri^2 / ni) - 3(n + 1)
+
+#Where:
+
+#n: the total number of observations
+#Ri: the rank of the i-th observation
+#ni: the number of observations in the i-th group
+
+# Kruskal Wallis + posthoc test 
+# Perform the Kruskal-Wallis test
+kruskal_res <- kruskal.test(Richness ~ Treatment, data = mb_richness)
+
+# fail to reject the null hypothesis that there is no significant difference in the median sample richness among the groups. In other words, the output suggests that there is not enough evidence to suggest that the medians of the groups are different from each other.
+
+#The Conover-Iman test is a post-hoc test for the Kruskal-Wallis test that is based on rank sums of the observations in each group and it adjusts for multiple comparisons by controlling the false discovery rate (FDR), and it is robust to violations of normality and equal variances assumptions. 
+
+# The FDR is the expected proportion of false positives among the rejected hypotheses. Controlling the FDR at a specific level (e.g. 0.05) allows to identify a set of significant differences with a controlled proportion of false positives.
+
+#A post-hoc test is a statistical test that is used to compare the medians of specific pairs of groups after a Kruskal-Wallis test has been performed. The main purpose of a post-hoc test is to identify which groups are significantly different from one another, after the overall test has shown that there is a significant difference in the medians among all groups.
+#performing multiple post-hoc tests increases the risk of type I error (false positive) and that it is not always useful to test all possible pairwise comparisons.
+
+conover_result <- kwAllPairsConoverTest(mb_richness, Treatment, p.adjust.method = "fdr")
+summary(conover_result)
+print(conover_result)
+
+```
+
+
+#### Pfam (db_xref)
+
+```{r}
+df_pfam <- read.csv('db_xref_profile.csv', row.names = 'X')
+df_pfam[is.na(df_pfam)] <- 0
+df_pfam <- df_pfam[,order(colnames(df_pfam))]
+df_pfam
+```
+
+```{r}
+df_info_pfam <- as.data.frame(colnames(df_pfam)) %>%
+  'colnames<-'(c('Sample'))
+df_info_pfam <- separate(df_info_pfam, Sample, into=c('t','Treatment','sample'), sep='[_]', remove = FALSE) %>% select(c(Sample,Treatment))
+df_info_pfam
+```
+
+```{r}
+#richness dataframe
+pf_richness <- df_info_pfam 
+pf_richness$Richness <- colSums(df_pfam != 0)
+
+#plot richness (numbers per sample) between the treatments 
+
+ggplot(data=pf_richness, aes(x=Treatment, y=Richness, color=Treatment)) +
+  geom_boxplot() +
+  ggtitle('Sample Richness by Treatment') +
+  xlab('Treatment') +
+  ylab('Richness') +
+  theme(legend.position = "none") 
+
+
+# Perform the Kruskal-Wallis test
+kruskal.test(Richness ~ Treatment, data = pf_richness)
+```
+
+
+```{r}
+richness_pfam <- as.data.frame(apply(df_pfam,
+                           2,
+                           function(x) length(which(x>0))))
+
+summary(richness_pfam)
+colnames(richness_pfam) <- 'Richness'
+richness_pfam$Treatment <- df_info_pfam$Treatment
+
+#perform an anova for the functional groups richness in each treatment group 
+richness_pfamanova <- aov(Richness ~ Treatment, data=richness_pfam)
+summary(richness_pfamanova)
+
+#Tukey Honest Significant Differences 
+#diff: difference between means of the two groups
+#lwr, upr: the lower and the upper end point of the confidence interval at 95% (default)
+#p adj: p-value after adjustment for the multiple comparisons.
+TukeyHSD(richness_pfamanova)
+
+ggplot(richness_pfam, aes(Treatment, Richness)) + 
+  geom_boxplot(fill=c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC'), show.legend = FALSE) +
+  theme(text = element_text(size=14)) 
+
+#residuals versus fits plot - can be used to check the homogeneity of variances
+plot(richness_pfamanova, 1)
+```
+
+
+```{r}
+#filter the zeros from the dataframe
+df_few0_pfam <- df_pfam[filter_fun(df_pfam,df_info_pfam$Treatment, 0.40, 0.60),]
+```
+
+```{r}
+#length of a list of functional groups that have counts larger than 0
+richness_few0pfam <- as.data.frame(apply(df_few0_pfam,
+                           2,
+                           function(x) length(which(x>0))))
+
+summary(richness_few0pfam)
+colnames(richness_few0pfam) <- 'Richness'
+richness_few0pfam$Treatment <- df_info_pfam$Treatment
+
+#perform an anova for the functional groups richness in each treatment group 
+richness_few0anova <- aov(Richness ~ Treatment, data=richness_few0pfam)
+summary(richness_few0anova)
+
+#Tukey Honest Significant Differences 
+#diff: difference between means of the two groups
+#lwr, upr: the lower and the upper end point of the confidence interval at 95% (default)
+#p adj: p-value after adjustment for the multiple comparisons.
+TukeyHSD(richness_few0anova)
+
+ggplot(richness_few0pfam, aes(Treatment, Richness)) + 
+  geom_boxplot(fill=c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC'), show.legend = FALSE) +
+  theme(text = element_text(size=14))
+
+#residuals versus fits plot - can be used to check the homogeneity of variances
+plot(richness_few0anova, 1)
+```
+
+# pairwise dfs
+
+```{r}
+#Generating specific dataframes for pairs of treatment group comparisons 
+
+#one Treatment with one Control 
+#712-GUS
+df_712_GUS <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(1,5)]]
+df_few0_712_GUS <- df_712_GUS[filter_fun(df_712_GUS,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(1,5)]],0.40, 0.60),]
+df_info_712_GUS <- df_info[df_info$Treatment=='712' | df_info$Treatment=='GUS',]
+
+#712-MMA
+df_712_MMA <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(1,6)]]
+df_few0_712_MMA <- df_712_MMA[filter_fun(df_712_MMA,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(1,6)]],0.40, 0.60),]
+
+#712_EP
+df_712_EP <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(1,4)]]
+df_few0_712_EP <- df_712_EP[filter_fun(df_712_EP,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(1,4)]],0.40, 0.60),]
+
+
+
+#722-GUS
+df_722_GUS <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(2,5)]]
+df_few0_722_GUS <- df_722_GUS[filter_fun(df_722_GUS,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(2,5)]],0.40, 0.60),]
+
+#722-MMA
+df_722_MMA <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(2,6)]]
+df_few0_722_MMA <- df_722_MMA[filter_fun(df_722_MMA,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(2,6)]],0.40, 0.60),]
+
+#722_EP
+df_722_EP <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(2,4)]]
+df_few0_722_EP <- df_722_EP[filter_fun(df_722_EP,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(2,4)]],0.40, 0.60),]
+
+
+
+#CCD8-GUS
+df_CCD8_GUS <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(3,5)]]
+df_few0_CCD8_GUS <- df_CCD8_GUS[filter_fun(df_CCD8_GUS,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(3,5)]],0.40, 0.60),]
+
+#CCD8-MMA
+df_CCD8_MMA <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(3,6)]]
+df_few0_CCD8_MMA <- df_CCD8_MMA[filter_fun(df_CCD8_MMA,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(3,6)]],0.40, 0.60),]
+
+#CCD8_EP
+df_CCD8_EP <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(3,4)]]
+df_few0_CCD8_EP <- df_CCD8_EP[filter_fun(df_CCD8_EP,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(3,4)]],0.40, 0.60),]
+
+
+
+#2 Controls 
+#GUS-MMA 
+df_GUS_MMA <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(5,6)]]
+df_few0_GUS_MMA <- df_GUS_MMA[filter_fun(df_GUS_MMA,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(5,6)]],0.40, 0.60),]
+
+
+#all but EP
+df_all_plant <- df_counts[,df_info$Treatment %in% unique(df_info$Treatment)[c(1,2,3,5,6)]]
+df_few0_plant <- df_all_plant[filter_fun(df_all_plant,df_info$Treatment[df_info$Treatment %in% unique(df_info$Treatment)[c(1,2,3,5,6)]],0.40, 0.60),]
+df_info_plant <- df_info[df_info$Treatment!= 'EP',]
+
+```
+
+
+
+## transform and normalize
+```{r}
+#norm and transform zero-filtered dataframe with all treatment groups
+
+#Sum normalization 
+df_pfam_sum <- decostand(df_pfam,method = "total",2)
+df_few0pfam_sum <- decostand(df_few0_pfam,method = "total",2)
+#Hellinger transform
+df_pfam_hellinger <- decostand(df_pfam,method = "hellinger",2)
+
+#Small pseudocount of 1/10th of the smallest value bigger than zero, adding it to all values in the df
+#to maintain comparable sizes between the values, then apply center-log ratio transform 
+df_pfam_clr <- as.matrix(as.data.frame(t(clr(min(df_pfam[df_pfam>0])/10+t(df_pfam)))))
+df_few0pfam_clr <- as.matrix(as.data.frame(t(clr(min(df_few0_pfam[df_few0_pfam>0])/10+t(df_few0_pfam)))))
+#df_pfam_clr <- as.matrix(as.data.frame(t(clr(min(df_fewer0_kegg[df_fewer0_kegg>0])/10+t(df_fewer0_kegg)))))
+
+```
+
+## PCA
+```{r}
+###PCA with clr data
+pfam_pca_clr <- prcomp(t(df_pfam_clr))
+plot(pfam_pca_clr$x,
+     col=c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC')[as.numeric(as.factor(df_info_pfam$Treatment))], pch=19, xlab='', ylab='')
+title(ylab='PC2 (6.39%)', line=2.5, cex.lab=1.2)
+title(xlab='PC1 (10.63%)', line=2.5, cex.lab=1.2)
+legend("topright",col=c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC'),
+       legend=levels(as.factor(df_info_pfam$Treatment)),
+       lty=1,
+       bty="n")
+
+autoplot(pfam_pca_clr, data=t(df_pfam_clr), colour = rainbow(6)[as.numeric(as.factor(df_info_pfam$Treatment))])
+```
+
+```{r}
+###PCA with clr data
+pfamfew0_pca_clr <- prcomp(t(df_few0pfam_clr))
+plot(pfamfew0_pca_clr$x,
+     col=c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC')[as.numeric(as.factor(df_info_pfam$Treatment))], pch=19, xlab='', ylab='')
+title(ylab='PC2 (6.39%)', line=2.5, cex.lab=1.2)
+title(xlab='PC1 (10.63%)', line=2.5, cex.lab=1.2)
+legend("topright",col=c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC'),
+       legend=levels(as.factor(df_info_pfam$Treatment)),
+       lty=1,
+       bty="n")
+
+autoplot(pfamfew0_pca_clr, data=t(df_few0pfam_clr), colour = rainbow(6)[as.numeric(as.factor(df_info_pfam$Treatment))])
+```
+
+
+```{r}
+###PCA with sum norm data
+pfam_pca_sum <- prcomp(t(df_pfam_sum))
+plot(pfam_pca_sum$x,
+     col=c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC')[as.numeric(as.factor(df_info_pfam$Treatment))], pch=19, xlab='', ylab='')
+title(ylab='PC2 (6.39%)', line=2.5, cex.lab=1.2)
+title(xlab='PC1 (10.63%)', line=2.5, cex.lab=1.2)
+legend("topright",col=c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC'),
+       legend=levels(as.factor(df_info_pfam$Treatment)),
+       lty=1,
+       bty="n")
+
+autoplot(pfam_pca_sum, data=t(df_pfam_sum), colour = rainbow(6)[as.numeric(as.factor(df_info_pfam$Treatment))])
+```
+
+
+```{r}
+###PCA with clr data
+pfamfew0_pca_sum <- prcomp(t(df_few0pfam_sum))
+plot(pfamfew0_pca_sum$x,
+     col=c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC')[as.numeric(as.factor(df_info_pfam$Treatment))], pch=19, xlab='', ylab='')
+title(ylab='PC2 (6.39%)', line=2.5, cex.lab=1.2)
+title(xlab='PC1 (10.63%)', line=2.5, cex.lab=1.2)
+legend("topright",col=c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC'),
+       legend=levels(as.factor(df_info_pfam$Treatment)),
+       lty=1,
+       bty="n")
+
+autoplot(pfamfew0_pca_sum, data=t(df_few0pfam_sum), colour = rainbow(6)[as.numeric(as.factor(df_info_pfam$Treatment))])
+```
+
+## DESeq2
+
+```{r}
+##712-GUS
+dds_pfam_712_GUS <- DESeqDataSetFromMatrix(countData=df_few0_712_GUS,
+                               colData=df_info[df_info$Treatment %in% unique(df_info$Treatment)[c(1,5)],],
+                               design = ~ Treatment)
+dds_pfam_712_GUS <- estimateSizeFactors(dds_pfam_712_GUS)
+
+#for visualization
+#DS_712_GUS <- counts(dds_pfam_712_GUS,normalized=T) #DESeq2-normalized data
+#DS_712_GUS_Log <- log2(DS_712_GUS+1) 
+#boxplot(DS_712_GUS_Log)
+
+
+#differential analysis
+dds_pfam_712_GUS <- DESeq(dds_pfam_712_GUS)
+
+#plot dispersion 
+#plotDispEsts(dds_pfam_712_GUS)
+
+#get results
+resultsNames(dds_pfam_712_GUS)
+respfam_712_GUS <- results(dds_pfam_712_GUS, contrast=c("Treatment","712","GUS")) #these are the names of the two groups
+length(which(respfam_712_GUS$padj < 0.05 & !is.na(respfam_712_GUS$padj)))
+respfamlist__712_GUS <- rownames(respfam_712_GUS)[which(respfam_712_GUS$padj < 0.05 & !is.na(respfam_712_GUS$padj))]
+respfamlist__712_GUS
+#visualize
+plotMA(respfam_712_GUS, alpha=0.05, colNonSig='lavender' , colSig='#EB5D5A', xlab='', ylab='')
+title(ylab='logFoldChange', line=2.5, cex.lab=1.2)
+title(xlab='Mean of Normalized Counts', line=2.5, cex.lab=1.2)
+```
+
+```{r}
+##722-GUS
+dds_pfam_722_GUS <- DESeqDataSetFromMatrix(countData=df_few0_722_GUS,
+                               colData=df_info[df_info$Treatment %in% unique(df_info$Treatment)[c(2,5)],],
+                               design = ~ Treatment)
+dds_pfam_722_GUS <- estimateSizeFactors(dds_pfam_722_GUS)
+
+#for visualization
+#DS_712_GUS <- counts(dds_pfam_712_GUS,normalized=T) #DESeq2-normalized data
+#DS_712_GUS_Log <- log2(DS_712_GUS+1) 
+#boxplot(DS_712_GUS_Log)
+
+
+#differential analysis
+dds_pfam_722_GUS <- DESeq(dds_pfam_722_GUS)
+
+#plot dispersion 
+#plotDispEsts(dds_pfam_712_GUS)
+
+#get results
+resultsNames(dds_pfam_722_GUS)
+respfam_722_GUS <- results(dds_pfam_722_GUS, contrast=c("Treatment","722","GUS")) #these are the names of the two groups
+length(which(respfam_722_GUS$padj < 0.05 & !is.na(respfam_722_GUS$padj)))
+respfamlist__722_GUS <- rownames(respfam_722_GUS)[which(respfam_722_GUS$padj < 0.05 & !is.na(respfam_722_GUS$padj))]
+respfamlist__722_GUS
+#visualize
+plotMA(respfam_722_GUS, alpha=0.05, colNonSig='lavender',colSig='#A8912E', xlab='', ylab='')
+title(ylab='logFoldChange', line=2.5, cex.lab=1.2)
+title(xlab='Mean of Normalized Counts', line=2.5, cex.lab=1.2)
+```
+
+```{r}
+##CCD8-GUS
+dds_pfam_CCD8_GUS <- DESeqDataSetFromMatrix(countData=df_few0_CCD8_GUS,
+                               colData=df_info[df_info$Treatment %in% unique(df_info$Treatment)[c(3,5)],],
+                               design = ~ Treatment)
+dds_pfam_CCD8_GUS <- estimateSizeFactors(dds_pfam_CCD8_GUS)
+
+#for visualization
+#DS_712_GUS <- counts(dds_pfam_712_GUS,normalized=T) #DESeq2-normalized data
+#DS_712_GUS_Log <- log2(DS_712_GUS+1) 
+#boxplot(DS_712_GUS_Log)
+
+
+#differential analysis
+dds_pfam_CCD8_GUS <- DESeq(dds_pfam_CCD8_GUS)
+
+#plot dispersion 
+#plotDispEsts(dds_pfam_712_GUS)
+
+#get results
+resultsNames(dds_pfam_CCD8_GUS)
+respfam_CCD8_GUS <- results(dds_pfam_CCD8_GUS, contrast=c("Treatment","CCD8","GUS")) #these are the names of the two groups
+length(which(respfam_CCD8_GUS$padj < 0.05 & !is.na(respfam_CCD8_GUS$padj)))
+respfamlist__CCD8_GUS <- rownames(respfam_CCD8_GUS)[which(respfam_CCD8_GUS$padj < 0.05 & !is.na(respfam_CCD8_GUS$padj))]
+respfamlist__CCD8_GUS
+#visualize
+plotMA(respfam_CCD8_GUS, alpha=0.05, colNonSig='lavender',colSig='#51B334', xlab='', ylab='')
+title(ylab='logFoldChange', line=2.5, cex.lab=1.2)
+title(xlab='Mean of Normalized Counts', line=2.5, cex.lab=1.2)
+```
+
+```{r}
+##MMA-GUS
+dds_pfam_MMA_GUS <- DESeqDataSetFromMatrix(countData=df_few0_GUS_MMA,
+                               colData=df_info[df_info$Treatment %in% unique(df_info$Treatment)[c(6,5)],],
+                               design = ~ Treatment)
+dds_pfam_MMA_GUS <- estimateSizeFactors(dds_pfam_MMA_GUS)
+
+#for visualization
+#DS_712_GUS <- counts(dds_pfam_712_GUS,normalized=T) #DESeq2-normalized data
+#DS_712_GUS_Log <- log2(DS_712_GUS+1) 
+#boxplot(DS_712_GUS_Log)
+
+
+#differential analysis
+dds_pfam_MMA_GUS <- DESeq(dds_pfam_MMA_GUS)
+
+#plot dispersion 
+#plotDispEsts(dds_pfam_712_GUS)
+
+#get results
+resultsNames(dds_pfam_MMA_GUS)
+respfam_MMA_GUS <- results(dds_pfam_MMA_GUS, contrast=c("Treatment","MMA","GUS")) #these are the names of the two groups
+length(which(respfam_MMA_GUS$padj < 0.05 & !is.na(respfam_MMA_GUS$padj)))
+respfamlist__MMA_GUS <- rownames(respfam_MMA_GUS)[which(respfam_MMA_GUS$padj < 0.05 & !is.na(respfam_MMA_GUS$padj))]
+respfamlist__MMA_GUS
+#visualize
+plotMA(respfam_MMA_GUS, alpha=0.05, colNonSig='lavender',colSig='#EA3BDC', xlab='', ylab='')
+title(ylab='logFoldChange', line=2.5, cex.lab=1.2)
+title(xlab='Mean of Normalized Counts', line=2.5, cex.lab=1.2)
+```
+
+
+#### aSDomain
+
+```{r}
+df_asdomain <- read.csv('aSDomain_profile.csv', row.names = 'X')
+df_asdomain[is.na(df_asdomain)] <- 0
+df_asdomain <- df_asdomain[,order(colnames(df_asdomain))]
+df_asdomain
+```
+
+```{r}
+df_info_asdomain <- as.data.frame(colnames(df_asdomain)) %>%
+  'colnames<-'(c('Sample'))
+df_info_asdomain <- separate(df_info_asdomain, Sample, into=c('t','Treatment','sample'), sep='[_]', remove = FALSE) %>% select(c(Sample,Treatment))
+df_info_asdomain
+```
+
+
+```{r}
+rowSums(df_asdomain == 0)
+```
+

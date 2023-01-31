@@ -1,0 +1,101 @@
+---
+title: "VIGS_meta"
+author: "Susana Lopez Lemarroy"
+date: "2023-01-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### VIGS metadata of strigolactone levels
+
+```{r}
+#libraries
+library(ggplot2)
+```
+
+
+```{r}
+VIGS_meta <- read.csv("VIGS_meta.csv")
+VIGS_meta <- subset(VIGS_meta, select = -c(X))
+```
+
+```{r}
+#make a dataframe with only the sample names and change the column name to Sample 
+sInfo <- data.frame("sampleID"=colnames(df_kegg))
+sInfo$group <- gsub("_[^_]+$","",sInfo$sampleID)
+sInfo <- sInfo[order(rownames(sInfo)),]
+rownames(sInfo) <- sInfo$sampleID
+```
+
+
+```{r}
+VIGS <- VIGS_meta[VIGS_meta$Sample_ID %in% sInfo$sampleID,]
+VIGS <- VIGS[order(VIGS$Sample_ID),]
+rownames(VIGS) <- VIGS$Sample_ID
+VIGS[is.na(VIGS)] <- 0
+
+VIGS_filt <- VIGS_meta[VIGS_meta$Sample_ID %in% sInfo$sampleID,]
+VIGS_filt <- subset(VIGS_filt, VIGS_gene != 'EP')
+VIGS_filt <- VIGS_filt[order(VIGS_filt$Sample_ID),]
+rownames(VIGS_filt) <- VIGS_filt$Sample_ID
+```
+
+
+```{r}
+ggplot(data=VIGS_filt) + 
+  geom_boxplot(mapping = aes(x=Orb_pmol_ml_g, y=VIGS_gene, color = VIGS_gene))
+```
+
+
+```{r}
+sInfo_plants <- subset(sInfo, group != 'T_EP')
+VIGS_712_GUS <- VIGS_filt[sInfo_plants$group %in% c("T_GUS","T_712"),]
+VIGS_722_GUS <- VIGS_filt[sInfo_plants$group %in% c("T_GUS","T_722"),]
+VIGS_CCD8_GUS <- VIGS_filt[sInfo_plants$group %in% c("T_GUS","T_CCD8"),]
+
+```
+
+
+```{r}
+ggplot(data=VIGS_filt) + 
+  geom_boxplot(mapping = aes(x=Sol_pmol_ml_g, y=VIGS_gene, color = VIGS_gene))
+```
+
+
+
+
+## ASSEMBLY ASSESSMENT FROM all_stats.tsv file in Stats directory of IMP3 output 
+
+```{r}
+library("readxl")
+
+
+ass_stats <- as.data.frame(read_excel('./assemblynode_commitment.xlsx', sheet='Sheet2'))
+ass_stats_samples <- ass_stats[1:54,]
+ass_stats_samples <- ass_stats_samples[order(ass_stats_samples$sample),]
+rownames(ass_stats_samples) <- ass_stats_samples$sample
+colnames(ass_stats_samples) <- c('Sample_ID', 'N50', 'CDSs', 'KEGG_CDSs', 'seq_depth', 'dbCAN_CDSs')
+
+ass_stats_big <- merge(VIGS, ass_stats_samples, by='Sample_ID')
+
+ass_stats_big$VIGS_gene[ass_stats_big$VIGS_gene == 'CYP712'] <- '712'
+ass_stats_big$VIGS_gene[ass_stats_big$VIGS_gene == 'CYP722'] <- '722'
+
+ass_stats_big <- ass_stats_big[order(ass_stats_big$Sample_ID),]
+
+```
+
+```{r}
+
+
+ggplot(data=ass_stats_big, aes(x=VIGS_gene, y=seq_depth)) +
+  geom_boxplot(fill=c('#EB5D5A', '#A8912E', '#51B334', '#5382F7', '#EBAA36', '#EA3BDC'), show.legend = FALSE) +
+  theme(text = element_text(size=14)) +
+  xlab('Treatment') +
+  ylab('# of Reads')
+```
+
+
