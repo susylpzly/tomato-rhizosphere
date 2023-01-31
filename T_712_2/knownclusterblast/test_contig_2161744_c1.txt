@@ -1,0 +1,84 @@
+ClusterBlast scores for test_contig_2161744
+
+Table of genes, locations, strands and annotations of query cluster:
+CCIMNIEH_2895918	1	1147	+	unannotated protein	
+CCIMNIEH_2895919	1278	2013	+	unannotated protein	
+CCIMNIEH_2895920	2009	2951	+	unannotated protein	
+CCIMNIEH_2895921	2931	4476	+	unannotated protein	
+CCIMNIEH_2895922	4468	4894	+	unannotated protein	
+CCIMNIEH_2895923	4890	5610	+	unannotated protein	
+CCIMNIEH_2895924	5593	7933	+	unannotated protein	
+CCIMNIEH_2895925	7929	9090	+	unannotated protein	
+CCIMNIEH_2895926	9076	10324	+	unannotated protein	
+CCIMNIEH_2895927	10320	11046	+	unannotated protein	
+CCIMNIEH_2895928	11045	11663	+	unannotated protein	
+CCIMNIEH_2895929	11659	12856	+	unannotated protein	
+CCIMNIEH_2895930	12852	13326	+	unannotated protein	
+CCIMNIEH_2895931	13322	14051	+	unannotated protein	
+CCIMNIEH_2895932	14050	15277	+	unannotated protein	
+CCIMNIEH_2895933	15410	15674	-	unannotated protein	
+CCIMNIEH_2895934	16154	16598	-	unannotated protein	
+CCIMNIEH_2895935	16787	17690	-	unannotated protein	
+
+
+Significant hits: 
+1. BGC0000837	APE Vf
+2. BGC0002008	aryl polyenes
+3. BGC0000836	APE Ec
+
+
+Details:
+
+>>
+1. BGC0000837
+Source: APE Vf
+Type: Other
+Number of proteins with BLAST hits to this cluster: 6
+Cumulative BLAST score: 2521
+
+Table of genes, locations, strands and annotations of subject cluster:
+
+Table of Blast hits (query gene, subject gene, %identity, blast score, %coverage, e-value):
+CCIMNIEH_2895919	VF_0851	50	253	97.95081967213115	3.2e-67
+CCIMNIEH_2895921	VF_0852	63	616	99.41634241245137	5.2e-176
+CCIMNIEH_2895926	VF_0841	55	453	97.34939759036145	4.7e-127
+CCIMNIEH_2895929	VF_0857	52	383	98.99497487437185	5.8e-106
+CCIMNIEH_2895931	VF_0859	62	305	99.58677685950413	9.3e-83
+CCIMNIEH_2895932	VF_0860	61	511	99.50980392156863	1.1e-144
+
+
+
+>>
+2. BGC0002008
+Source: aryl polyenes
+Type: Other
+Number of proteins with BLAST hits to this cluster: 5
+Cumulative BLAST score: 1549
+
+Table of genes, locations, strands and annotations of subject cluster:
+
+Table of Blast hits (query gene, subject gene, %identity, blast score, %coverage, e-value):
+CCIMNIEH_2895919	XDD1_RS16025	56	273	99.59016393442623	3e-73
+CCIMNIEH_2895922	XDD1_RS16030	47	129	86.52482269503547	4.1e-30
+CCIMNIEH_2895929	XDD1_RS16050	49	369	100.0	6.6e-102
+CCIMNIEH_2895931	XDD1_RS16060	61	295	100.0	5.6e-80
+CCIMNIEH_2895932	XDD1_RS16065	55	483	99.75490196078431	3.2e-136
+
+
+
+>>
+3. BGC0000836
+Source: APE Ec
+Type: Other
+Number of proteins with BLAST hits to this cluster: 5
+Cumulative BLAST score: 1490
+
+Table of genes, locations, strands and annotations of subject cluster:
+
+Table of Blast hits (query gene, subject gene, %identity, blast score, %coverage, e-value):
+CCIMNIEH_2895919	c1194	56	245	86.88524590163934	6.8e-65
+CCIMNIEH_2895922	c1193	47	130	86.52482269503547	1.8e-30
+CCIMNIEH_2895929	c1189	49	349	98.99497487437185	7.1e-96
+CCIMNIEH_2895931	c1187	59	283	100.0	3.8e-76
+CCIMNIEH_2895932	c1186	55	483	99.50980392156863	2.5e-136
+

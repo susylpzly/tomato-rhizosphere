@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>orf7</td>
+              <td>ABC_transporter_permease</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001419/1">BGC0001419</a></td>
+              <td>NRP:Cyclic depsipeptide + Polyketide:Iterative type I</td>
+              <td>26.0</td>
+              <td>112.3</td>
+              <td>111.0</td>
+              <td>3.4e-24</td>
+          </tr>
+    
+          <tr>
+              <td>APZ78696.1</td>
+              <td>ABC_transporter_permease</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001418/1">BGC0001418</a></td>
+              <td>NRP:Cyclic depsipeptide + Polyketide:Iterative type I</td>
+              <td>27.0</td>
+              <td>111.8</td>
+              <td>114.0</td>
+              <td>4e-25</td>
+          </tr>
+    
+          <tr>
+              <td>APZ78708.1</td>
+              <td>ABC_transporter_permease</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001419/1">BGC0001419</a></td>
+              <td>NRP:Cyclic depsipeptide + Polyketide:Iterative type I</td>
+              <td>26.0</td>
+              <td>112.3</td>
+              <td>111.0</td>
+              <td>3.4e-24</td>
+          </tr>
+    
+          <tr>
+              <td>CCA65708.1</td>
+              <td>predicted_ABC-type_lipoprotein_release_transporter,_permease_component</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001343/1">BGC0001343</a></td>
+              <td>Polyketide</td>
+              <td>28.0</td>
+              <td>104.3</td>
+              <td>106.0</td>
+              <td>1.4e-22</td>
+          </tr>
+    
+          <tr>
+              <td>CCA65709.1</td>
+              <td>predicted_ABC-type_transport_system</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001343/1">BGC0001343</a></td>
+              <td>Polyketide</td>
+              <td>31.0</td>
+              <td>50.5</td>
+              <td>80.0</td>
+              <td>8.4e-15</td>
+          </tr>
+    
+          <tr>
+              <td>AKP45404.1</td>
+              <td>efflux_ABC_transporter</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001413/1">BGC0001413</a></td>
+              <td>NRP</td>
+              <td>24.0</td>
+              <td>105.0</td>
+              <td>64.0</td>
+              <td>4.8e-10</td>
+          </tr>
+    
+          <tr>
+              <td>ALD83696.1</td>
+              <td>ABC_transporter_permease</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001299/1">BGC0001299</a></td>
+              <td>Polyketide</td>
+              <td>24.0</td>
+              <td>86.8</td>
+              <td>61.0</td>
+              <td>3.1e-09</td>
+          </tr>
+    
+          <tr>
+              <td>ACN80636.1</td>
+              <td>Sio5</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000655/1">BGC0000655</a></td>
+              <td>Terpene</td>
+              <td>38.0</td>
+              <td>27.2</td>
+              <td>54.0</td>
+              <td>3.8e-07</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

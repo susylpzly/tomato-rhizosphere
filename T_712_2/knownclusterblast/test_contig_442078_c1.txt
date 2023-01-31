@@ -1,0 +1,52 @@
+ClusterBlast scores for test_contig_442078
+
+Table of genes, locations, strands and annotations of query cluster:
+CCIMNIEH_601695	0	960	+	unannotated protein	
+CCIMNIEH_601696	972	1767	+	unannotated protein	
+CCIMNIEH_601697	1805	4226	+	unannotated protein	
+CCIMNIEH_601698	4542	5454	+	unannotated protein	
+CCIMNIEH_601699	5593	6346	+	unannotated protein	
+CCIMNIEH_601700	6342	6618	+	unannotated protein	
+CCIMNIEH_601701	6589	7762	+	unannotated protein	
+CCIMNIEH_601702	7727	9554	+	unannotated protein	
+CCIMNIEH_601703	9657	9816	-	unannotated protein	
+CCIMNIEH_601704	10025	11309	-	unannotated protein	
+CCIMNIEH_601705	11478	12408	+	unannotated protein	
+CCIMNIEH_601706	12635	14414	-	unannotated protein	
+CCIMNIEH_601707	14602	16399	-	unannotated protein	
+
+
+Significant hits: 
+1. BGC0001100	lankacidin C
+
+
+Details:
+
+>>
+1. BGC0001100
+Source: lankacidin C
+Type: NRP + Polyketide
+Number of proteins with BLAST hits to this cluster: 2
+Cumulative BLAST score: 551
+
+Table of genes, locations, strands and annotations of subject cluster:
+BAC76462.1	BAC76462.1	1	891	-	pyrroloquinoline_quinone_biosynthesis_protein_B
+BAC76463.1	BAC76463.1	894	1988	-	pyrroloquinoline_quinone_biosynthesis_protein_E
+BAC76464.1	BAC76464.1	1981	2253	-	pyrroloquinoline_quinone_biosynthesis_protein_D
+BAC76465.1	BAC76465.1	2250	2978	-	pyrroloquinoline_quinone_biosynthesis_protein_C
+BAC76466.1	BAC76466.1	3005	3109	-	pyrroloquinoline_quinone_biosynthesis_protein_A
+BAC76467.1	BAC76467.1	3499	5136	+	putative_ABC_transporter_protein
+BAC76468.1	BAC76468.1	5129	6838	+	putative_ABC_transporter_protein
+BAC76469.1	BAC76469.1	6894	7448	-	probable_isochorismatase
+BAC76470.1	BAC76470.1	7513	10293	-	type_I_polyketide_synthase_LkcG
+BAC76471.1	BAC76471.1	10345	17385	-	type_I_polyketide_synthase_LkcF
+BAC76472.1	BAC76472.1	17438	18754	-	amine_oxidase_LkcE
+BAC76473.1	BAC76473.1	18754	19635	-	acyltransferase_LkcD
+BAC76474.1	BAC76474.1	19647	25235	-	type_I_polyketide_synthase_LkcC
+BAC76475.1	BAC76475.1	25265	26095	-	dehydratase_LkcB
+BAC76476.1	BAC76476.1	26092	30960	-	multifunctional_polyketide-peptide_synthase_LkcA
+
+Table of Blast hits (query gene, subject gene, %identity, blast score, %coverage, e-value):
+CCIMNIEH_601699	BAC76465.1	47	203	88.4	5.1e-52
+CCIMNIEH_601701	BAC76463.1	48	348	89.74358974358975	1.5e-95
+

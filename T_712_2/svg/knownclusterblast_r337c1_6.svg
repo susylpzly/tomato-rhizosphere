@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="230" width="800" viewBox="0 0 800 230" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="301,35 306,30 340,30 340,40 306,40 301,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_482539&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 2 - 2495" locus_tag="CCIMNIEH_482539" class="clusterblast-orf" id="dummy-1_q0_0_all"  />
+<polygon points="341,35 346,30 445,30 445,40 346,40 341,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_482540&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 2570 - 9278" locus_tag="CCIMNIEH_482540" class="clusterblast-orf" id="dummy-1_q1_0_all"  />
+<polygon points="445,35 450,30 478,30 478,40 450,40 445,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_482541&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 9291 - 11415" locus_tag="CCIMNIEH_482541" class="clusterblast-orf" id="dummy-1_q2_0_all"  />
+</g>
+<g label="BGC0001742" description="BGC0001742_c1: piericidin A1 (50% of genes show similarity), Polyketide" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://mibig.secondarymetabolites.org/go/BGC0001742/1" target="_blank">BGC0001742</a>:                                                                    piericidin A1 (50% of genes show similarity), Polyketide</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a1_000"  >
+<polygon points="0,85 5,80 27,80 27,90 5,90 0,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CSP_7457&lt;/b&gt;&lt;br&gt;FAD-binding monooxygenase&lt;br&gt;Location: 50414 - 48606" locus_tag="CSP_7457" class="clusterblast-orf" id="dummy-1_h1_6_0"  />
+</g>
+<g id="a1_001"  >
+<polygon points="27,85 32,80 39,80 39,90 32,90 27,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CSP_7458&lt;/b&gt;&lt;br&gt;methyltransferase&lt;br&gt;Location: 48609 - 47836" locus_tag="CSP_7458" class="clusterblast-orf" id="dummy-1_h1_6_1"  />
+</g>
+<g id="a1_002"  >
+<polygon points="40,85 45,80 68,80 68,90 45,90 40,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CSP_7459&lt;/b&gt;&lt;br&gt;asparagine synthase-like protein&lt;br&gt;Location: 47822 - 45981" locus_tag="CSP_7459" class="clusterblast-orf" id="dummy-1_h1_6_2"  />
+</g>
+<g id="a1_003"  >
+<polygon points="69,85 74,80 77,80 77,90 74,90 69,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CSP_7460&lt;/b&gt;&lt;br&gt;polyketide cyclase/dehydrotase&lt;br&gt;Location: 45906 - 45394" locus_tag="CSP_7460" class="clusterblast-orf" id="dummy-1_h1_6_3"  />
+</g>
+<g id="a1_004"  >
+<polygon points="79,85 84,80 90,80 90,90 84,90 79,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CSP_7461&lt;/b&gt;&lt;br&gt;methyltransferase&lt;br&gt;Location: 45250 - 44561" locus_tag="CSP_7461" class="clusterblast-orf" id="dummy-1_h1_6_4"  />
+</g>
+<g id="a1_005"  >
+<polygon points="91,85 96,80 202,80 202,90 96,90 91,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;CSP_7462&lt;/b&gt;&lt;br&gt;PieA6 type I PKS&lt;br&gt;Location: 44469 - 37300&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_482539&lt;/b&gt;&lt;br&gt;Percentage identity: 59&lt;br&gt;Percentage coverage: 97&lt;br&gt;BLAST bit score: 839&lt;br&gt;E-value: 6.1e-243&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_482540&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 41&lt;br&gt;BLAST bit score: 901&lt;br&gt;E-value: 2.7e-261" locus_tag="CSP_7462" class="clusterblast-orf" id="dummy-1_h1_6_5"  />
+</g>
+<g id="a1_006"  >
+<polygon points="204,85 209,80 293,80 293,90 209,90 204,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;CSP_7463&lt;/b&gt;&lt;br&gt;PieA5 type I PKS&lt;br&gt;Location: 37222 - 31454&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_482539&lt;/b&gt;&lt;br&gt;Percentage identity: 56&lt;br&gt;Percentage coverage: 103&lt;br&gt;BLAST bit score: 836&lt;br&gt;E-value: 4e-242" locus_tag="CSP_7463" class="clusterblast-orf" id="dummy-1_h1_6_6"  />
+</g>
+<g id="a1_007"  >
+<polygon points="293,85 298,80 393,80 393,90 298,90 293,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;CSP_7464&lt;/b&gt;&lt;br&gt;PieA4 type I PKS&lt;br&gt;Location: 31428 - 24967&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_482539&lt;/b&gt;&lt;br&gt;Percentage identity: 52&lt;br&gt;Percentage coverage: 97&lt;br&gt;BLAST bit score: 695&lt;br&gt;E-value: 1.1e-199&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_482540&lt;/b&gt;&lt;br&gt;Percentage identity: 50&lt;br&gt;Percentage coverage: 95&lt;br&gt;BLAST bit score: 1692&lt;br&gt;E-value: 0.0" locus_tag="CSP_7464" class="clusterblast-orf" id="dummy-1_h1_6_7"  />
+</g>
+<g id="a1_008"  >
+<polygon points="395,85 400,80 479,80 479,90 400,90 395,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;CSP_7466&lt;/b&gt;&lt;br&gt;PieA3 type I PKS&lt;br&gt;Location: 24881 - 19443&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_482539&lt;/b&gt;&lt;br&gt;Percentage identity: 55&lt;br&gt;Percentage coverage: 85&lt;br&gt;BLAST bit score: 664&lt;br&gt;E-value: 2.7e-190" locus_tag="CSP_7466" class="clusterblast-orf" id="dummy-1_h1_6_8"  />
+</g>
+<g id="a1_009"  >
+<polygon points="478,85 483,80 638,80 638,90 483,90 478,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;CSP_7467&lt;/b&gt;&lt;br&gt;PieA2 type I PKS&lt;br&gt;Location: 19498 - 9143&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_482539&lt;/b&gt;&lt;br&gt;Percentage identity: 51&lt;br&gt;Percentage coverage: 101&lt;br&gt;BLAST bit score: 708&lt;br&gt;E-value: 9.6e-204" locus_tag="CSP_7467" class="clusterblast-orf" id="dummy-1_h1_6_9"  />
+</g>
+<g id="a1_0010"  >
+<polygon points="639,85 644,80 763,80 763,90 644,90 639,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;CSP_7468&lt;/b&gt;&lt;br&gt;PieA1 type I PKS&lt;br&gt;Location: 9112 - 1091&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_482539&lt;/b&gt;&lt;br&gt;Percentage identity: 50&lt;br&gt;Percentage coverage: 101&lt;br&gt;BLAST bit score: 692&lt;br&gt;E-value: 7.1e-199" locus_tag="CSP_7468" class="clusterblast-orf" id="dummy-1_h1_6_10"  />
+</g>
+<g id="a1_0011"  >
+<polygon points="769,85 774,80 780,80 780,90 774,90 769,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CSP_7469&lt;/b&gt;&lt;br&gt;PieR transcriptional regulator&lt;br&gt;Location: 651 - 1" locus_tag="CSP_7469" class="clusterblast-orf" id="dummy-1_h1_6_11"  />
+</g>
+</svg>

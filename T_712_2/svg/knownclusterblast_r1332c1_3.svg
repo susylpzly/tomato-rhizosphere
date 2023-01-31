@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="230" width="800" viewBox="0 0 800 230" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="0,40 45,40 50,35 45,30 0,30 0,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_2895918&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 1 - 1147" locus_tag="CCIMNIEH_2895918" class="clusterblast-orf" id="dummy-1_q0_0_all"  />
+<polygon points="56,40 84,40 89,35 84,30 56,30 56,40 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_2895919&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 1278 - 2013" locus_tag="CCIMNIEH_2895919" class="clusterblast-orf" id="dummy-1_q1_0_all"  />
+<polygon points="88,40 125,40 130,35 125,30 88,30 88,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_2895920&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 2009 - 2951" locus_tag="CCIMNIEH_2895920" class="clusterblast-orf" id="dummy-1_q2_0_all"  />
+<polygon points="129,40 192,40 197,35 192,30 129,30 129,40 " style="fill:#4dd815; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_2895921&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 2931 - 4476" locus_tag="CCIMNIEH_2895921" class="clusterblast-orf" id="dummy-1_q3_0_all"  />
+<polygon points="197,40 211,40 216,35 211,30 197,30 197,40 " style="fill:#1585d8; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_2895922&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 4468 - 4894" locus_tag="CCIMNIEH_2895922" class="clusterblast-orf" id="dummy-1_q4_0_all"  />
+<polygon points="216,40 242,40 247,35 242,30 216,30 216,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_2895923&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 4890 - 5610" locus_tag="CCIMNIEH_2895923" class="clusterblast-orf" id="dummy-1_q5_0_all"  />
+<polygon points="247,40 345,40 350,35 345,30 247,30 247,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_2895924&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 5593 - 7933" locus_tag="CCIMNIEH_2895924" class="clusterblast-orf" id="dummy-1_q6_0_all"  />
+<polygon points="350,40 396,40 401,35 396,30 350,30 350,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_2895925&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 7929 - 9090" locus_tag="CCIMNIEH_2895925" class="clusterblast-orf" id="dummy-1_q7_0_all"  />
+<polygon points="400,40 450,40 455,35 450,30 400,30 400,40 " style="fill:#d815bc; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_2895926&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 9076 - 10324" locus_tag="CCIMNIEH_2895926" class="clusterblast-orf" id="dummy-1_q8_0_all"  />
+<polygon points="455,40 482,40 487,35 482,30 455,30 455,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_2895927&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 10320 - 11046" locus_tag="CCIMNIEH_2895927" class="clusterblast-orf" id="dummy-1_q9_0_all"  />
+<polygon points="487,40 509,40 514,35 509,30 487,30 487,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_2895928&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 11045 - 11663" locus_tag="CCIMNIEH_2895928" class="clusterblast-orf" id="dummy-1_q10_0_all"  />
+<polygon points="514,40 562,40 567,35 562,30 514,30 514,40 " style="fill:#d8bc15; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_2895929&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 11659 - 12856" locus_tag="CCIMNIEH_2895929" class="clusterblast-orf" id="dummy-1_q11_0_all"  />
+<polygon points="567,40 583,40 588,35 583,30 567,30 567,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_2895930&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 12852 - 13326" locus_tag="CCIMNIEH_2895930" class="clusterblast-orf" id="dummy-1_q12_0_all"  />
+<polygon points="587,40 614,40 619,35 614,30 587,30 587,40 " style="fill:#15d885; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_2895931&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 13322 - 14051" locus_tag="CCIMNIEH_2895931" class="clusterblast-orf" id="dummy-1_q13_0_all"  />
+<polygon points="619,40 669,40 674,35 669,30 619,30 619,40 " style="fill:#4d15d8; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_2895932&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 14050 - 15277" locus_tag="CCIMNIEH_2895932" class="clusterblast-orf" id="dummy-1_q14_0_all"  />
+<polygon points="679,35 684,30 691,30 691,40 684,40 679,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_2895933&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 15410 - 15674" locus_tag="CCIMNIEH_2895933" class="clusterblast-orf" id="dummy-1_q15_0_all"  />
+<polygon points="712,35 717,30 732,30 732,40 717,40 712,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_2895934&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 16154 - 16598" locus_tag="CCIMNIEH_2895934" class="clusterblast-orf" id="dummy-1_q16_0_all"  />
+<polygon points="740,35 745,30 780,30 780,40 745,40 740,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_2895935&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 16787 - 17690" locus_tag="CCIMNIEH_2895935" class="clusterblast-orf" id="dummy-1_q17_0_all"  />
+</g>
+<g label="BGC0000836" description="BGC0000836_c1: APE Ec (26% of genes show similarity), Other" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://mibig.secondarymetabolites.org/go/BGC0000836/1" target="_blank">BGC0000836</a>:                                                                           APE Ec (26% of genes show similarity), Other</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a1_000"  >
+<polygon points="58,90 70,90 75,85 70,80 58,80 58,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;c1204&lt;/b&gt;&lt;br&gt;Conserved hypothetical protein&lt;br&gt;Location: 15022 - 14633" locus_tag="c1204" class="clusterblast-orf" id="dummy-1_h1_3_0"  />
+</g>
+<g id="a1_001"  >
+<polygon points="78,90 120,90 125,85 120,80 78,80 78,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;c1203&lt;/b&gt;&lt;br&gt;Putative O-methyltransferase&lt;br&gt;Location: 14568 - 13510" locus_tag="c1203" class="clusterblast-orf" id="dummy-1_h1_3_1"  />
+</g>
+<g id="a1_002"  >
+<polygon points="126,90 154,90 159,85 154,80 126,80 126,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;c1202&lt;/b&gt;&lt;br&gt;Conserved hypothetical protein&lt;br&gt;Location: 13493 - 12747" locus_tag="c1202" class="clusterblast-orf" id="dummy-1_h1_3_2"  />
+</g>
+<g id="a1_003"  >
+<polygon points="158,90 190,90 195,85 190,80 158,80 158,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;c1201&lt;/b&gt;&lt;br&gt;Putative phospholipid biosynthesis acyltransferase&lt;br&gt;Location: 12768 - 11929" locus_tag="c1201" class="clusterblast-orf" id="dummy-1_h1_3_3"  />
+</g>
+<g id="a1_004"  >
+<polygon points="194,90 200,90 205,85 200,80 194,80 194,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;c1200&lt;/b&gt;&lt;br&gt;Putative acyl carrier protein&lt;br&gt;Location: 11954 - 11697" locus_tag="c1200" class="clusterblast-orf" id="dummy-1_h1_3_4"  />
+</g>
+<g id="a1_005"  >
+<polygon points="205,90 212,90 217,85 212,80 205,80 205,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;c1199&lt;/b&gt;&lt;br&gt;Putative acyl carrier protein&lt;br&gt;Location: 11685 - 11434" locus_tag="c1199" class="clusterblast-orf" id="dummy-1_h1_3_5"  />
+</g>
+<g id="a1_006"  >
+<polygon points="217,90 237,90 242,85 237,80 217,80 217,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;c1198&lt;/b&gt;&lt;br&gt;Conserved hypothetical protein&lt;br&gt;Location: 11432 - 10848" locus_tag="c1198" class="clusterblast-orf" id="dummy-1_h1_3_6"  />
+</g>
+<g id="a1_007"  >
+<polygon points="242,90 297,90 302,85 297,80 242,80 242,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;c1197&lt;/b&gt;&lt;br&gt;Putative enzyme&lt;br&gt;Location: 10851 - 9493" locus_tag="c1197" class="clusterblast-orf" id="dummy-1_h1_3_7"  />
+</g>
+<g id="a1_008"  >
+<polygon points="300,90 312,90 317,85 312,80 300,80 300,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;c1196&lt;/b&gt;&lt;br&gt;Conserved hypothetical protein&lt;br&gt;Location: 9530 - 9153" locus_tag="c1196" class="clusterblast-orf" id="dummy-1_h1_3_8"  />
+</g>
+<g id="a1_009"  >
+<polygon points="315,90 315,90 320,85 315,80 315,80 315,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;c1195&lt;/b&gt;&lt;br&gt;Hypothetical protein&lt;br&gt;Location: 9202 - 9080" locus_tag="c1195" class="clusterblast-orf" id="dummy-1_h1_3_9"  />
+</g>
+<g id="a1_0010"  >
+<polygon points="319,90 386,90 391,85 386,80 319,80 319,90 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;c1194&lt;/b&gt;&lt;br&gt;Putative enzyme&lt;br&gt;Location: 9108 - 7486&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_2895919&lt;/b&gt;&lt;br&gt;Percentage identity: 56&lt;br&gt;Percentage coverage: 87&lt;br&gt;BLAST bit score: 245&lt;br&gt;E-value: 6.8e-65" locus_tag="c1194" class="clusterblast-orf" id="dummy-1_h1_3_10"  />
+</g>
+<g id="a1_0011"  >
+<polygon points="391,90 404,90 409,85 404,80 391,80 391,90 " style="fill:#1585d8; stroke-width:1; stroke:black; " description="&lt;b&gt;c1193&lt;/b&gt;&lt;br&gt;Hypothetical protein&lt;br&gt;Location: 7482 - 7060&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_2895922&lt;/b&gt;&lt;br&gt;Percentage identity: 47&lt;br&gt;Percentage coverage: 87&lt;br&gt;BLAST bit score: 130&lt;br&gt;E-value: 1.8e-30" locus_tag="c1193" class="clusterblast-orf" id="dummy-1_h1_3_11"  />
+</g>
+<g id="a1_0012"  >
+<polygon points="409,90 431,90 436,85 431,80 409,80 409,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;c1192&lt;/b&gt;&lt;br&gt;Conserved hypothetical protein&lt;br&gt;Location: 7063 - 6458" locus_tag="c1192" class="clusterblast-orf" id="dummy-1_h1_3_12"  />
+</g>
+<g id="a1_0013"  >
+<polygon points="435,90 532,90 537,85 532,80 435,80 435,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;c1191&lt;/b&gt;&lt;br&gt;Conserved hypothetical protein&lt;br&gt;Location: 6489 - 4171" locus_tag="c1191" class="clusterblast-orf" id="dummy-1_h1_3_13"  />
+</g>
+<g id="a1_0014"  >
+<polygon points="537,90 557,90 562,85 557,80 537,80 537,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;c1190&lt;/b&gt;&lt;br&gt;Conserved hypothetical protein&lt;br&gt;Location: 4174 - 3590" locus_tag="c1190" class="clusterblast-orf" id="dummy-1_h1_3_14"  />
+</g>
+<g id="a1_0015"  >
+<polygon points="562,90 609,90 614,85 609,80 562,80 562,90 " style="fill:#d8bc15; stroke-width:1; stroke:black; " description="&lt;b&gt;c1189&lt;/b&gt;&lt;br&gt;Putative 3-oxoacyl-[ACP] synthase&lt;br&gt;Location: 3597 - 2419&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_2895929&lt;/b&gt;&lt;br&gt;Percentage identity: 49&lt;br&gt;Percentage coverage: 99&lt;br&gt;BLAST bit score: 349&lt;br&gt;E-value: 7.1e-96" locus_tag="c1189" class="clusterblast-orf" id="dummy-1_h1_3_15"  />
+</g>
+<g id="a1_0016"  >
+<polygon points="614,90 629,90 634,85 629,80 614,80 614,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;c1188&lt;/b&gt;&lt;br&gt;Conserved hypothetical protein&lt;br&gt;Location: 2422 - 1958" locus_tag="c1188" class="clusterblast-orf" id="dummy-1_h1_3_16"  />
+</g>
+<g id="a1_0017"  >
+<polygon points="634,90 662,90 667,85 662,80 634,80 634,90 " style="fill:#15d885; stroke-width:1; stroke:black; " description="&lt;b&gt;c1187&lt;/b&gt;&lt;br&gt;3-oxoacyl-[acyl-carrier protein] reductase&lt;br&gt;Location: 1958 - 1227&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_2895931&lt;/b&gt;&lt;br&gt;Percentage identity: 59&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 283&lt;br&gt;E-value: 3.8e-76" locus_tag="c1187" class="clusterblast-orf" id="dummy-1_h1_3_17"  />
+</g>
+<g id="a1_0018"  >
+<polygon points="666,90 716,90 721,85 716,80 666,80 666,90 " style="fill:#4d15d8; stroke-width:1; stroke:black; " description="&lt;b&gt;c1186&lt;/b&gt;&lt;br&gt;Putative beta-ketoacyl-ACP synthase&lt;br&gt;Location: 1230 - 1&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_2895932&lt;/b&gt;&lt;br&gt;Percentage identity: 55&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 483&lt;br&gt;E-value: 2.5e-136" locus_tag="c1186" class="clusterblast-orf" id="dummy-1_h1_3_18"  />
+</g>
+</svg>

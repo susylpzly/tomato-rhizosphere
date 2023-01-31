@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="230" width="800" viewBox="0 0 800 230" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="329,35 334,30 356,30 356,40 334,40 329,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_482539&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 2 - 2495" locus_tag="CCIMNIEH_482539" class="clusterblast-orf" id="dummy-1_q0_0_all"  />
+<polygon points="356,35 361,30 427,30 427,40 361,40 356,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_482540&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 2570 - 9278" locus_tag="CCIMNIEH_482540" class="clusterblast-orf" id="dummy-1_q1_0_all"  />
+<polygon points="427,35 432,30 450,30 450,40 432,40 427,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_482541&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 9291 - 11415" locus_tag="CCIMNIEH_482541" class="clusterblast-orf" id="dummy-1_q2_0_all"  />
+</g>
+<g label="BGC0001580" description="BGC0001580_c1: ebelactone (13% of genes show similarity), Polyketide" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://mibig.secondarymetabolites.org/go/BGC0001580/1" target="_blank">BGC0001580</a>:                                                                       ebelactone (13% of genes show similarity), Polyketide</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a1_000"  >
+<polygon points="0,85 5,80 6,80 6,90 5,90 0,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11975.1&lt;/b&gt;&lt;br&gt;putative ArsR family transcriptional regulator&lt;br&gt;Location: 73935 - 73339" locus_tag="SCN11975.1" class="clusterblast-orf" id="dummy-1_h1_4_0"  />
+</g>
+<g id="a1_001"  >
+<polygon points="8,85 13,80 16,80 16,90 13,90 8,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11974.1&lt;/b&gt;&lt;br&gt;short-chain dehydrogenase/reductase SDR&lt;br&gt;Location: 73165 - 72410" locus_tag="SCN11974.1" class="clusterblast-orf" id="dummy-1_h1_4_1"  />
+</g>
+<g id="a1_002"  >
+<polygon points="17,85 22,80 24,80 24,90 22,90 17,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11973.1&lt;/b&gt;&lt;br&gt;ubiquinone biosynthesis methyltransferase UbiE&lt;br&gt;Location: 72310 - 71600" locus_tag="SCN11973.1" class="clusterblast-orf" id="dummy-1_h1_4_2"  />
+</g>
+<g id="a1_003"  >
+<polygon points="25,85 30,80 33,80 33,90 30,90 25,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11972.1&lt;/b&gt;&lt;br&gt;putative transglycosylase&lt;br&gt;Location: 71525 - 70746" locus_tag="SCN11972.1" class="clusterblast-orf" id="dummy-1_h1_4_3"  />
+</g>
+<g id="a1_004"  >
+<polygon points="39,85 44,80 46,80 46,90 44,90 39,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11971.1&lt;/b&gt;&lt;br&gt;lysine exporter protein LysE&lt;br&gt;Location: 70220 - 69582" locus_tag="SCN11971.1" class="clusterblast-orf" id="dummy-1_h1_4_4"  />
+</g>
+<g id="a1_005"  >
+<polygon points="46,90 46,90 51,85 46,80 46,80 46,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11970.1&lt;/b&gt;&lt;br&gt;AsnC family transcriptional regulator&lt;br&gt;Location: 69502 - 69071" locus_tag="SCN11970.1" class="clusterblast-orf" id="dummy-1_h1_4_5"  />
+</g>
+<g id="a1_006"  >
+<polygon points="52,85 57,80 59,80 59,90 57,90 52,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11969.1&lt;/b&gt;&lt;br&gt;LuxR family transcriptional regulator&lt;br&gt;Location: 68967 - 68299" locus_tag="SCN11969.1" class="clusterblast-orf" id="dummy-1_h1_4_6"  />
+</g>
+<g id="a1_007"  >
+<polygon points="60,85 65,80 78,80 78,90 65,90 60,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11968.1&lt;/b&gt;&lt;br&gt;putative two-component system sensor kinase&lt;br&gt;Location: 68203 - 66509" locus_tag="SCN11968.1" class="clusterblast-orf" id="dummy-1_h1_4_7"  />
+</g>
+<g id="a1_008"  >
+<polygon points="80,85 85,80 105,80 105,90 85,90 80,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11967.1&lt;/b&gt;&lt;br&gt;putative serine phosphatase RsbU, regulator of sigma subunit&lt;br&gt;Location: 66362 - 63936" locus_tag="SCN11967.1" class="clusterblast-orf" id="dummy-1_h1_4_8"  />
+</g>
+<g id="a1_009"  >
+<polygon points="107,90 111,85 107,80 107,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11966.1&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 63753 - 63421" locus_tag="SCN11966.1" class="clusterblast-orf" id="dummy-1_h1_4_9"  />
+</g>
+<g id="a1_0010"  >
+<polygon points="112,90 121,90 126,85 121,80 112,80 112,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11965.1&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 63314 - 61995" locus_tag="SCN11965.1" class="clusterblast-orf" id="dummy-1_h1_4_10"  />
+</g>
+<g id="a1_0011"  >
+<polygon points="126,90 128,90 133,85 128,80 126,80 126,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11964.1&lt;/b&gt;&lt;br&gt;uridine kinase&lt;br&gt;Location: 61949 - 61314" locus_tag="SCN11964.1" class="clusterblast-orf" id="dummy-1_h1_4_11"  />
+</g>
+<g id="a1_0012"  >
+<polygon points="132,85 137,80 141,80 141,90 137,90 132,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11963.1&lt;/b&gt;&lt;br&gt;DNA glycosylase&lt;br&gt;Location: 61366 - 60509" locus_tag="SCN11963.1" class="clusterblast-orf" id="dummy-1_h1_4_12"  />
+</g>
+<g id="a1_0013"  >
+<polygon points="142,85 144,80 144,90 142,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11962.1&lt;/b&gt;&lt;br&gt;cold-shock DNA-binding protein&lt;br&gt;Location: 60428 - 60216" locus_tag="SCN11962.1" class="clusterblast-orf" id="dummy-1_h1_4_13"  />
+</g>
+<g id="a1_0014"  >
+<polygon points="146,85 151,80 151,80 151,90 151,90 146,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11961.1&lt;/b&gt;&lt;br&gt;universal stress protein UspA&lt;br&gt;Location: 60085 - 59621" locus_tag="SCN11961.1" class="clusterblast-orf" id="dummy-1_h1_4_14"  />
+</g>
+<g id="a1_0015"  >
+<polygon points="154,85 159,80 164,80 164,90 159,90 154,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11960.1&lt;/b&gt;&lt;br&gt;metalloprotease MEP1-like protein&lt;br&gt;Location: 59355 - 58336" locus_tag="SCN11960.1" class="clusterblast-orf" id="dummy-1_h1_4_15"  />
+</g>
+<g id="a1_0016"  >
+<polygon points="167,85 172,80 175,80 175,90 172,90 167,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11959.1&lt;/b&gt;&lt;br&gt;ATP/GTP-binding protein&lt;br&gt;Location: 58041 - 57337" locus_tag="SCN11959.1" class="clusterblast-orf" id="dummy-1_h1_4_16"  />
+</g>
+<g id="a1_0017"  >
+<polygon points="178,85 183,80 188,80 188,90 183,90 178,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11958.1&lt;/b&gt;&lt;br&gt;F420-dependent oxidoreductase&lt;br&gt;Location: 57030 - 56104" locus_tag="SCN11958.1" class="clusterblast-orf" id="dummy-1_h1_4_17"  />
+</g>
+<g id="a1_0018"  >
+<polygon points="190,90 194,85 190,80 190,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11957.1&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 55927 - 55574" locus_tag="SCN11957.1" class="clusterblast-orf" id="dummy-1_h1_4_18"  />
+</g>
+<g id="a1_0019"  >
+<polygon points="195,90 198,90 203,85 198,80 195,80 195,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11956.1&lt;/b&gt;&lt;br&gt;esterase&lt;br&gt;Location: 55461 - 54655" locus_tag="SCN11956.1" class="clusterblast-orf" id="dummy-1_h1_4_19"  />
+</g>
+<g id="a1_0020"  >
+<polygon points="204,85 209,80 213,80 213,90 209,90 204,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11955.1&lt;/b&gt;&lt;br&gt;short-chain alcohol dehydrogenase&lt;br&gt;Location: 54631 - 53756" locus_tag="SCN11955.1" class="clusterblast-orf" id="dummy-1_h1_4_20"  />
+</g>
+<g id="a1_0021"  >
+<polygon points="218,90 231,90 236,85 231,80 218,80 218,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11954.1&lt;/b&gt;&lt;br&gt;Orf1 putative non-ribosomal peptide synthetase&lt;br&gt;Location: 53254 - 51557" locus_tag="SCN11954.1" class="clusterblast-orf" id="dummy-1_h1_4_21"  />
+</g>
+<g id="a1_0022"  >
+<polygon points="237,85 242,80 306,80 306,90 242,90 237,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11953.1&lt;/b&gt;&lt;br&gt;ebeE-type I polyketide synthase&lt;br&gt;Location: 51489 - 44953&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_482539&lt;/b&gt;&lt;br&gt;Percentage identity: 52&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 725&lt;br&gt;E-value: 7.6e-209&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_482540&lt;/b&gt;&lt;br&gt;Percentage identity: 55&lt;br&gt;Percentage coverage: 41&lt;br&gt;BLAST bit score: 926&lt;br&gt;E-value: 7.9e-269" locus_tag="SCN11953.1" class="clusterblast-orf" id="dummy-1_h1_4_22"  />
+</g>
+<g id="a1_0023"  >
+<polygon points="307,85 312,80 431,80 431,90 312,90 307,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11952.1&lt;/b&gt;&lt;br&gt;ebeD-type I polyketide synthase&lt;br&gt;Location: 44862 - 33058&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_482539&lt;/b&gt;&lt;br&gt;Percentage identity: 54&lt;br&gt;Percentage coverage: 101&lt;br&gt;BLAST bit score: 772&lt;br&gt;E-value: 7.1e-223&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_482540&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 95&lt;br&gt;BLAST bit score: 1846&lt;br&gt;E-value: 0.0" locus_tag="SCN11952.1" class="clusterblast-orf" id="dummy-1_h1_4_23"  />
+</g>
+<g id="a1_0024"  >
+<polygon points="431,85 436,80 529,80 529,90 436,90 431,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11951.1&lt;/b&gt;&lt;br&gt;ebeC-type I polyketide synthase&lt;br&gt;Location: 33065 - 23865&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_482539&lt;/b&gt;&lt;br&gt;Percentage identity: 55&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 772&lt;br&gt;E-value: 5.4e-223&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_482540&lt;/b&gt;&lt;br&gt;Percentage identity: 54&lt;br&gt;Percentage coverage: 49&lt;br&gt;BLAST bit score: 978&lt;br&gt;E-value: 2.3e-284" locus_tag="SCN11951.1" class="clusterblast-orf" id="dummy-1_h1_4_24"  />
+</g>
+<g id="a1_0025"  >
+<polygon points="530,85 535,80 600,80 600,90 535,90 530,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11950.1&lt;/b&gt;&lt;br&gt;EbeB-type I polyketide synthase&lt;br&gt;Location: 23708 - 17094&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_482539&lt;/b&gt;&lt;br&gt;Percentage identity: 55&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 780&lt;br&gt;E-value: 3.4e-225&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_482540&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 101&lt;br&gt;BLAST bit score: 1932&lt;br&gt;E-value: 0.0" locus_tag="SCN11950.1" class="clusterblast-orf" id="dummy-1_h1_4_25"  />
+</g>
+<g id="a1_0026"  >
+<polygon points="601,85 606,80 634,80 634,90 606,90 601,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11949.1&lt;/b&gt;&lt;br&gt;ebeA-type I polyketide synthase KSQ-ATa-ACP&lt;br&gt;Location: 17031 - 13864&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_482539&lt;/b&gt;&lt;br&gt;Percentage identity: 49&lt;br&gt;Percentage coverage: 91&lt;br&gt;BLAST bit score: 603&lt;br&gt;E-value: 4.3e-172" locus_tag="SCN11949.1" class="clusterblast-orf" id="dummy-1_h1_4_26"  />
+</g>
+<g id="a1_0027"  >
+<polygon points="641,90 643,90 648,85 643,80 641,80 641,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11948.1&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 13195 - 12617" locus_tag="SCN11948.1" class="clusterblast-orf" id="dummy-1_h1_4_27"  />
+</g>
+<g id="a1_0028"  >
+<polygon points="652,90 659,90 664,85 659,80 652,80 652,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11947.1&lt;/b&gt;&lt;br&gt;2-methylisoborneol synthase&lt;br&gt;Location: 12161 - 11088" locus_tag="SCN11947.1" class="clusterblast-orf" id="dummy-1_h1_4_28"  />
+</g>
+<g id="a1_0029"  >
+<polygon points="664,90 668,90 673,85 668,80 664,80 664,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11946.1&lt;/b&gt;&lt;br&gt;SAM-dependent methlyltransferase&lt;br&gt;Location: 11072 - 10194" locus_tag="SCN11946.1" class="clusterblast-orf" id="dummy-1_h1_4_29"  />
+</g>
+<g id="a1_0030"  >
+<polygon points="675,85 680,80 683,80 683,90 680,90 675,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11945.1&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 10013 - 9252" locus_tag="SCN11945.1" class="clusterblast-orf" id="dummy-1_h1_4_30"  />
+</g>
+<g id="a1_0031"  >
+<polygon points="685,85 690,80 699,80 699,90 690,90 685,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11944.1&lt;/b&gt;&lt;br&gt;alkaline D-peptidase&lt;br&gt;Location: 9050 - 7722" locus_tag="SCN11944.1" class="clusterblast-orf" id="dummy-1_h1_4_31"  />
+</g>
+<g id="a1_0032"  >
+<polygon points="702,90 708,90 713,85 708,80 702,80 702,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11943.1&lt;/b&gt;&lt;br&gt;esterase LipW&lt;br&gt;Location: 7456 - 6437" locus_tag="SCN11943.1" class="clusterblast-orf" id="dummy-1_h1_4_32"  />
+</g>
+<g id="a1_0033"  >
+<polygon points="715,90 731,90 736,85 731,80 715,80 715,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11942.1&lt;/b&gt;&lt;br&gt;glycoside hydrolase&lt;br&gt;Location: 6227 - 4257" locus_tag="SCN11942.1" class="clusterblast-orf" id="dummy-1_h1_4_33"  />
+</g>
+<g id="a1_0034"  >
+<polygon points="737,85 742,80 754,80 754,90 742,90 737,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11941.1&lt;/b&gt;&lt;br&gt;putative peptidoglycan binding protein&lt;br&gt;Location: 4106 - 2586" locus_tag="SCN11941.1" class="clusterblast-orf" id="dummy-1_h1_4_34"  />
+</g>
+<g id="a1_0035"  >
+<polygon points="754,85 759,80 779,80 779,90 759,90 754,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;SCN11940.1&lt;/b&gt;&lt;br&gt;peptidoglycan binding protein&lt;br&gt;Location: 2505 - 127" locus_tag="SCN11940.1" class="clusterblast-orf" id="dummy-1_h1_4_35"  />
+</g>
+</svg>

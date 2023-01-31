@@ -1,0 +1,682 @@
+LOCUS       test_contig_1964669    13115 bp    DNA     linear   UNK 01-JAN-1980
+DEFINITION  test_contig_1964669.
+ACCESSION   test_contig_1964669
+VERSION     test_contig_1964669
+KEYWORDS    .
+SOURCE      
+  ORGANISM  
+            .
+COMMENT     ##antiSMASH-Data-START##
+            Version      :: 6.1.1-b6f9da0(changed)
+            Run date     :: 2022-12-18 23:06:05
+            NOTE: This is a single cluster extracted from a larger record!
+            Orig. start  :: 0
+            Orig. end    :: 13115
+            ##antiSMASH-Data-END##
+FEATURES             Location/Qualifiers
+     protocluster    1..13115
+                     /aStool="rule-based-clusters"
+                     /category="RiPP"
+                     /contig_edge="True"
+                     /core_location="[5459:10452]"
+                     /cutoff="20000"
+                     /detection_rule="((LANC_like and (Lant_dehydr_N or
+                     Lant_dehydr_C)) and not (YcaO or TIGR03882))"
+                     /neighbourhood="10000"
+                     /product="lanthipeptide-class-i"
+                     /protocluster_number="1"
+                     /tool="antismash"
+     proto_core      5460..10452
+                     /aStool="rule-based-clusters"
+                     /tool="antismash"
+                     /cutoff="20000"
+                     /detection_rule="((LANC_like and (Lant_dehydr_N or
+                     Lant_dehydr_C)) and not (YcaO or TIGR03882))"
+                     /neighbourhood="10000"
+                     /product="lanthipeptide-class-i"
+                     /protocluster_number="1"
+     cand_cluster    1..13115
+                     /candidate_cluster_number="1"
+                     /contig_edge="True"
+                     /detection_rules="((LANC_like and (Lant_dehydr_N or
+                     Lant_dehydr_C)) and not (YcaO or TIGR03882))"
+                     /kind="single"
+                     /product="lanthipeptide-class-i"
+                     /protoclusters="1"
+                     /tool="antismash"
+     region          1..13115
+                     /candidate_cluster_numbers="1"
+                     /contig_edge="True"
+                     /product="lanthipeptide-class-i"
+                     /region_number="1"
+                     /rules="((LANC_like and (Lant_dehydr_N or Lant_dehydr_C))
+                     and not (YcaO or TIGR03882))"
+                     /tool="antismash"
+     CDS             complement(215..2230)
+                     /ID="CCIMNIEH_2634769"
+                     /gene="CCIMNIEH_2634769"
+                     /inference="ab initio prediction:Prodigal_v2.6.3"
+                     /locus_tag="CCIMNIEH_2634769"
+                     /partial="00"
+                     /phase="0"
+                     /product="unannotated protein"
+                     /source="Prodigal_v2.6.3"
+                     /transl_table=11
+                     /translation="MEPLPGIRIRRLRLVGMERSYDVDFTAEQRVRNLSVIAGAFSSGK
+                     TAVLEFIAYGLGAKRHPRHQEVLRRVRSCLMEVELSGEPHVIERSVGEPSKVAFVRRGT
+                     LQSRPTSRAESRTIDPPGAPESLSSLLLSHCKLEGVQLREAPTNSESRTDPLSFRDLMW
+                     LAFLPNERVADKNFLFENDYMRKHKLRQVVDVAFGVHDDRAVELGQRIQELAGRLSRAK
+                     AELAAARTFVLEQDPTALDGEPTPAVHEQELADITSRLTELDRRAQAGTEFAAQLRRQH
+                     KEAAQTSHRAAALLRDCETQLQRLMPLRAQYADDLLKLGMLGEAQQIFDPLSVTTCPAC
+                     LNRLSAPPTANNGLCSLCRHELTAADGRLVLGTVDTGSQADENRVDVAAETRSTKARLK
+                     EITTYIDELGASLAALKLRAEEAAVQEEEAAAALDAATSPSVSPFLAARDDLHRRREQV
+                     LHQLEQAGSTVKLREGLTKRADAVERHEAQIARLREELARLGDASHDRDRVIANISSRY
+                     GELLRAWRYPKVSAPFIKTDLTPFVRGEPYQEASSGARTLLTLAWQLAVFEIAVEAGAA
+                     HPGFLMIDSPQKNLGHGGTLDAVIADAVAIDDFYHHLTLWLAERGSRAQLIVADNSPPP
+                     LVENSVVVRYSRNEDRPPYGLIEDETSADDEADAEM"
+     CDS             complement(2236..2802)
+                     /ID="CCIMNIEH_2634770"
+                     /gene="CCIMNIEH_2634770"
+                     /inference="ab initio prediction:Prodigal_v2.6.3"
+                     /locus_tag="CCIMNIEH_2634770"
+                     /partial="00"
+                     /phase="0"
+                     /product="unannotated protein"
+                     /source="Prodigal_v2.6.3"
+                     /transl_table=11
+                     /translation="VRTDRPVMMPEDEVPFRLAQLLLLLDAVAAQDANGATLERIGYYD
+                     FLSANPFLVVPSEGRDASLLRLAGFDPQVLAYASSSQRFTSRRERIQHDLALLVAYGCC
+                     RVRNRNGSLTYLITEAGQHLGREFTATYATSFATAADIVVRQLRKLSDKRLREQTALWL
+                     KPDGPVAALMSVLGPGPLLETSWEG"
+     CDS             complement(2850..3821)
+                     /ID="CCIMNIEH_2634771"
+                     /gene="CCIMNIEH_2634771"
+                     /inference="ab initio prediction:Prodigal_v2.6.3"
+                     /locus_tag="CCIMNIEH_2634771"
+                     /partial="00"
+                     /phase="0"
+                     /product="unannotated protein"
+                     /source="Prodigal_v2.6.3"
+                     /transl_table=11
+                     /translation="LDNSKPVAAGVPPIHFVVHELRTGSADGARADFEQMLAQLASATN
+                     PNVRMIAANPGDWGIDAFAGDLGGAITVWQSKYFMPKTTTSQSQQIRESLANGLKAAAA
+                     NGHTITLWILCIPSSMDGPAAQWWDGWKRRQEKAHGLVIELWDETKIKKKLLSPEGDQV
+                     RRAYYEPFTAPAPAQEQIRLVLDVEEDKAAALDSALFVRQMTEAGHVELDSAKRQFFNA
+                     DLVAREVAHKGVPGEVAALSSADATLHGVWEMQFNECSAEGTLNALYGRVWREVRGEHD
+                     KLPKVLRLEVTHSWGLVHRLVDNRRAGWVAHWRQIASGHPDD"
+     CDS             complement(4367..5476)
+                     /ID="CCIMNIEH_2634772"
+                     /gene="CCIMNIEH_2634772"
+                     /inference="ab initio prediction:Prodigal_v2.6.3"
+                     /locus_tag="CCIMNIEH_2634772"
+                     /partial="00"
+                     /phase="0"
+                     /product="unannotated protein"
+                     /source="Prodigal_v2.6.3"
+                     /transl_table=11
+                     /translation="VWKLPDTSAQRFPLVARPRPACLPLPERVQALADLADTAAKQNDP
+                     GVASTVYNQAALIASDVGLPDIARSICTKHAELYLRAAPLSHETAVRALEPVVNLARLH
+                     LRAGRQDTARQYLSMLFDAVTHAQPAQIESLTIPADLVATDDDRKEVRTWLWTVLLADG
+                     TRSLTSAGRWNDALNHIQQHHGLAQRMLDGRQVAVLAALASGDNAHAQEVLAHTKPGEP
+                     WEAAVTECLTVMSLRGAEEEWRRPLRQLVTVYLDLPDVEGLTVFTTRYGLAVLDLIGTT
+                     DDNAARLVVADLHRRAVAANDGYAARDALSHPVSRSLASDQEFKESQRLVNACTLRSGP
+                     FQLASWGRIDGVLHVSRRVIQESFNEGAL"
+     CDS             complement(5460..6290)
+                     /ID="CCIMNIEH_2634773"
+                     /gene="CCIMNIEH_2634773"
+                     /gene_functions="biosynthetic (rule-based-clusters)
+                     lanthipeptide-class-i: Lant_dehydr_C"
+                     /gene_kind="biosynthetic"
+                     /inference="ab initio prediction:Prodigal_v2.6.3"
+                     /locus_tag="CCIMNIEH_2634773"
+                     /partial="00"
+                     /phase="0"
+                     /product="unannotated protein"
+                     /sec_met_domain="Lant_dehydr_C (E-value: 4.5e-38, bitscore:
+                     121.1, seeds: 35, tool: rule-based-clusters)"
+                     /source="Prodigal_v2.6.3"
+                     /transl_table=11
+                     /translation="MPPPTWRQVNVAFSDWERAEATAMTELVPLVEAAEDAGAITRWFF
+                     VRKHPCWRIRYASVAGTQDAIDDRLDALVAAGSTAGWTESVYEPEVHAFGGTQAMDSAH
+                     RLFHQDSHNLLHFLRGDTARHRRETSLMLCSLMLRAASLDWYEQGDVWARVAAHRPPSP
+                     DAEPDNKDRLHTAVRRLITVDPQYATQPGSPLAGAEAWTAAYTAAGSDLARLNQTGQLH
+                     RGIRDVLAHHVIFAWNRLGLPYSTQAALTTAAQTVIFGPDPSTERSTAHRVETP"
+     PFAM_domain     complement(5523..6275)
+                     /aSDomain="Lant_dehydr_C"
+                     /aSTool="clusterhmmer"
+                     /database="34.0"
+                     /db_xref="PF14028.8"
+                     /description="Lantibiotic biosynthesis dehydratase C-term"
+                     /detection="hmmscan"
+                     /domain_id="clusterhmmer_CCIMNIEH_2634773_0001"
+                     /evalue="6.70E-39"
+                     /label="CCIMNIEH_2634773"
+                     /locus_tag="CCIMNIEH_2634773"
+                     /protein_end="256"
+                     /protein_start="5"
+                     /score="134.4"
+                     /tool="antismash"
+                     /translation="WRQVNVAFSDWERAEATAMTELVPLVEAAEDAGAITRWFFVRKHP
+                     CWRIRYASVAGTQDAIDDRLDALVAAGSTAGWTESVYEPEVHAFGGTQAMDSAHRLFHQ
+                     DSHNLLHFLRGDTARHRRETSLMLCSLMLRAASLDWYEQGDVWARVAAHRPPSPDAEPD
+                     NKDRLHTAVRRLITVDPQYATQPGSPLAGAEAWTAAYTAAGSDLARLNQTGQLHRGIRD
+                     VLAHHVIFAWNRLGLPYSTQAALTTAAQT"
+     CDS             complement(6311..7552)
+                     /ID="CCIMNIEH_2634774"
+                     /gene="CCIMNIEH_2634774"
+                     /gene_functions="biosynthetic (rule-based-clusters)
+                     lanthipeptide-class-i: LANC_like"
+                     /gene_functions="biosynthetic-additional (smcogs)
+                     SMCOG1140:Lanthionine synthetase C family protein (Score:
+                     365.1; E-value: 7.1e-111)"
+                     /gene_kind="biosynthetic"
+                     /inference="ab initio prediction:Prodigal_v2.6.3"
+                     /locus_tag="CCIMNIEH_2634774"
+                     /partial="00"
+                     /phase="0"
+                     /product="unannotated protein"
+                     /sec_met_domain="LANC_like (E-value: 4.4e-44, bitscore:
+                     140.3, seeds: 47, tool: rule-based-clusters)"
+                     /source="Prodigal_v2.6.3"
+                     /transl_table=11
+                     /translation="VTTALTSAVLSTTDKIAKALRDPSSAWPNGRPAGGRAWPQSLAGG
+                     ACGIALLHIERARTGHGDWDTAHTWLAEAVGGEISAADNANLYFGASALAYITHRAASS
+                     SSRYLPLLNHLDTATLTVTRIRIAAAHQRIDRAEPVPMEEFDLIQGLSGLGAYHLSRHP
+                     HHEITRDTLTYLVRLTEPLSVPTGLPPWWMDVAPTGAPHPDYPDGHGNFGLAHGIGAAL
+                     AVLSQALLHEVTVPGMTDAVARICAWTDRWRQGDDNHPWWPGHITARQAADRHVHADLR
+                     PRPSWCYGASGTARAQQLAGLALGDPARVQLAENAILDALRDPDQLSKLREIGLCHGMA
+                     GLLHAGWRMATETGNPEITAELPHLAERLIAALDQDTQDPELLDGSAGAALALHTYATA
+                     VAPAPHWDTFLSLA"
+     PFAM_domain     complement(6335..7441)
+                     /aSDomain="LANC_like"
+                     /aSTool="clusterhmmer"
+                     /database="34.0"
+                     /db_xref="PF05147.15"
+                     /description="Lanthionine synthetase C-like protein"
+                     /detection="hmmscan"
+                     /domain_id="clusterhmmer_CCIMNIEH_2634774_0002"
+                     /evalue="1.20E-42"
+                     /label="CCIMNIEH_2634774"
+                     /locus_tag="CCIMNIEH_2634774"
+                     /protein_end="406"
+                     /protein_start="37"
+                     /score="145.9"
+                     /tool="antismash"
+                     /translation="WPQSLAGGACGIALLHIERARTGHGDWDTAHTWLAEAVGGEISAA
+                     DNANLYFGASALAYITHRAASSSSRYLPLLNHLDTATLTVTRIRIAAAHQRIDRAEPVP
+                     MEEFDLIQGLSGLGAYHLSRHPHHEITRDTLTYLVRLTEPLSVPTGLPPWWMDVAPTGA
+                     PHPDYPDGHGNFGLAHGIGAALAVLSQALLHEVTVPGMTDAVARICAWTDRWRQGDDNH
+                     PWWPGHITARQAADRHVHADLRPRPSWCYGASGTARAQQLAGLALGDPARVQLAENAIL
+                     DALRDPDQLSKLREIGLCHGMAGLLHAGWRMATETGNPEITAELPHLAERLIAALDQDT
+                     QDPELLDGSAGAALALHTYATAVAPAPHW"
+     CDS             complement(7549..10452)
+                     /ID="CCIMNIEH_2634775"
+                     /gene="CCIMNIEH_2634775"
+                     /gene_functions="biosynthetic (rule-based-clusters)
+                     lanthipeptide-class-i: Lant_dehydr_C"
+                     /gene_functions="biosynthetic (rule-based-clusters)
+                     lanthipeptide-class-i: Lant_dehydr_N"
+                     /gene_functions="biosynthetic-additional
+                     (rule-based-clusters) Lanthipeptide_LanB_RRE"
+                     /gene_functions="biosynthetic-additional (smcogs)
+                     SMCOG1155:Lantibiotic dehydratase domain protein (Score:
+                     856.3; E-value: 4.7e-259)"
+                     /gene_kind="biosynthetic"
+                     /inference="ab initio prediction:Prodigal_v2.6.3"
+                     /locus_tag="CCIMNIEH_2634775"
+                     /partial="00"
+                     /phase="0"
+                     /product="unannotated protein"
+                     /sec_met_domain="Lant_dehydr_N (E-value: 4e-113, bitscore:
+                     368.3, seeds: 73, tool: rule-based-clusters)"
+                     /sec_met_domain="Lant_dehydr_C (E-value: 3.2e-29, bitscore:
+                     92.1, seeds: 35, tool: rule-based-clusters)"
+                     /sec_met_domain="Lanthipeptide_LanB_RRE (E-value: 4.8e-21,
+                     bitscore: 65.1, seeds: 20, tool: rule-based-clusters)"
+                     /source="Prodigal_v2.6.3"
+                     /transl_table=11
+                     /translation="MYRYVDAALIRAAAGQPDTQVTWPDLVSTTAGAVSWCAWLQEVWR
+                     IGDFADAVSAASPDLASRVEQICTGHHLPEPTVRRIVLAVLRYLLRARTRATPFGLFAG
+                     VAAASIGAAPALRLGSEHRPTARADAARSTSLIDRFEQHPALRPHLMLLTSTLAVERDD
+                     QVVIDHRPGGKPGAGLEHVHIRMTEPVRAALDGAQSPIPWCDLASKLAAGFPDTSPNLI
+                     DKLLASLVTQQFLLTSLRPAMATHDPLTGLHDHEHRLSNQERAEVRATPRHAQDLLLDC
+                     DLTIPDTVAREATAAAKALTRLAPRAALTGWAEWHDRFLDRYGPRAVVPVLDAIDALGY
+                     PPGYLGATAAPTLSPLPDRDARLIKLAHTAAVQGRLEVVLDDAALESLATTGAEHPVQP
+                     STELTVRIDAADSAALEQGEFSLHVVGVARSAGATTGRFLDMLPDEHRRRMTEVYAALP
+                     GVHDDALVAQISAVPLSVRAANVARAPQVTDLVISLGEYRGPGSRLLPVTDLAVIADAG
+                     QLHLVSLSRRRPVHALLLNAVDLGLHSHPLTRFLAEAPVALAVPCAGFLWGTAASNLPF
+                     LPALRYGRTILSPARWLLARGDLPAASTPWLQWDEALSRWCRDVRLPERVYLSEADQCL
+                     ALDLTEPSHRALLRTHLDRDGTVTLRPAPEPQDLGWIGGRAHEVVIPLISDQNHTSVRT
+                     APHVVTREHGRLPGSGELLYVQLHGDPARQDHILTRHLPVLLAELKPPRCWFVRYSEPG
+                     HHLRLRLSCTPGALGATFEYVGAWTEELRRHGLITHVSVETYHPEIARYGGPTAIDAAE
+                     AYFAADSTAVLAQLVAGLAKNAPDARAVTVASMVDIATGLLGDRARAMGWLIAHTRTDS
+                     AAPPRPVHRQAVELVHTHPVGLAEQTAGAWSARRMALADYAEALLAAGADPGDLLPDLL
+                     HLHHVRMHGPGLPEERTHLHLARAAALSWTARSRRTA"
+     PFAM_domain     complement(7585..8316)
+                     /aSDomain="Lant_dehydr_C"
+                     /aSTool="clusterhmmer"
+                     /database="34.0"
+                     /db_xref="PF14028.8"
+                     /description="Lantibiotic biosynthesis dehydratase C-term"
+                     /detection="hmmscan"
+                     /domain_id="clusterhmmer_CCIMNIEH_2634775_0005"
+                     /evalue="8.80E-28"
+                     /label="CCIMNIEH_2634775"
+                     /locus_tag="CCIMNIEH_2634775"
+                     /protein_end="956"
+                     /protein_start="712"
+                     /score="98.0"
+                     /tool="antismash"
+                     /translation="LYVQLHGDPARQDHILTRHLPVLLAELKPPRCWFVRYSEPGHHLR
+                     LRLSCTPGALGATFEYVGAWTEELRRHGLITHVSVETYHPEIARYGGPTAIDAAEAYFA
+                     ADSTAVLAQLVAGLAKNAPDARAVTVASMVDIATGLLGDRARAMGWLIAHTRTDSAAPP
+                     RPVHRQAVELVHTHPVGLAEQTAGAWSARRMALADYAEALLAAGADPGDLLPDLLHLHH
+                     VRMHGPGLPEERTHLHLARAAA"
+     PFAM_domain     complement(8509..9642)
+                     /aSDomain="Lant_dehydr_N"
+                     /aSTool="clusterhmmer"
+                     /database="34.0"
+                     /db_xref="PF04738.15"
+                     /description="Lantibiotic dehydratase, N terminus"
+                     /detection="hmmscan"
+                     /domain_id="clusterhmmer_CCIMNIEH_2634775_0004"
+                     /evalue="1.80E-112"
+                     /label="CCIMNIEH_2634775"
+                     /locus_tag="CCIMNIEH_2634775"
+                     /protein_end="648"
+                     /protein_start="270"
+                     /score="376.6"
+                     /tool="antismash"
+                     /translation="PRHAQDLLLDCDLTIPDTVAREATAAAKALTRLAPRAALTGWAEW
+                     HDRFLDRYGPRAVVPVLDAIDALGYPPGYLGATAAPTLSPLPDRDARLIKLAHTAAVQG
+                     RLEVVLDDAALESLATTGAEHPVQPSTELTVRIDAADSAALEQGEFSLHVVGVARSAGA
+                     TTGRFLDMLPDEHRRRMTEVYAALPGVHDDALVAQISAVPLSVRAANVARAPQVTDLVI
+                     SLGEYRGPGSRLLPVTDLAVIADAGQLHLVSLSRRRPVHALLLNAVDLGLHSHPLTRFL
+                     AEAPVALAVPCAGFLWGTAASNLPFLPALRYGRTILSPARWLLARGDLPAASTPWLQWD
+                     EALSRWCRDVRLPERVYLSEADQCLALDLTEPSHRALL"
+     PFAM_domain     complement(9691..10308)
+                     /aSDomain="Lant_dehydr_N"
+                     /aSTool="clusterhmmer"
+                     /database="34.0"
+                     /db_xref="PF04738.15"
+                     /description="Lantibiotic dehydratase, N terminus"
+                     /detection="hmmscan"
+                     /domain_id="clusterhmmer_CCIMNIEH_2634775_0003"
+                     /evalue="9.90E-56"
+                     /label="CCIMNIEH_2634775"
+                     /locus_tag="CCIMNIEH_2634775"
+                     /protein_end="254"
+                     /protein_start="48"
+                     /score="189.1"
+                     /tool="antismash"
+                     /translation="FADAVSAASPDLASRVEQICTGHHLPEPTVRRIVLAVLRYLLRAR
+                     TRATPFGLFAGVAAASIGAAPALRLGSEHRPTARADAARSTSLIDRFEQHPALRPHLML
+                     LTSTLAVERDDQVVIDHRPGGKPGAGLEHVHIRMTEPVRAALDGAQSPIPWCDLASKLA
+                     AGFPDTSPNLIDKLLASLVTQQFLLTSLRPAMATHDPLTGLHD"
+     aSDomain        complement(9727..9990)
+                     /aSDomain="Lanthipeptide_LanB_RRE"
+                     /aSTool="RREfinder"
+                     /database="RREFam.hmm"
+                     /description="RRE-containing LanB protein in a class I
+                     lanthipeptide cluster"
+                     /detection="hmmscan"
+                     /domain_id="rrefinder_CCIMNIEH_2634775_Lanthipeptide_LanB_R
+                     RE.1"
+                     /evalue="1.10E-20"
+                     /identifier="RREFam001.1"
+                     /label="CCIMNIEH_2634775"
+                     /locus_tag="CCIMNIEH_2634775"
+                     /protein_end="242"
+                     /protein_start="154"
+                     /score="65.1"
+                     /tool="antismash"
+                     /translation="STLAVERDDQVVIDHRPGGKPGAGLEHVHIRMTEPVRAALDGAQS
+                     PIPWCDLASKLAAGFPDTSPNLIDKLLASLVTQQFLLTSLRPA"
+     misc_feature    complement(10234..10236)
+                     /note="tta leucine codon, possible target for bldA
+                     regulation"
+                     /tool="antismash"
+     CDS             complement(10540..10731)
+                     /ID="CCIMNIEH_2634776"
+                     /gene="CCIMNIEH_2634776"
+                     /gene_functions="biosynthetic-additional
+                     (rule-based-clusters) LD_lanti_pre"
+                     /gene_functions="biosynthetic-additional (lanthipeptides)
+                     predicted lanthipeptide"
+                     /gene_kind="biosynthetic-additional"
+                     /inference="ab initio prediction:Prodigal_v2.6.3"
+                     /locus_tag="CCIMNIEH_2634776"
+                     /partial="00"
+                     /phase="0"
+                     /product="unannotated protein"
+                     /sec_met_domain="LD_lanti_pre (E-value: 8.5e-19, bitscore:
+                     57.0, seeds: 21, tool: rule-based-clusters)"
+                     /source="Prodigal_v2.6.3"
+                     /transl_table=11
+                     /translation="MTVQMERPVTPPQPGDALAPTDAAGDWDLDITIVEGGPAADQLIR
+                     LTSDGCNSTCATACVSCP"
+     CDS_motif       complement(10609..10731)
+                     /prepeptide="leader"
+                     /note="peptide class: lanthipeptide"
+                     /note="predicted sequence:
+                     MTVQMERPVTPPQPGDALAPTDAAGDWDLDITIVEGGPAAD"
+                     /locus_tag="CCIMNIEH_2634776_lanthipeptide"
+                     /aSTool="lanthipeptides"
+                     /tool="antismash"
+     CDS_motif       complement(10540..10608)
+                     /prepeptide="core"
+                     /locus_tag="CCIMNIEH_2634776_lanthipeptide"
+                     /peptide="lanthipeptide"
+                     /predicted_class="Class I"
+                     /score="-7.50"
+                     /molecular_weight="2135.4"
+                     /monoisotopic_mass="2134.0"
+                     /core_sequence="QLIRLTSDGCNSTCATACVSCP"
+                     /aSTool="lanthipeptides"
+                     /tool="antismash"
+                     /leader_sequence="MTVQMERPVTPPQPGDALAPTDAAGDWDLDITIVEGGPAAD
+                     "
+                     /leader_location="[10608:10731](-)"
+                     /alternative_weights="2153.5"
+                     /alternative_weights="2171.5"
+     CDS             complement(10795..12000)
+                     /ID="CCIMNIEH_2634777"
+                     /gene="CCIMNIEH_2634777"
+                     /gene_functions="biosynthetic-additional
+                     (rule-based-clusters) PCMT"
+                     /gene_kind="biosynthetic-additional"
+                     /inference="ab initio prediction:Prodigal_v2.6.3"
+                     /locus_tag="CCIMNIEH_2634777"
+                     /partial="00"
+                     /phase="0"
+                     /product="unannotated protein"
+                     /sec_met_domain="PCMT (E-value: 3.3e-39, bitscore: 124.5,
+                     seeds: 9, tool: rule-based-clusters)"
+                     /source="Prodigal_v2.6.3"
+                     /transl_table=11
+                     /translation="MIAIDGSTDRDPDVLRADMVRALRDEDGITTGPVAAAFATVPRHL
+                     FAPDAPPEVAYSLHRTVPVKKDEHGMDISVMSAAHLQAVMLEQAEVEPGMNVLEIGSGG
+                     VNAAYLQELVGSEGRVTTVDIDGDVIDRARRCLDDAGYSRVRTVLDDGEHGVADGAPFD
+                     RIIVTAAAWDIPPSWIGGLAEKGRLVVPLTVCGTTRSIAFDRDGSGLVSRSYGLAHFVP
+                     MRGEGAADERKVMLREGVALQTDDLRVPLEPQALDAALDMPRLERWSGAAYDLPDELDL
+                     FITLNLPSPARLHAAQDVVGSGLVEASALKGVSALVSRDSFAYRTRRENAATGGFESGV
+                     VAHGPQAEALADQYADLLRHWAQNHRRRGAATFRYLPGPAPKTLPEGAVLRRHGIVTAV
+                     WT"
+     PFAM_domain     complement(11332..11949)
+                     /aSDomain="PCMT"
+                     /aSTool="clusterhmmer"
+                     /database="34.0"
+                     /db_xref="PF01135.21"
+                     /description="Protein-L-isoaspartate(D-aspartate)
+                     O-methyltransferase (PCMT)"
+                     /detection="hmmscan"
+                     /domain_id="clusterhmmer_CCIMNIEH_2634777_0006"
+                     /evalue="5.20E-36"
+                     /label="CCIMNIEH_2634777"
+                     /locus_tag="CCIMNIEH_2634777"
+                     /protein_end="223"
+                     /protein_start="17"
+                     /score="124.5"
+                     /tool="antismash"
+                     /translation="DMVRALRDEDGITTGPVAAAFATVPRHLFAPDAPPEVAYSLHRTV
+                     PVKKDEHGMDISVMSAAHLQAVMLEQAEVEPGMNVLEIGSGGVNAAYLQELVGSEGRVT
+                     TVDIDGDVIDRARRCLDDAGYSRVRTVLDDGEHGVADGAPFDRIIVTAAAWDIPPSWIG
+                     GLAEKGRLVVPLTVCGTTRSIAFDRDGSGLVSRSYGLAHFVPM"
+     CDS             complement(12118..12219)
+                     /ID="CCIMNIEH_2634778"
+                     /gene="CCIMNIEH_2634778"
+                     /inference="ab initio prediction:Prodigal_v2.6.3"
+                     /locus_tag="CCIMNIEH_2634778"
+                     /partial="00"
+                     /phase="0"
+                     /product="unannotated protein"
+                     /source="Prodigal_v2.6.3"
+                     /transl_table=11
+                     /translation="MTNTTVEPDEATRLRNDVVDTLRAEGWISSSRS"
+     CDS             complement(12263..12862)
+                     /ID="CCIMNIEH_2634779"
+                     /gene="CCIMNIEH_2634779"
+                     /inference="ab initio prediction:Prodigal_v2.6.3"
+                     /locus_tag="CCIMNIEH_2634779"
+                     /partial="00"
+                     /phase="0"
+                     /product="unannotated protein"
+                     /source="Prodigal_v2.6.3"
+                     /transl_table=11
+                     /translation="LTTTSLALKPDTVAPPAQQPLPEGAASLGRTWHISTAGGITVTGY
+                     LPPWADEDPSESDVPLEELPVKLVDLAHWRPFDGQMMRIHNPAHADGADLVAEASLFDG
+                     HVTCHPYSDDPQERTPYADVRVVDDLWLYHLTPEDLTRLTAQLRAQADHIENDVTPLLE
+                     AARIDWTARQSGRTDVVVDVPVGASIASAPIGAVRC"
+     CDS             complement(12890..13114)
+                     /ID="CCIMNIEH_2634780"
+                     /gene="CCIMNIEH_2634780"
+                     /inference="ab initio prediction:Prodigal_v2.6.3"
+                     /locus_tag="CCIMNIEH_2634780"
+                     /partial="01"
+                     /phase="0"
+                     /product="unannotated protein"
+                     /source="Prodigal_v2.6.3"
+                     /transl_table=11
+                     /translation="QAHGGGDHFALVLDLDGVATGAIWTRWADGTPAALDLRPDCPFVD
+                     PESREGCCEFAFHPGAHSHCLTATPTEFS"
+ORIGIN
+        1 ccgcaccggc cagctcaggc acggactcgt gctcgatcgt catctcactc acttggcgtc
+       61 tccatgatca acagatccgc cgtttattag acactcccag tcggcgtcag agcagagcca
+      121 gccctcgact actgattggc tgatccgcta cgccgcggtt actggatcgg ccagctaccg
+      181 gagaagagaa gagcgctgta accgggaacg cgttctacat ttcggcatcc gcctcgtcgt
+      241 ccgcgctggt ttcgtcttcg ataagtccgt acggcggacg gtcttcgttg cggctgtagc
+      301 gcaccactac gctgttttcc accagcgggg gcgggctgtt gtcggcgacg ataagctgtg
+      361 ctcggctacc gcgctctgcg agccagaggg tgagatggtg gtagaaatcg tcgatggcga
+      421 cggcgtccgc gatcacggca tcgagggtgc cgccgtggcc gaggtttttc tgagggctgt
+      481 cgatcatgag gaatcccggg tgtgcggccc ctgcttcgac ggcgatttcg aacacggcca
+      541 actgccaggc cagggtgagc agagtacggg cgcctgagga ggcttcctgg tacggctcac
+      601 cgcgtacgaa gggggtcagg tcggttttga tgaaaggcgc actgaccttg gggtagcgcc
+      661 aggctcgcag gagttcgccg tatcggctgc tgatattggc gatgacccga tcgcggtcgt
+      721 gggaggcgtc tccgagtcgc gcgagctcct cgcggagacg ggcgatctgg gcttcgtggc
+      781 gttccacggc atcggcccgt ttggtaagtc cttcgcggag tttgaccgtg ctcccggcct
+      841 gttcgagttg gtgcaggacc tgttcgcgcc ttcgatggag gtcgtcgcga gcggcgagga
+      901 acggtgagac ggagggtgac gtcgcggcgt ccagcgcggc ggcggcttcc tcttcctgga
+      961 cagccgcctc ttccgctcga agtttgagtg cagcgagcga ggcgccgagc tcatcgatgt
+     1021 aagtggtgat ctccttcagg cgggccttgg tggatcgggt ctcggctgcg acgtcgaccc
+     1081 ggttttcatc ggcctggctg ccggtgtcga cggtgccaag aaccaaacgt ccatccgctg
+     1141 ctgtcagttc atgccggcag aggctgcaga gtccgttgtt ggcggtgggg ggagccgata
+     1201 gccggttcaa gcaggcgggg caggtggtga cgctcagggg gtcgaagatc tgctgcgcct
+     1261 cgccgagcat gccgagcttg agaagatcgt cggcgtactg cgcgcggaga ggcatcaggc
+     1321 gttggagctg tgtttcgcag tcccgcagga gcgctgctgc ccggtgagac gtctgggccg
+     1381 cctccttgtg ctggcggcgc agctgagcag cgaattccgt tcccgcctga gcacggcggt
+     1441 ccaactccgt gagccgactc gtgatgtcag ccagctcctg ttcgtgtacg gcaggtgtgg
+     1501 gttcaccgtc cagagcggtg ggatcctgct ctaggacgaa ggtacgggct gccgcgagtt
+     1561 cggccttggc acggctgagt cggccggcga gttcctggat gcgctggccg agttcgacgg
+     1621 cgcggtcgtc gtggactccg aaggcgacgt cgacgacctg gcgcagtttg tgcttgcgca
+     1681 tgtagtcgtt ctcgaacagg aagttcttat cggcgacgcg ttcgttgggc aggaaggcga
+     1741 gccacatcaa gtcacgaaag ctgagcgggt ctgtgcggga ttcgctgttg gtgggcgctt
+     1801 cgcgtagctg gacgccttcg agcttgcaat gactcaggag gagggaggac aggctctccg
+     1861 gtgccccggg cgggtcgatg gtcctgctct cagccctgga agtgggccta ctctggagcg
+     1921 tcccgcggcg tacgaaggcg accttcgagg gctctccgac cgaccgctcg attacgtgcg
+     1981 gttcgccgga gagctcgacc tccatgaggc atgaacggac ccttcgcagc acctcctggt
+     2041 ggcgggggtg ccgtttcgcg ccgaggccgt aggcgatgaa ctccaggacc gctgtcttgc
+     2101 cggagctgaa tgccccggcg atgaccgata ggttccgtac cctctgttca gcggtgaaat
+     2161 cgacgtcata ggaccgctcc atgccgacca ggcgcagacg gcggatccgg atgccgggaa
+     2221 gcggctccat ggtgatcatc cctcccagga agtttccagc aacgggcctg gccccaagac
+     2281 gctcatgagg gcagccacgg gtccgtccgg cttgagccac agtgcggtct gctcgcgcag
+     2341 ccttttgtcg ctgagtttgc ggagctggcg gacgacgatg tcggcggcgg tagcaaagga
+     2401 ggtcgcgtag gtagcggtga actccctgcc gaggtgctga ccagcctcag tgatcaagta
+     2461 agtgagggaa ccgttgcgat ttcggacccg acagcatcca taggccacca ggagcgccaa
+     2521 gtcgtgctgg atccgttctc gccggctcgt gaatcgctgt gaagaggatg cgtaggctag
+     2581 aacctgcggg tcgaacccgg ccagccggag gaggctcgcg tcccgaccct cggagggaac
+     2641 tacaaggaaa gggttcgcgg acaggaagtc gtagtacccg atgcgttcca gggtcgcccc
+     2701 gtttgcgtcc tgcgcggcga ctgcgtcaag gagcagcagc agttgagcga gacggaaagg
+     2761 tacttcgtcc tcgggcatca taaccggccg gtctgtgcgc acggcatgct cctcatcact
+     2821 ggtcgagcgg tatgggcgga cgcgaaacgt cagtcgtcgg gatgaccact cgcgatctgc
+     2881 cgccagtgcg cgacccaccc tgcgcgacgg ttgtcgacca gccggtggac cagaccccaa
+     2941 ctgtgcgtca cctccagacg tagcaccttg ggcagtttgt cgtgctcgcc acgcacctcg
+     3001 cgccataccc ggccgtacag agcgttgagg gtgccttcgg ccgaacactc gttgaactgc
+     3061 atctcccaca ccccgtgaag ggtggcgtca gcagagctca gtgcagcaac ttcgcctggc
+     3121 acgcccttgt gcgcgacttc gcgcgccacc aggtccgcgt tgaagaactg ccgtttcgcc
+     3181 gagtccagtt cgacatggcc ggcttcggtc atctggcgaa cgaacagagc tgagtcgagc
+     3241 gccgctgcct tgtcctcctc tacgtccagc acgaggcgta tctgctcctg agcaggggcg
+     3301 ggcgccgtga agggttcgta ataggcacgg cgtacctggt caccttcggg gctcagcagc
+     3361 ttcttcttga tcttggtctc gtcccacagt tcgatgacga ggccatgcgc cttctcctgc
+     3421 cgcctcttcc agccatccca ccattgggct gccggcccgt ccatgctgga ggggatgcac
+     3481 aggatccaga gcgtgatggt gtgaccgttg gccgccgcgg ctttcagccc gttcgcgagg
+     3541 gactcgcgaa tctgctgcga ctggctggtg gtggtcttcg gcatgaagta cttggactgc
+     3601 cagaccgtga tggcgccccc taggtcaccg gcgaaagcat cgattcccca gtcgcccgga
+     3661 ttcgcggcga tcatccggac gttcggattg gtcgcactgg cgagctgcgc gagcatctgt
+     3721 tcgaagtcgg cccgcgcccc gtccgcgctt ccggtccgca gttcgtgcac gacgaaatgg
+     3781 atgggcggaa caccagctgc taccggcttg gaattgtcca acctgcaccc cctcccgcat
+     3841 gcagcctgaa cgaaccgcgc tcagcagact gcttcccctg cgccacacac agtaacggcc
+     3901 gtcagcgtaa gcgtcatggg atcaatcgat caaggtgtgc ggcggcagta tctttactac
+     3961 ggcatgctgg acagggccga tgggcacagg cagcggcagt ccagtcgccc gttggcgcgg
+     4021 gcgatgatct ctgtggtagt ggatacggcc gtttcctcgg gtgcgcgtgg taccaggtgt
+     4081 ggagcgatga gggaccgcag cgtggcctca cgactggatt cgccgtcaaa cgcctcgatt
+     4141 gaatggcaaa ggacactgga gggcgccgcg tatcagtgcc tcgcattctt cgggctcgga
+     4201 ccccccgagc gcgttggcga agtcccgcag ccgtgtcatt gtcgaacgga ccgatgtccc
+     4261 aggtgctcat gccggcctcc ttgcgccaag tcacccggtt cctcagacca ggcagtgaca
+     4321 gcatcggtgt gccgggcgaa cggtcctggt aggaatagct ccctactcag agggcgccct
+     4381 cgttgaagct ctcctgtatg acgcgccgac tcacatgcaa gacgccgtcg attcggcccc
+     4441 aggaggccaa ttggaaggga ccggatcgca gagtgcaggc gttcaccagc cgttgggact
+     4501 ccttgaactc ctggtcgctg gccaggcttc tcgacactgg atgcgagagg gcgtcgcggg
+     4561 cggcgtatcc gtcgttcgct gccaccgccc gacggtgaag gtcggcgacc acaagacggg
+     4621 ccgcattgtc gtccgttgtg ccgatcaggt ccagcacggc gagaccgtag cgggtggtga
+     4681 acaccgtcag gccttccaca tccgggaggt cgaggtacac agtcacgagt tgccgtaggg
+     4741 ggcgccgcca ctcttcctca gcgcctcgta gggacatcac ggtcaggcac tccgtgaccg
+     4801 cggcctccca tggttctccg ggtttggtgt gggccaggac ttcttgggcg tgggcgttgt
+     4861 cgccgctcgc gagagcagcc aggacggcga cctggcggcc gtcgagcatg cgttgggcga
+     4921 ggccgtggtg ttgctggatg tggttgagtg cgtcgttcca tcggccggcg ctggtcaggg
+     4981 agcgggttcc atcggcgagt agaaccgtcc acagccaggt gcggacctcc ttgcggtcgt
+     5041 cgtcggtggc tacgaggtcg gcgggaatgg tgaggctttc gatctgagcg ggctgcgcgt
+     5101 gggtgacggc gtcgaacaac atcgagaggt actggcgtgc tgtgtcctgt cgcccggctc
+     5161 ggaggtggag tcgagccagg ttgaccaccg gttcgagggc acgtacggcc gtctcgtggc
+     5221 tcagcggtgc ggcgcgcaag tacagctccg cgtgcttggt gcagatgcta cgggcgatgt
+     5281 cggggaggcc gacgtccgag gcgatcagcg cggcctggtt gtagaccgtg gacgccacgc
+     5341 cggggtcgtt ctgcttcgca gcggtgtccg cgaggtcggc gagtgcctgg actcgctccg
+     5401 ggagggggag gcaggcgggg cgggggcggg cgacgagggg gaaccgctgg gcgctggtgt
+     5461 cagggagttt ccacacggtg cgcggtgctc ctctcggtgc tggggtccgg gccgaagatg
+     5521 actgtctgcg cggcggtcgt gagggcggcc tgtgtggagt aaggcaggcc gaggcggttc
+     5581 caggcgaaga tcacgtggtg ggcgaggacg tcgcggattc cgcggtggag ttgcccggtc
+     5641 tgattgaggc gggccaggtc gcttccggct gccgtgtagg cggcggtcca tgcctcggct
+     5701 cctgcgagcg ggcttcccgg ctgcgtcgcg tactgcgggt ccacggtgat gagacggcgt
+     5761 acggcggtgt ggagtcggtc cttgttgtcg ggctcggcgt cgggtgatgg cgggcggtga
+     5821 gctgcgacgc gggcccagac gtcgccctgc tcgtaccagt ccaggctggc agcgcgcagc
+     5881 atcaggctgc acagcattag ggaggtttcg cgcctgtgcc gcgcggtgtc cccgcggagg
+     5941 aagtgcagga ggttgtggct gtcctggtgg aacaaccggt gggcggagtc catggcctgg
+     6001 gtgccgccga aagcgtgcac ctcaggctcg tagacgctct ccgtccatcc ggcggtgctt
+     6061 ccggctgcga ccaacgcatc gaggcggtcg tcgatggcgt cctgcgtgcc cgcgacggac
+     6121 gcgtaacgga ttcgccagca ggggtgcttg cggacgaaga accacctggt gatggccccg
+     6181 gcgtcttccg cggcctccac gagtgggacg agttcggtca tcgcggtggc ctcggcacgt
+     6241 tcccagtccg agaaagccac gttgacctgg cgccaggtgg gtgggggcat gcggtggtcc
+     6301 tccgtggtgt tcaggccaaa gagaggaagg tgtcccagtg cggggcgggc gcgactgcgg
+     6361 tggcgtacgt gtgcagggcg agtgccgcgc cggcgctccc gtcgaggagt tctggatcct
+     6421 gggtgtcctg gtcgagcgcg gcgatcagtc gctcggcaag gtgtggcagc tccgcggtga
+     6481 tctctgggtt gccggtctcg gtggccatgc gccatccggc gtgcagtagg ccggccatac
+     6541 cgtggcagag gccgatctcg cggagtttgc tgagctggtc cgggtcgcgc agggcgtcga
+     6601 ggatcgcgtt ctcggcgagt tgcacgcggg ctgggtcgcc gagggcgagc ccggctagtt
+     6661 gctgggcgcg ggcggtgccg ctggctccgt agcaccagga gggacggggg cggagatcgg
+     6721 cgtggacgtg gcggtcggct gcttgccgcg cggtgatgtg gccgggccac caggggtggt
+     6781 tgtcgtcgcc ctgccgccag cggtcggtcc aggcgcagat tcgtgcgacg gcgtcggtca
+     6841 tgccgggcac ggtcacttcg tggagcagcg cttgggagag tacggccagg gctgcgccga
+     6901 tgccgtgtgc gagaccgaag ttgccgtggc cgtcggggta gtccgggtgg ggcgcaccgg
+     6961 tgggggcgac gtccatccac cacgggggca aaccggtcgg gacggacagg ggttcggtca
+     7021 gccgtacgag gtaggtcagg gtgtcccggg tgatctcgtg gtgggggtgg cggctgaggt
+     7081 ggtaggcgcc gagtccggac agtccctgga tcaggtcgaa ctcttccata gggacgggtt
+     7141 cggcgcggtc gatgcgttgg tgggcggctg cgatccggat gcgcgtgacg gtgagggtgg
+     7201 cggtgtccag gtggttgagg agcggcaggt agcggcttga cgagctggcc gcgcggtgcg
+     7261 tgatgtaggc gagggcggag gcgccgaagt agaggttcgc gttgtctgcc gcgctgatct
+     7321 cgccacccac ggcctcggcg agccaggtgt gcgcggtgtc ccagtcgcca tggccggttc
+     7381 gggcgcgttc gatgtgcagc agcgcgattc cgcaggcgcc tccggccagc gactggggcc
+     7441 aggcgcggcc gccagcgggc cggccgttgg gccacgcact gctcgggtcg cgcagggcct
+     7501 tggcgatctt gtccgtggtc gacaggacgg ctgaggtgag ggccgtggtc acgccgttct
+     7561 cctcgatcgg gccgtccagc tcagggcggc ggctctggcc aggtgcaggt gtgtgcgctc
+     7621 ttcgggcaga ccgggaccgt gcatgcgtac gtggtgcagg tgcagcaggt cgggcagcag
+     7681 gtcgccgggg tcggcacctg ccgccaggag ggcttcggcg taatcggcca gtgccattct
+     7741 tcgtgcggac caggctccgg cagtctgctc ggccaagccg acggggtgcg tgtgcaccag
+     7801 ctcgacggcc tgccggtgga cggggcgcgg tggggcagcc gaatcggtcc gggtgtgcgc
+     7861 gatgagccag cccatcgccc tggcgcggtc gccgagcagg ccggtggcga tgtccaccat
+     7921 gcttgcgacg gtcaccgcgc gggcgtcggg tgcgttcttc gccagtccgg cgactagctg
+     7981 ggccagcacg gcggtggaat cggcggcgaa gtacgcctcc gcggcgtcga ttgctgtcgg
+     8041 gccgccgtac cgggcgatct ccggatggta ggtctccacg ctgacgtggg tgatcagccc
+     8101 gtggcggcgg agctcctcgg tccaggcacc gacgtactcg aaggtcgccc cgagcgcgcc
+     8161 aggggtgcag gaaaggcgca gccggaggtg gtggccgggt tcggagtagc ggacgaacca
+     8221 gcagcggggg ggcttgagtt cggccagcag gacgggcaga tgacgggtga ggatgtggtc
+     8281 ctgcctggcg gggtcaccgt gcagctggac gtagagaagc tctccactgc cggggagacg
+     8341 gccgtgttcg cgggtgacga cgtggggcgc agtccgtacg gaggtgtggt tctggtcgga
+     8401 gatcaggggg atcaccacct cgtgagcgcg gcctccgatc cagcccaagt cctggggctc
+     8461 gggcgccggg cgcagggtca cggtgccgtc gcggtcgagg tgtgtgcgca gcagagcgcg
+     8521 gtgcgagggc tcggtgaggt ccagggcgag gcactggtcg gcttcgctca ggtacacccg
+     8581 ctcaggaagg cgcacgtcac ggcaccatcg gctcaaggcc tcgtcccact gcagccaagg
+     8641 cgtcgaagcg gcgggcaggt cgccgcgggc gaggagccag cgggccgggg agaggatcgt
+     8701 tcggccatag cgcagggcgg gcaggaaggg cagattggag gcggcagtgc cccacagaaa
+     8761 tcccgcgcag gggacggcca acgcgacagg cgcctcggcc aggaaacgtg tcagggggtg
+     8821 cgagtgcagg ccgaggtcca cggcgttgag tagcagcgcg tgtaccgggc ggcggcggga
+     8881 gagcgagacg aggtggagct gcccggcgtc cgcgatgacg gccaagtccg tgacgggaag
+     8941 gagtctgctc cccgggccgc ggtactcgcc cagtgagatc acgaggtcgg tcacctgcgg
+     9001 ggcgcgcgcg acgttcgccg ctcgtacaga cagggggacg gcactgatct gggcgacgag
+     9061 ggcgtcgtcg tggactcccg ggagggcggc gtacacctcg gtcatacggc gccggtgctc
+     9121 gtcgggcagc atgtccagaa agcggccggt ggtcgcgccg gcggagcggg ccacgccgac
+     9181 gacgtgcagg ctgaactcac cctgctcaag tgctgcggag tcggcggcgt cgatgcgtac
+     9241 ggtcagctcg gtgctgggtt gcacagggtg ctccgcgccc gtggtggcca gggattccag
+     9301 cgcggcatcg tccaaaacga cttcgagacg gccctgcact gcggcggtgt gggcgagttt
+     9361 gatgaggcgg gcgtctcggt cgggcagggg tgagagcgtg ggcgccgcgg tggccccgag
+     9421 gtagccgggc gggtagccga gtgcgtcgat ggcgtccagg acggggacga ccgcccgcgg
+     9481 cccgtaccgg tccaggaagc ggtcgtgcca ctcggcccag ccggtcaggg cggcccgggg
+     9541 cgcgagccgg gtgagcgcct tcgccgcagc agttgcctcg cgggccacgg tgtcggggat
+     9601 ggtcaggtcg cagtccagga gaaggtcctg cgcgtggcgc ggagtcgcgc ggacctctgc
+     9661 cctctcctgg ttggacagcc gatgctcgtg gtcgtggagg ccggtgagcg ggtcgtgggt
+     9721 tgccatcgca gggcgcaggc tggtgagcag aaactgctgc gtgacgaggc tcgcgagaag
+     9781 tttgtcgatc aggttcggcg aggtgtcggg aaagccggct gcgagcttcg acgcgaggtc
+     9841 gcaccacggg atcgggcttt gtgcgccgtc gagagcagcg cgcacgggct ccgtcatgcg
+     9901 gatgtgtacg tgctcgagcc ctgcgccggg cttcccgccg ggccgatggt cgatgaccac
+     9961 ctggtcgtcg cgttcgacgg cgagggtgga ggtcagcagc atcaggtgcg gtcgcagcgc
+    10021 cggatgctgc tcgaagcggt cgatcagcga ggtgctccgt gcggcgtcgg ctctggccgt
+    10081 cgggcggtgt tcggagccga ggcgcagtgc gggggcggcg ccgatgctcg ctgccgcgac
+    10141 accggcaaag agcccgaacg gcgtggctcg cgtgcgggca cgcagcaggt agcggaggac
+    10201 ggccaggacg atgcggcgca ctgtgggctc cggtaagtgg tgcccggtgc agatctgctc
+    10261 gacacgggac gcgagatcgg ggctggcggc cgagaccgcg tcggcgaaat caccgatccg
+    10321 ccagacctct tgcaaccagg cgcaccacga caccgcgccc gcggtggtgc tgacgaggtc
+    10381 cggccaggtg acctgcgtgt cgggttgacc cgcagcggcc cggatcaagg ctgcgtcgac
+    10441 gtaccggtac atgtgtcccc cctctgggtg cgcggagccc gaccgcgagt tgcgcacggt
+    10501 cgggcaccgg tccgaacgcg gtcggtacct acgggacggc tacgggcagc tcacgcacgc
+    10561 cgtggcgcac gtcgagttgc atccgtcgct cgtcaggcgg atgagctgat ccgcggccgg
+    10621 gccgccctcg acgatggtga tgtcgaggtc ccagtccccc gccgcatcgg tgggcgcgag
+    10681 agcgtccccc ggctgcgggg gcgtcaccgg acgctccatc tgcacggtca tgcaagcctc
+    10741 cttggagtgg ttgacgggtg gtgcgttgtc ccggagccgt gcggctccgg agtctcaggt
+    10801 ccagaccgcg gtgacgatgc cgtggcggcg cagcacagcg ccctccggca gggtcttagg
+    10861 cgcggggccc ggcaggtagc ggaaggtcgc ggctccccgc cggcggtggt tctgcgccca
+    10921 gtggcggagg aggtcggcgt actggtcggc gagcgcttcg gcctgtgggc cgtgagcgac
+    10981 cacgccgctc tcgaagccgc ccgtcgcggc gttctcccgg cgcgtgcggt acgcgaagct
+    11041 gtcgcggctc accagcgcgg aaacgccctt gagggcggaa gcttccacga ggccgctgcc
+    11101 tacgacgtcc tgggcggcgt ggagacgggc tgggctcggc aggttgagcg tgatgaacag
+    11161 gtccagctcg tcgggcaggt cgtacgcggc gccggaccag cgctccagcc ggggcatgtc
+    11221 cagggccgcg tcgagcgcct ggggctccag gggcacccgc aagtcgtcgg tctgcaaggc
+    11281 gacgccttcg cgcagcatca ctttgcgctc gtcggcggcg ccctcgcccc gcatgggtac
+    11341 gaagtgcgcc aggccgtagg agcggctgac cagtccgctt ccgtcgcggt cgaaagcgat
+    11401 gctgcgggtc gtcccgcaca ccgtcagcgg gacgacgagc cgccccttct ccgccagccc
+    11461 tccgatccac gacggaggga tgtcccatgc cgccgccgtc acgatgatcc ggtcgaacgg
+    11521 agcgccgtcg gcgacaccgt gttcgccgtc gtcgaggact gttctcaccc ggctgtaccc
+    11581 ggcgtcgtcg aggcagcggc gggcgcggtc gatgacgtcg ccgtcgatgt cgaccgtggt
+    11641 caccctgccc tcgctgccga cgagttcctg gaggtaagcg gcgttgaccc cgcccgaacc
+    11701 gatctccagg acgttcatcc cgggctcgac ctcggcctgt tcgagcatga cggcctggag
+    11761 gtgagcggcg gacatgacgc tgatgtccat gccgtgctcg tccttcttga ccggcacggt
+    11821 gcggtgcagg ctgtaggcca cctccggagg tgcgtccggc gcgaagaggt gccggggcac
+    11881 cgtggcgaag gcggcggcga cgggcccggt cgtgatcccg tcctcgtcgc ggagcgcgcg
+    11941 gaccatgtcc gcgcgcagca cgtcgggatc gcggtctgtc gagccgtcga ttgcaatcat
+    12001 ccgattacct acttccgttg cggtggtgct tgcgggcagc ccgctcaagg ccggggcacg
+    12061 gagatgcgga ctgttcgcag gtggttcggc cgtcgctggt catgccccgt cggcgcgtca
+    12121 ggaccgtgac gaggagatcc agccctccgc gcggagggtg tccacgacgt cgttccgcag
+    12181 gcgggtggcc tcgtcgggct cgacggtcgt gttggtcatc aggggaagtt ccttcgctct
+    12241 cgtgcgtgcg tcgggtgctc ggtcaacagc ggacagcgcc gatcggcgcg gaggctatcg
+    12301 acgcgccgac aggcacatcg acgacgacgt ccgtgcgtcc gctctgacgg gcagtccagt
+    12361 cgatgcgggc cgcttcgagg agcggcgtga cgtcgttctc gatgtggtct gcctgtgcgc
+    12421 ggagttgagc ggtgagcctg gtgaggtcct cgggcgtgag gtggtacaac cacaagtcgt
+    12481 ccaccacgcg gacgtcggcg tacggggtcc gctcctgggg gtcatcgctg taagggtggc
+    12541 aggtgacgtg gccgtcgaag aggctcgctt ccgccaccag gtcggcgccg tccgcgtggg
+    12601 cggggttgtg gatgcgcatc atctgcccgt cgaagggccg ccagtgcgca aggtcgacca
+    12661 gcttgacggg gagctcttcc agcgggacgt ccgattcgct ggggtcctcg tcggcccacg
+    12721 gcggcaggta tccggtgacg gtgatgccgc cagccgtgct gatatgccag gtgcggccca
+    12781 atgacgcggc cccttccggg agcggttgct gggcaggtgg tgcgacggtg tccggcttca
+    12841 gagccagtga ggtggtagtc aaggtgatct cctctgttgg gatgggaagt caagagaatt
+    12901 cggtgggcgt ggcggtgagg cagtggctgt gggcgcccgg gtggaaagcg aactcgcagc
+    12961 acccttcgcg tgattcggga tcgacgaacg ggcaatccgg tcggaggtcc agtgctgcag
+    13021 gggtgccgtc tgcccagcga gtccagatgg cgccggtggc cacgccgtcg agatccagca
+    13081 cgagggcgaa gtggtcccct ccgccgtggg cttgc
+//

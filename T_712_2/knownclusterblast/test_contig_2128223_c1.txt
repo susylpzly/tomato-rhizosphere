@@ -1,0 +1,40 @@
+ClusterBlast scores for test_contig_2128223
+
+Table of genes, locations, strands and annotations of query cluster:
+CCIMNIEH_2851447	24	426	+	unannotated protein	
+CCIMNIEH_2851448	569	1688	-	unannotated protein	
+CCIMNIEH_2851449	1712	2036	-	unannotated protein	
+CCIMNIEH_2851450	2037	3468	-	unannotated protein	
+CCIMNIEH_2851451	3564	5145	-	unannotated protein	
+CCIMNIEH_2851452	5670	7161	+	unannotated protein	
+CCIMNIEH_2851453	7299	8595	-	unannotated protein	
+CCIMNIEH_2851454	8591	9269	-	unannotated protein	
+CCIMNIEH_2851455	9258	10449	-	unannotated protein	
+
+
+Significant hits: 
+1. BGC0000413	pyoverdin
+
+
+Details:
+
+>>
+1. BGC0000413
+Source: pyoverdin
+Type: NRP
+Number of proteins with BLAST hits to this cluster: 9
+Cumulative BLAST score: 5345
+
+Table of genes, locations, strands and annotations of subject cluster:
+
+Table of Blast hits (query gene, subject gene, %identity, blast score, %coverage, e-value):
+CCIMNIEH_2851447	PFL_4116	67	172	99.24812030075188	5.2e-43
+CCIMNIEH_2851448	PFL_4117	87	674	100.0	9e-194
+CCIMNIEH_2851449	PFL_4118	91	215	100.0	4.3e-56
+CCIMNIEH_2851450	PFL_4119	87	846	100.21008403361344	2.9e-245
+CCIMNIEH_2851451	PFL_4120	83	898	100.0	7.1e-261
+CCIMNIEH_2851452	PFL_4130	93	918	100.0	6.2e-267
+CCIMNIEH_2851453	PFL_4132	75	653	101.85614849187937	3.2e-187
+CCIMNIEH_2851454	PFL_4133	71	310	100.0	2.1e-84
+CCIMNIEH_2851455	PFL_4134	87	659	100.0	3.2e-189
+

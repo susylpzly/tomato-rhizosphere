@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="230" width="800" viewBox="0 0 800 230" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="237,35 242,30 264,30 264,40 242,40 237,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1397296&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 3413 - 4430" locus_tag="CCIMNIEH_1397296" class="clusterblast-orf" id="dummy-1_q0_0_all"  />
+<polygon points="264,35 269,30 297,30 297,40 269,40 264,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1397297&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 4426 - 5686" locus_tag="CCIMNIEH_1397297" class="clusterblast-orf" id="dummy-1_q1_0_all"  />
+<polygon points="298,35 303,30 317,30 317,40 303,40 298,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1397298&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 5718 - 6465" locus_tag="CCIMNIEH_1397298" class="clusterblast-orf" id="dummy-1_q2_0_all"  />
+<polygon points="319,40 322,40 327,35 322,30 319,30 319,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1397299&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 6527 - 6851" locus_tag="CCIMNIEH_1397299" class="clusterblast-orf" id="dummy-1_q3_0_all"  />
+<polygon points="331,40 361,40 366,35 361,30 331,30 331,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1397300&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 6981 - 8340" locus_tag="CCIMNIEH_1397300" class="clusterblast-orf" id="dummy-1_q4_0_all"  />
+<polygon points="367,35 372,30 396,30 396,40 372,40 367,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1397301&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 8383 - 9478" locus_tag="CCIMNIEH_1397301" class="clusterblast-orf" id="dummy-1_q5_0_all"  />
+<polygon points="396,35 401,30 414,30 414,40 401,40 396,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1397302&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 9487 - 10168" locus_tag="CCIMNIEH_1397302" class="clusterblast-orf" id="dummy-1_q6_0_all"  />
+<polygon points="414,35 419,30 440,30 440,40 419,40 414,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1397303&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 10164 - 11172" locus_tag="CCIMNIEH_1397303" class="clusterblast-orf" id="dummy-1_q7_0_all"  />
+<polygon points="442,35 447,30 453,30 453,40 447,40 442,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1397304&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 11231 - 11678" locus_tag="CCIMNIEH_1397304" class="clusterblast-orf" id="dummy-1_q8_0_all"  />
+<polygon points="454,35 459,30 483,30 483,40 459,40 454,35 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1397305&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 11683 - 12823" locus_tag="CCIMNIEH_1397305" class="clusterblast-orf" id="dummy-1_q9_0_all"  />
+<polygon points="484,35 489,30 537,30 537,40 489,40 484,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1397306&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 12858 - 14883" locus_tag="CCIMNIEH_1397306" class="clusterblast-orf" id="dummy-1_q10_0_all"  />
+<polygon points="538,35 542,30 542,40 538,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1397307&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 14915 - 15074" locus_tag="CCIMNIEH_1397307" class="clusterblast-orf" id="dummy-1_q11_0_all"  />
+</g>
+<g label="BGC0000386" description="BGC0000386_c1: malleobactin A / malleobactin B / malleobactin C / malleobactin D (7% of genes show similarity), NRP:NRP siderophore" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://mibig.secondarymetabolites.org/go/BGC0000386/1" target="_blank">BGC0000386</a>:                malleobactin A / malleobactin B / malleobactin C / malleobactin D (7% of genes show similarity), NRP:NRP siderophore</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a1_000"  >
+<polygon points="0,85 5,80 5,80 5,90 5,90 0,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2264&lt;/b&gt;&lt;br&gt;Flp/Fap pilin component superfamily&lt;br&gt;Location: 30061 - 29843" locus_tag="BTH_II2264" class="clusterblast-orf" id="dummy-1_h1_1_0"  />
+</g>
+<g id="a1_001"  >
+<polygon points="8,85 12,80 12,90 8,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2263&lt;/b&gt;&lt;br&gt;PilA-related protein&lt;br&gt;Location: 29735 - 29565" locus_tag="BTH_II2263" class="clusterblast-orf" id="dummy-1_h1_1_1"  />
+</g>
+<g id="a1_002"  >
+<polygon points="41,90 69,90 74,85 69,80 41,80 41,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2262&lt;/b&gt;&lt;br&gt;membrane protein, putative&lt;br&gt;Location: 28461 - 27217" locus_tag="BTH_II2262" class="clusterblast-orf" id="dummy-1_h1_1_2"  />
+</g>
+<g id="a1_003"  >
+<polygon points="74,90 106,90 111,85 106,80 74,80 74,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2261&lt;/b&gt;&lt;br&gt;membrane protein, putative&lt;br&gt;Location: 27220 - 25796" locus_tag="BTH_II2261" class="clusterblast-orf" id="dummy-1_h1_1_3"  />
+</g>
+<g id="a1_004"  >
+<polygon points="111,90 133,90 138,85 133,80 111,80 111,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2260&lt;/b&gt;&lt;br&gt;Bactoprenol glucosyl transferase&lt;br&gt;Location: 25811 - 24750" locus_tag="BTH_II2260" class="clusterblast-orf" id="dummy-1_h1_1_4"  />
+</g>
+<g id="a1_005"  >
+<polygon points="139,90 154,90 159,85 154,80 139,80 139,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2259&lt;/b&gt;&lt;br&gt;Generic methyltransferase&lt;br&gt;Location: 24722 - 23976" locus_tag="BTH_II2259" class="clusterblast-orf" id="dummy-1_h1_1_5"  />
+</g>
+<g id="a1_006"  >
+<polygon points="159,90 164,90 169,85 164,80 159,80 159,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2258&lt;/b&gt;&lt;br&gt;GtrA-like protein family&lt;br&gt;Location: 23979 - 23593" locus_tag="BTH_II2258" class="clusterblast-orf" id="dummy-1_h1_1_6"  />
+</g>
+<g id="a1_007"  >
+<polygon points="172,90 172,90 177,85 172,80 172,80 172,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2257&lt;/b&gt;&lt;br&gt;glyoxalase family protein superfamily&lt;br&gt;Location: 23461 - 23267" locus_tag="BTH_II2257" class="clusterblast-orf" id="dummy-1_h1_1_7"  />
+</g>
+<g id="a1_008"  >
+<polygon points="177,85 182,80 203,80 203,90 182,90 177,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2256&lt;/b&gt;&lt;br&gt;transcriptional regulator, LysR family, putative&lt;br&gt;Location: 23291 - 22290" locus_tag="BTH_II2256" class="clusterblast-orf" id="dummy-1_h1_1_8"  />
+</g>
+<g id="a1_009"  >
+<polygon points="205,90 241,90 246,85 241,80 205,80 205,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2255&lt;/b&gt;&lt;br&gt;MlrC C-terminus family&lt;br&gt;Location: 22199 - 20622" locus_tag="BTH_II2255" class="clusterblast-orf" id="dummy-1_h1_1_9"  />
+</g>
+<g id="a1_0010"  >
+<polygon points="251,90 273,90 278,85 273,80 251,80 251,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2254&lt;/b&gt;&lt;br&gt;epoxide hydrolase&lt;br&gt;Location: 20443 - 19400" locus_tag="BTH_II2254" class="clusterblast-orf" id="dummy-1_h1_1_10"  />
+</g>
+<g id="a1_0011"  >
+<polygon points="279,90 287,90 292,85 287,80 279,80 279,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2253&lt;/b&gt;&lt;br&gt;cytochrome p460&lt;br&gt;Location: 19382 - 18870" locus_tag="BTH_II2253" class="clusterblast-orf" id="dummy-1_h1_1_11"  />
+</g>
+<g id="a1_0012"  >
+<polygon points="299,90 348,90 353,85 348,80 299,80 299,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2252&lt;/b&gt;&lt;br&gt;carbon starvation protein A&lt;br&gt;Location: 18611 - 16533" locus_tag="BTH_II2252" class="clusterblast-orf" id="dummy-1_h1_1_12"  />
+</g>
+<g id="a1_0013"  >
+<polygon points="354,90 354,90 359,85 354,80 354,80 354,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2251&lt;/b&gt;&lt;br&gt;Uncharacterized small protein&lt;br&gt;Location: 16520 - 16314" locus_tag="BTH_II2251" class="clusterblast-orf" id="dummy-1_h1_1_13"  />
+</g>
+<g id="a1_0014"  >
+<polygon points="364,85 369,80 375,80 375,90 369,90 364,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2250&lt;/b&gt;&lt;br&gt;conserved hypothetical protein&lt;br&gt;Location: 16144 - 15698" locus_tag="BTH_II2250" class="clusterblast-orf" id="dummy-1_h1_1_14"  />
+</g>
+<g id="a1_0015"  >
+<polygon points="383,85 388,80 427,80 427,90 388,90 383,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2249&lt;/b&gt;&lt;br&gt;glutamate-1-semialdehyde aminotransferase&lt;br&gt;Location: 15388 - 13715" locus_tag="BTH_II2249" class="clusterblast-orf" id="dummy-1_h1_1_15"  />
+</g>
+<g id="a1_0016"  >
+<polygon points="426,85 431,80 445,80 445,90 431,90 426,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2248&lt;/b&gt;&lt;br&gt;conserved hypothetical protein&lt;br&gt;Location: 13755 - 13036" locus_tag="BTH_II2248" class="clusterblast-orf" id="dummy-1_h1_1_16"  />
+</g>
+<g id="a1_0017"  >
+<polygon points="453,85 458,80 477,80 477,90 458,90 453,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2247&lt;/b&gt;&lt;br&gt;transcriptional regulator, LysR family&lt;br&gt;Location: 12740 - 11817" locus_tag="BTH_II2247" class="clusterblast-orf" id="dummy-1_h1_1_17"  />
+</g>
+<g id="a1_0018"  >
+<polygon points="490,85 495,80 506,80 506,90 495,90 490,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2246&lt;/b&gt;&lt;br&gt;ISBm1, transposase orfB, degenerate&lt;br&gt;Location: 11302 - 10691" locus_tag="BTH_II2246" class="clusterblast-orf" id="dummy-1_h1_1_18"  />
+</g>
+<g id="a1_0019"  >
+<polygon points="512,85 517,80 521,80 521,90 517,90 512,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2245&lt;/b&gt;&lt;br&gt;conserved hypothetical protein&lt;br&gt;Location: 10481 - 10128" locus_tag="BTH_II2245" class="clusterblast-orf" id="dummy-1_h1_1_19"  />
+</g>
+<g id="a1_0020"  >
+<polygon points="535,85 540,80 565,80 565,90 540,90 535,85 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2244&lt;/b&gt;&lt;br&gt;radical SAM domain protein&lt;br&gt;Location: 9579 - 8464&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1397305&lt;/b&gt;&lt;br&gt;Percentage identity: 57&lt;br&gt;Percentage coverage: 80&lt;br&gt;BLAST bit score: 363&lt;br&gt;E-value: 5.9e-100" locus_tag="BTH_II2244" class="clusterblast-orf" id="dummy-1_h1_1_20"  />
+</g>
+<g id="a1_0021"  >
+<polygon points="566,85 571,80 591,80 591,90 571,90 566,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2243&lt;/b&gt;&lt;br&gt;4-hydroxy-3-methylbut-2-enyl diphosphate reductase&lt;br&gt;Location: 8406 - 7465" locus_tag="BTH_II2243" class="clusterblast-orf" id="dummy-1_h1_1_21"  />
+</g>
+<g id="a1_0022"  >
+<polygon points="601,90 627,90 632,85 627,80 601,80 601,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2242&lt;/b&gt;&lt;br&gt;glycosyl transferase, group 2 family protein&lt;br&gt;Location: 7080 - 5887" locus_tag="BTH_II2242" class="clusterblast-orf" id="dummy-1_h1_1_22"  />
+</g>
+<g id="a1_0023"  >
+<polygon points="677,85 682,80 703,80 703,90 682,90 677,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2241&lt;/b&gt;&lt;br&gt;dihydroflavonol-4-reductase family protein&lt;br&gt;Location: 4172 - 3156&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1397303&lt;/b&gt;&lt;br&gt;Percentage identity: 46&lt;br&gt;Percentage coverage: 98&lt;br&gt;BLAST bit score: 274&lt;br&gt;E-value: 1.9e-73" locus_tag="BTH_II2241" class="clusterblast-orf" id="dummy-1_h1_1_23"  />
+</g>
+<g id="a1_0024"  >
+<polygon points="703,90 710,90 715,85 710,80 703,80 703,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2240&lt;/b&gt;&lt;br&gt;acylphosphatase&lt;br&gt;Location: 3175 - 2708" locus_tag="BTH_II2240" class="clusterblast-orf" id="dummy-1_h1_1_24"  />
+</g>
+<g id="a1_0025"  >
+<polygon points="715,90 733,90 738,85 733,80 715,80 715,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2239&lt;/b&gt;&lt;br&gt;rarD protein&lt;br&gt;Location: 2711 - 1818" locus_tag="BTH_II2239" class="clusterblast-orf" id="dummy-1_h1_1_25"  />
+</g>
+<g id="a1_0026"  >
+<polygon points="751,90 775,90 780,85 775,80 751,80 751,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;BTH_II2238&lt;/b&gt;&lt;br&gt;OpgC protein, putative&lt;br&gt;Location: 1350 - 250" locus_tag="BTH_II2238" class="clusterblast-orf" id="dummy-1_h1_1_26"  />
+</g>
+</svg>

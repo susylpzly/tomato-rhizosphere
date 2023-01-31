@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="450" width="800" viewBox="0 0 800 450" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="1,35 6,30 99,30 99,40 6,40 1,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1214108&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 0 - 915" locus_tag="CCIMNIEH_1214108" class="clusterblast-orf" id="knownclusterblast-1_q0_0_all"  />
+<polygon points="98,35 103,30 197,30 197,40 103,40 98,35 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1214109&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 911 - 1832" locus_tag="CCIMNIEH_1214109" class="clusterblast-orf" id="knownclusterblast-1_q1_0_all"  />
+<polygon points="200,35 205,30 244,30 244,40 205,40 200,35 " style="fill:#1515d8; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1214110&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 1856 - 2270" locus_tag="CCIMNIEH_1214110" class="clusterblast-orf" id="knownclusterblast-1_q2_0_all"  />
+<polygon points="246,35 251,30 386,30 386,40 251,40 246,35 " style="fill:#d815d8; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1214111&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 2280 - 3588" locus_tag="CCIMNIEH_1214111" class="clusterblast-orf" id="knownclusterblast-1_q3_0_all"  />
+<polygon points="386,35 391,30 437,30 437,40 391,40 386,35 " style="fill:#d8d815; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1214112&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 3584 - 4061" locus_tag="CCIMNIEH_1214112" class="clusterblast-orf" id="knownclusterblast-1_q4_0_all"  />
+<polygon points="467,40 518,40 523,35 518,30 467,30 467,40 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1214113&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 4341 - 4866" locus_tag="CCIMNIEH_1214113" class="clusterblast-orf" id="knownclusterblast-1_q5_0_all"  />
+<polygon points="523,35 528,30 564,30 564,40 528,40 523,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1214114&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 4866 - 5244" locus_tag="CCIMNIEH_1214114" class="clusterblast-orf" id="knownclusterblast-1_q6_0_all"  />
+<polygon points="590,40 647,40 652,35 647,30 590,30 590,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1214115&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 5483 - 6062" locus_tag="CCIMNIEH_1214115" class="clusterblast-orf" id="knownclusterblast-1_q7_0_all"  />
+<polygon points="673,40 732,40 737,35 732,30 673,30 673,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1214116&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 6259 - 6856" locus_tag="CCIMNIEH_1214116" class="clusterblast-orf" id="knownclusterblast-1_q8_0_all"  />
+<polygon points="737,40 776,40 781,35 776,30 737,30 737,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_1214117&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 6855 - 7260" locus_tag="CCIMNIEH_1214117" class="clusterblast-orf" id="knownclusterblast-1_q9_0_all"  />
+</g>
+<g label="BGC0000854" description="BGC0000854_c1: ectoine (83% of genes show similarity), Other" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://mibig.secondarymetabolites.org/go/BGC0000854/1" target="_blank">BGC0000854</a>:                                                                          ectoine (83% of genes show similarity), Other</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a1_000"  >
+<polygon points="65,85 70,80 168,80 168,90 70,90 65,85 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;AAY96769.2&lt;/b&gt;&lt;br&gt;putative ectoine hydroxylase&lt;br&gt;Location: 6879 - 5920&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214109&lt;/b&gt;&lt;br&gt;Percentage identity: 54&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 343&lt;br&gt;E-value: 3e-94" locus_tag="AAY96769.2" class="clusterblast-orf" id="knownclusterblast-1_all_1_1_0"  />
+</g>
+<g id="a1_001"  >
+<polygon points="207,85 212,80 362,80 362,90 212,90 207,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;AAY96773.1&lt;/b&gt;&lt;br&gt;aspartokinase&lt;br&gt;Location: 5559 - 4117&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214108&lt;/b&gt;&lt;br&gt;Percentage identity: 59&lt;br&gt;Percentage coverage: 99&lt;br&gt;BLAST bit score: 345&lt;br&gt;E-value: 7.8e-95" locus_tag="AAY96773.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_1_1"  />
+</g>
+<g id="a1_002"  >
+<polygon points="368,85 373,80 412,80 412,90 373,90 368,85 " style="fill:#1515d8; stroke-width:1; stroke:black; " description="&lt;b&gt;AAY96772.1&lt;/b&gt;&lt;br&gt;ectoine synthase&lt;br&gt;Location: 4056 - 3652&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214110&lt;/b&gt;&lt;br&gt;Percentage identity: 53&lt;br&gt;Percentage coverage: 96&lt;br&gt;BLAST bit score: 147&lt;br&gt;E-value: 1.4e-35" locus_tag="AAY96772.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_1_2"  />
+</g>
+<g id="a1_003"  >
+<polygon points="417,85 422,80 560,80 560,90 422,90 417,85 " style="fill:#d815d8; stroke-width:1; stroke:black; " description="&lt;b&gt;AAY96771.1&lt;/b&gt;&lt;br&gt;L-2,4-diaminobutyrat transaminase&lt;br&gt;Location: 3601 - 2270&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214111&lt;/b&gt;&lt;br&gt;Percentage identity: 61&lt;br&gt;Percentage coverage: 94&lt;br&gt;BLAST bit score: 518&lt;br&gt;E-value: 9.6e-147" locus_tag="AAY96771.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_1_3"  />
+</g>
+<g id="a1_004"  >
+<polygon points="565,85 570,80 620,80 620,90 570,90 565,85 " style="fill:#d8d815; stroke-width:1; stroke:black; " description="&lt;b&gt;AAY96770.1&lt;/b&gt;&lt;br&gt;L-2,4-diaminobutyrat acetyltransferase&lt;br&gt;Location: 2227 - 1709&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214112&lt;/b&gt;&lt;br&gt;Percentage identity: 51&lt;br&gt;Percentage coverage: 91&lt;br&gt;BLAST bit score: 160&lt;br&gt;E-value: 3.2e-39" locus_tag="AAY96770.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_1_4"  />
+</g>
+<g id="a1_005"  >
+<polygon points="656,90 709,90 714,85 709,80 656,80 656,90 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;ACP19701.1&lt;/b&gt;&lt;br&gt;transcriptional regulator MarR family&lt;br&gt;Location: 1381 - 839" locus_tag="ACP19701.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_1_5"  />
+</g>
+<g label="BGC0000860" description="BGC0000860_c1: ectoine (100% of genes show similarity), Other" class="clusterblast-cluster"  >
+<text x="5" y="120" class="clusterblast-acc"  >
+<a xlink:href="https://mibig.secondarymetabolites.org/go/BGC0000860/1" target="_blank">BGC0000860</a>:                                                                          ectoine (100% of genes show similarity), Other</text>
+<line x1="10" y1="135" x2="778.0" y2="135" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a1_000"  >
+<polygon points="152,135 157,130 302,130 302,140 157,140 152,135 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;ADA71977.1&lt;/b&gt;&lt;br&gt;aspartokinase&lt;br&gt;Location: 5134 - 3740&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214108&lt;/b&gt;&lt;br&gt;Percentage identity: 58&lt;br&gt;Percentage coverage: 99&lt;br&gt;BLAST bit score: 342&lt;br&gt;E-value: 5.1e-94" locus_tag="ADA71977.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_2_0"  />
+</g>
+<g id="a1_001"  >
+<polygon points="302,135 307,130 344,130 344,140 307,140 302,135 " style="fill:#1515d8; stroke-width:1; stroke:black; " description="&lt;b&gt;ADA71976.1&lt;/b&gt;&lt;br&gt;L-ectoine synthase&lt;br&gt;Location: 3737 - 3342&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214110&lt;/b&gt;&lt;br&gt;Percentage identity: 54&lt;br&gt;Percentage coverage: 94&lt;br&gt;BLAST bit score: 151&lt;br&gt;E-value: 9.7e-37" locus_tag="ADA71976.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_2_1"  />
+</g>
+<g id="a1_002"  >
+<polygon points="345,135 350,130 484,130 484,140 350,140 345,135 " style="fill:#d815d8; stroke-width:1; stroke:black; " description="&lt;b&gt;ADA71975.1&lt;/b&gt;&lt;br&gt;L-2,4-diaminobutyrate transaminase&lt;br&gt;Location: 3334 - 2042&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214111&lt;/b&gt;&lt;br&gt;Percentage identity: 57&lt;br&gt;Percentage coverage: 97&lt;br&gt;BLAST bit score: 483&lt;br&gt;E-value: 2.6e-136" locus_tag="ADA71975.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_2_2"  />
+</g>
+<g id="a1_003"  >
+<polygon points="490,135 495,130 549,130 549,140 495,140 490,135 " style="fill:#d8d815; stroke-width:1; stroke:black; " description="&lt;b&gt;ADA71974.1&lt;/b&gt;&lt;br&gt;L-2,4-diaminobutyric acid acetyltransferase&lt;br&gt;Location: 1986 - 1441&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214112&lt;/b&gt;&lt;br&gt;Percentage identity: 47&lt;br&gt;Percentage coverage: 96&lt;br&gt;BLAST bit score: 148&lt;br&gt;E-value: 1.2e-35" locus_tag="ADA71974.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_2_3"  />
+</g>
+<g id="a1_004"  >
+<polygon points="568,140 622,140 627,135 622,130 568,130 568,140 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;ADA71973.1&lt;/b&gt;&lt;br&gt;MarR family transcriptional regulator&lt;br&gt;Location: 1265 - 711&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214113&lt;/b&gt;&lt;br&gt;Percentage identity: 46&lt;br&gt;Percentage coverage: 87&lt;br&gt;BLAST bit score: 121&lt;br&gt;E-value: 1e-27" locus_tag="ADA71973.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_2_4"  />
+</g>
+<g label="BGC0000857" description="BGC0000857_c1: ectoine (80% of genes show similarity), Other" class="clusterblast-cluster"  >
+<text x="5" y="170" class="clusterblast-acc"  >
+<a xlink:href="https://mibig.secondarymetabolites.org/go/BGC0000857/1" target="_blank">BGC0000857</a>:                                                                          ectoine (80% of genes show similarity), Other</text>
+<line x1="10" y1="185" x2="778.0" y2="185" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a1_000"  >
+<polygon points="144,185 149,180 285,180 285,190 149,190 144,185 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;ABY40747.1&lt;/b&gt;&lt;br&gt;aspartokinase&lt;br&gt;Location: 4871 - 3558&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214108&lt;/b&gt;&lt;br&gt;Percentage identity: 59&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 345&lt;br&gt;E-value: 1e-94" locus_tag="ABY40747.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_3_0"  />
+</g>
+<g id="a1_001"  >
+<polygon points="293,185 298,180 336,180 336,190 298,190 293,185 " style="fill:#1515d8; stroke-width:1; stroke:black; " description="&lt;b&gt;ABY40746.1&lt;/b&gt;&lt;br&gt;ectoine synthase&lt;br&gt;Location: 3487 - 3083&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214110&lt;/b&gt;&lt;br&gt;Percentage identity: 52&lt;br&gt;Percentage coverage: 98&lt;br&gt;BLAST bit score: 149&lt;br&gt;E-value: 4.8e-36" locus_tag="ABY40746.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_3_1"  />
+</g>
+<g id="a1_002"  >
+<polygon points="341,185 346,180 484,180 484,190 346,190 341,185 " style="fill:#d815d8; stroke-width:1; stroke:black; " description="&lt;b&gt;ABY40745.1&lt;/b&gt;&lt;br&gt;L-2,4-diaminobutyrate aminotransferase&lt;br&gt;Location: 3037 - 1709&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214111&lt;/b&gt;&lt;br&gt;Percentage identity: 61&lt;br&gt;Percentage coverage: 95&lt;br&gt;BLAST bit score: 525&lt;br&gt;E-value: 6e-149" locus_tag="ABY40745.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_3_2"  />
+</g>
+<g id="a1_003"  >
+<polygon points="490,185 495,180 545,180 545,190 495,190 490,185 " style="fill:#d8d815; stroke-width:1; stroke:black; " description="&lt;b&gt;ABY40744.1&lt;/b&gt;&lt;br&gt;L-2,4-diaminobutyric acid acetyltransferase&lt;br&gt;Location: 1654 - 1136&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214112&lt;/b&gt;&lt;br&gt;Percentage identity: 52&lt;br&gt;Percentage coverage: 91&lt;br&gt;BLAST bit score: 163&lt;br&gt;E-value: 3.7e-40" locus_tag="ABY40744.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_3_3"  />
+</g>
+<g id="a1_004"  >
+<polygon points="574,190 630,190 635,185 630,180 574,180 574,190 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;ABY40743.1&lt;/b&gt;&lt;br&gt;putative transcriptional regulator&lt;br&gt;Location: 867 - 301" locus_tag="ABY40743.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_3_4"  />
+</g>
+<g label="BGC0000856" description="BGC0000856_c1: ectoine (100% of genes show similarity), Other" class="clusterblast-cluster"  >
+<text x="5" y="220" class="clusterblast-acc"  >
+<a xlink:href="https://mibig.secondarymetabolites.org/go/BGC0000856/1" target="_blank">BGC0000856</a>:                                                                          ectoine (100% of genes show similarity), Other</text>
+<line x1="10" y1="235" x2="778.0" y2="235" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a1_000"  >
+<polygon points="184,235 189,230 325,230 325,240 189,240 184,235 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;ABY40742.1&lt;/b&gt;&lt;br&gt;aspartokinase&lt;br&gt;Location: 4347 - 3034&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214108&lt;/b&gt;&lt;br&gt;Percentage identity: 57&lt;br&gt;Percentage coverage: 100&lt;br&gt;BLAST bit score: 329&lt;br&gt;E-value: 7.6e-90" locus_tag="ABY40742.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_4_0"  />
+</g>
+<g id="a1_001"  >
+<polygon points="339,235 344,230 383,230 383,240 344,240 339,235 " style="fill:#1515d8; stroke-width:1; stroke:black; " description="&lt;b&gt;ABY40741.1&lt;/b&gt;&lt;br&gt;ectoine synthase&lt;br&gt;Location: 2901 - 2497&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214110&lt;/b&gt;&lt;br&gt;Percentage identity: 49&lt;br&gt;Percentage coverage: 98&lt;br&gt;BLAST bit score: 144&lt;br&gt;E-value: 1.2e-34" locus_tag="ABY40741.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_4_1"  />
+</g>
+<g id="a1_002"  >
+<polygon points="390,235 395,230 534,230 534,240 395,240 390,235 " style="fill:#d815d8; stroke-width:1; stroke:black; " description="&lt;b&gt;ABY40740.1&lt;/b&gt;&lt;br&gt;L-2,4-diaminobutyrate aminotransferase&lt;br&gt;Location: 2425 - 1088&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214111&lt;/b&gt;&lt;br&gt;Percentage identity: 57&lt;br&gt;Percentage coverage: 95&lt;br&gt;BLAST bit score: 477&lt;br&gt;E-value: 2.5e-134" locus_tag="ABY40740.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_4_2"  />
+</g>
+<g id="a1_003"  >
+<polygon points="540,235 545,230 595,230 595,240 545,240 540,235 " style="fill:#d8d815; stroke-width:1; stroke:black; " description="&lt;b&gt;ABY40739.1&lt;/b&gt;&lt;br&gt;L-2,4-diaminobutyric acid acetyltransferase&lt;br&gt;Location: 1027 - 518&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214112&lt;/b&gt;&lt;br&gt;Percentage identity: 51&lt;br&gt;Percentage coverage: 91&lt;br&gt;BLAST bit score: 158&lt;br&gt;E-value: 7e-39" locus_tag="ABY40739.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_4_3"  />
+</g>
+<g label="BGC0000859" description="BGC0000859_c1: ectoine (100% of genes show similarity), Other" class="clusterblast-cluster"  >
+<text x="5" y="270" class="clusterblast-acc"  >
+<a xlink:href="https://mibig.secondarymetabolites.org/go/BGC0000859/1" target="_blank">BGC0000859</a>:                                                                          ectoine (100% of genes show similarity), Other</text>
+<line x1="10" y1="285" x2="778.0" y2="285" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a1_000"  >
+<polygon points="226,285 231,280 294,280 294,290 231,290 226,285 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;ACB30333.1&lt;/b&gt;&lt;br&gt;aspartokinase&lt;br&gt;Location: 3305 - 2667&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214108&lt;/b&gt;&lt;br&gt;Percentage identity: 49&lt;br&gt;Percentage coverage: 70&lt;br&gt;BLAST bit score: 203&lt;br&gt;E-value: 4.8e-52" locus_tag="ACB30333.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_5_0"  />
+</g>
+<g id="a1_001"  >
+<polygon points="301,285 306,280 344,280 344,290 306,290 301,285 " style="fill:#1515d8; stroke-width:1; stroke:black; " description="&lt;b&gt;ACB30332.1&lt;/b&gt;&lt;br&gt;ectoine synthase&lt;br&gt;Location: 2607 - 2203&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214110&lt;/b&gt;&lt;br&gt;Percentage identity: 52&lt;br&gt;Percentage coverage: 96&lt;br&gt;BLAST bit score: 146&lt;br&gt;E-value: 2.4e-35" locus_tag="ACB30332.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_5_1"  />
+</g>
+<g id="a1_002"  >
+<polygon points="350,285 355,280 493,280 493,290 355,290 350,285 " style="fill:#d815d8; stroke-width:1; stroke:black; " description="&lt;b&gt;ACB30331.1&lt;/b&gt;&lt;br&gt;L-2,4-diaminobutyric acid aminotransferase&lt;br&gt;Location: 2151 - 820&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214111&lt;/b&gt;&lt;br&gt;Percentage identity: 61&lt;br&gt;Percentage coverage: 94&lt;br&gt;BLAST bit score: 517&lt;br&gt;E-value: 2.1e-146" locus_tag="ACB30331.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_5_2"  />
+</g>
+<g id="a1_003"  >
+<polygon points="497,285 502,280 553,280 553,290 502,290 497,285 " style="fill:#d8d815; stroke-width:1; stroke:black; " description="&lt;b&gt;ACB30330.1&lt;/b&gt;&lt;br&gt;L-2,4-diaminobutyric acid acetyltransferase&lt;br&gt;Location: 777 - 259&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214112&lt;/b&gt;&lt;br&gt;Percentage identity: 51&lt;br&gt;Percentage coverage: 91&lt;br&gt;BLAST bit score: 158&lt;br&gt;E-value: 7e-39" locus_tag="ACB30330.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_5_3"  />
+</g>
+<g label="BGC0000853" description="BGC0000853_c1: ectoine (75% of genes show similarity), Other" class="clusterblast-cluster"  >
+<text x="5" y="320" class="clusterblast-acc"  >
+<a xlink:href="https://mibig.secondarymetabolites.org/go/BGC0000853/1" target="_blank">BGC0000853</a>:                                                                          ectoine (75% of genes show similarity), Other</text>
+<line x1="10" y1="335" x2="778.0" y2="335" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a1_000"  >
+<polygon points="210,335 215,330 306,330 306,340 215,340 210,335 " style="fill:#15d815; stroke-width:1; stroke:black; " description="&lt;b&gt;AAS02097.1&lt;/b&gt;&lt;br&gt;ThpD&lt;br&gt;Location: 3345 - 2452&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214109&lt;/b&gt;&lt;br&gt;Percentage identity: 48&lt;br&gt;Percentage coverage: 93&lt;br&gt;BLAST bit score: 279&lt;br&gt;E-value: 5.3e-75" locus_tag="AAS02097.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_6_0"  />
+</g>
+<g id="a1_001"  >
+<polygon points="307,335 312,330 350,330 350,340 312,340 307,335 " style="fill:#1515d8; stroke-width:1; stroke:black; " description="&lt;b&gt;AAS02096.1&lt;/b&gt;&lt;br&gt;ThpC&lt;br&gt;Location: 2445 - 2047&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214110&lt;/b&gt;&lt;br&gt;Percentage identity: 52&lt;br&gt;Percentage coverage: 92&lt;br&gt;BLAST bit score: 138&lt;br&gt;E-value: 6.5e-33" locus_tag="AAS02096.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_6_1"  />
+</g>
+<g id="a1_002"  >
+<polygon points="359,335 364,330 495,330 495,340 364,340 359,335 " style="fill:#d815d8; stroke-width:1; stroke:black; " description="&lt;b&gt;AAS02095.1&lt;/b&gt;&lt;br&gt;ThpB&lt;br&gt;Location: 1960 - 698&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214111&lt;/b&gt;&lt;br&gt;Percentage identity: 55&lt;br&gt;Percentage coverage: 95&lt;br&gt;BLAST bit score: 445&lt;br&gt;E-value: 1e-124" locus_tag="AAS02095.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_6_2"  />
+</g>
+<g id="a1_003"  >
+<polygon points="512,335 517,330 569,330 569,340 517,340 512,335 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;AAS02094.1&lt;/b&gt;&lt;br&gt;ThpA&lt;br&gt;Location: 539 - 9" locus_tag="AAS02094.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_6_3"  />
+</g>
+<g label="BGC0000855" description="BGC0000855_c1: ectoine (75% of genes show similarity), Other" class="clusterblast-cluster"  >
+<text x="5" y="370" class="clusterblast-acc"  >
+<a xlink:href="https://mibig.secondarymetabolites.org/go/BGC0000855/1" target="_blank">BGC0000855</a>:                                                                          ectoine (75% of genes show similarity), Other</text>
+<line x1="10" y1="385" x2="778.0" y2="385" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a1_000"  >
+<polygon points="217,385 222,380 266,380 266,390 222,390 217,385 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;ABB30173.1&lt;/b&gt;&lt;br&gt;hypothetical protein&lt;br&gt;Location: 3455 - 3000" locus_tag="ABB30173.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_7_0"  />
+</g>
+<g id="a1_001"  >
+<polygon points="301,385 306,380 344,380 344,390 306,390 301,385 " style="fill:#1515d8; stroke-width:1; stroke:black; " description="&lt;b&gt;ABB30172.1&lt;/b&gt;&lt;br&gt;ectoine synthase&lt;br&gt;Location: 2673 - 2269&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214110&lt;/b&gt;&lt;br&gt;Percentage identity: 50&lt;br&gt;Percentage coverage: 96&lt;br&gt;BLAST bit score: 142&lt;br&gt;E-value: 5.9e-34" locus_tag="ABB30172.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_7_1"  />
+</g>
+<g id="a1_002"  >
+<polygon points="363,385 368,380 504,380 504,390 368,390 363,385 " style="fill:#d815d8; stroke-width:1; stroke:black; " description="&lt;b&gt;ABB30171.1&lt;/b&gt;&lt;br&gt;L-2,4-diaminobutyric acid acetyl transferase&lt;br&gt;Location: 2098 - 788&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214111&lt;/b&gt;&lt;br&gt;Percentage identity: 59&lt;br&gt;Percentage coverage: 95&lt;br&gt;BLAST bit score: 504&lt;br&gt;E-value: 1.4e-142" locus_tag="ABB30171.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_7_2"  />
+</g>
+<g id="a1_003"  >
+<polygon points="509,385 514,380 562,380 562,390 514,390 509,385 " style="fill:#d8d815; stroke-width:1; stroke:black; " description="&lt;b&gt;ABB30170.1&lt;/b&gt;&lt;br&gt;L-2,4-diaminobutyric acid acetyl transferase&lt;br&gt;Location: 740 - 246&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214112&lt;/b&gt;&lt;br&gt;Percentage identity: 55&lt;br&gt;Percentage coverage: 91&lt;br&gt;BLAST bit score: 163&lt;br&gt;E-value: 2.2e-40" locus_tag="ABB30170.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_7_3"  />
+</g>
+<g label="BGC0000852" description="BGC0000852_c1: ectoine (66% of genes show similarity), Other" class="clusterblast-cluster"  >
+<text x="5" y="420" class="clusterblast-acc"  >
+<a xlink:href="https://mibig.secondarymetabolites.org/go/BGC0000852/1" target="_blank">BGC0000852</a>:                                                                          ectoine (66% of genes show similarity), Other</text>
+<line x1="10" y1="435" x2="778.0" y2="435" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a1_000"  >
+<polygon points="259,435 264,430 302,430 302,440 264,440 259,435 " style="fill:#1515d8; stroke-width:1; stroke:black; " description="&lt;b&gt;AAK12085.1&lt;/b&gt;&lt;br&gt;EctC&lt;br&gt;Location: 2854 - 2450&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214110&lt;/b&gt;&lt;br&gt;Percentage identity: 50&lt;br&gt;Percentage coverage: 91&lt;br&gt;BLAST bit score: 124&lt;br&gt;E-value: 1.3e-28" locus_tag="AAK12085.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_8_0"  />
+</g>
+<g id="a1_001"  >
+<polygon points="319,435 324,430 457,430 457,440 324,440 319,435 " style="fill:#d815d8; stroke-width:1; stroke:black; " description="&lt;b&gt;AAK12084.1&lt;/b&gt;&lt;br&gt;EctB&lt;br&gt;Location: 2290 - 1010&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_1214111&lt;/b&gt;&lt;br&gt;Percentage identity: 51&lt;br&gt;Percentage coverage: 97&lt;br&gt;BLAST bit score: 423&lt;br&gt;E-value: 3.2e-118" locus_tag="AAK12084.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_8_1"  />
+</g>
+<g id="a1_002"  >
+<polygon points="462,435 467,430 520,430 520,440 467,440 462,435 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;AAK12083.1&lt;/b&gt;&lt;br&gt;EctA&lt;br&gt;Location: 958 - 416" locus_tag="AAK12083.1" class="clusterblast-orf" id="knownclusterblast-1_all_1_8_2"  />
+</g>
+</svg>

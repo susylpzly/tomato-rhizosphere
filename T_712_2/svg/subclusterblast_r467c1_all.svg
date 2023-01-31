@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="50" width="800" viewBox="0 0 800 50" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="0,40 98,40 103,35 98,30 0,30 0,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_683281&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 1 - 2434" locus_tag="CCIMNIEH_683281" class="clusterblast-orf" id="subclusterblast-1_q0_0_all"  />
+<polygon points="107,40 184,40 189,35 184,30 107,30 107,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_683282&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 2517 - 4443" locus_tag="CCIMNIEH_683282" class="clusterblast-orf" id="subclusterblast-1_q1_0_all"  />
+<polygon points="190,35 195,30 260,30 260,40 195,40 190,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_683283&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 4478 - 6113" locus_tag="CCIMNIEH_683283" class="clusterblast-orf" id="subclusterblast-1_q2_0_all"  />
+<polygon points="265,35 270,30 328,30 328,40 270,40 265,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_683284&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 6235 - 7714" locus_tag="CCIMNIEH_683284" class="clusterblast-orf" id="subclusterblast-1_q3_0_all"  />
+<polygon points="348,40 395,40 400,35 395,30 348,30 348,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_683285&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 8187 - 9408" locus_tag="CCIMNIEH_683285" class="clusterblast-orf" id="subclusterblast-1_q4_0_all"  />
+<polygon points="443,40 472,40 477,35 472,30 443,30 443,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_683286&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 10418 - 11207" locus_tag="CCIMNIEH_683286" class="clusterblast-orf" id="subclusterblast-1_q5_0_all"  />
+<polygon points="479,40 509,40 514,35 509,30 479,30 479,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_683287&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 11264 - 12077" locus_tag="CCIMNIEH_683287" class="clusterblast-orf" id="subclusterblast-1_q6_0_all"  />
+<polygon points="516,40 775,40 780,35 775,30 516,30 516,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_683288&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 12122 - 18335" locus_tag="CCIMNIEH_683288" class="clusterblast-orf" id="subclusterblast-1_q7_0_all"  />
+</g>
+</svg>

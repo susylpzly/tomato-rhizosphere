@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript" src="../../js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript" >
+var counter = 1;
+function addInput(divName){
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = "<b>Locus " + (counter + 1) + "</b><br> GenBank accession: <input type='text' required name='myInputs[]'> Start nt: <input type='number' name='myStartCoords[]' placeholder='N/A'> End nt: <input type='number' name='myEndCoords[]' placeholder='N/A'> <br><br>";
+     document.getElementById(divName).appendChild(newdiv);
+     counter++;
+}
+</script>
+
+<script>
+$(document).ready(function()
+    {
+        $("#myTable").tablesorter();
+    }
+);
+
+</script>
+<style>
+table {
+    border-width: thin;
+    border-spacing: 2px;
+    border-style: none;
+    border-color: black;
+}
+</style>
+</head>
+<body>
+    <table id="myTable" class="tablesorter" border=1>
+    <thead>
+    <tr>
+        <th>MIBiG Protein</th>
+        <th>Description</th>
+        <th>MIBiG Cluster</th>
+        <th>MiBiG Product</th>
+        <th>% ID</th>
+        <th>% Coverage</th>
+        <th>BLAST Score</th>
+        <th>E-value</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+          <tr>
+              <td>ADK32555.1</td>
+              <td>lantibiotic_dehydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000529/1">BGC0000529</a></td>
+              <td>RiPP:Lanthipeptide</td>
+              <td>31.0</td>
+              <td>91.9</td>
+              <td>292.0</td>
+              <td>3.3e-78</td>
+          </tr>
+    
+          <tr>
+              <td>CCQ18696.1</td>
+              <td>lantibiotic_dehydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000544/1">BGC0000544</a></td>
+              <td>RiPP:Lanthipeptide</td>
+              <td>30.0</td>
+              <td>104.3</td>
+              <td>269.0</td>
+              <td>3e-71</td>
+          </tr>
+    
+          <tr>
+              <td>ADM69294.1</td>
+              <td>dehydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001727/1">BGC0001727</a></td>
+              <td>RiPP</td>
+              <td>28.0</td>
+              <td>89.2</td>
+              <td>241.0</td>
+              <td>6.6e-63</td>
+          </tr>
+    
+          <tr>
+              <td>ALR96370.1</td>
+              <td>lanthionine_biosynthesis_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001289/1">BGC0001289</a></td>
+              <td>RiPP</td>
+              <td>28.0</td>
+              <td>90.6</td>
+              <td>231.0</td>
+              <td>5.2e-60</td>
+          </tr>
+    
+          <tr>
+              <td>AHF21234.1</td>
+              <td>PabB</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000542/1">BGC0000542</a></td>
+              <td>RiPP:Lanthipeptide</td>
+              <td>27.0</td>
+              <td>89.0</td>
+              <td>223.0</td>
+              <td>1.4e-57</td>
+          </tr>
+    
+          <tr>
+              <td>AFW17835.1</td>
+              <td>PaeB</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000541/1">BGC0000541</a></td>
+              <td>RiPP:Lanthipeptide</td>
+              <td>26.0</td>
+              <td>89.8</td>
+              <td>204.0</td>
+              <td>6.8e-52</td>
+          </tr>
+    
+          <tr>
+              <td>ABO65650.1</td>
+              <td>dehydratase</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000515/1">BGC0000515</a></td>
+              <td>RiPP:Lanthipeptide</td>
+              <td>22.0</td>
+              <td>88.2</td>
+              <td>144.0</td>
+              <td>6.4e-34</td>
+          </tr>
+    
+          <tr>
+              <td>ASY03218.1</td>
+              <td>NsoB</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0001701/1">BGC0001701</a></td>
+              <td>RiPP</td>
+              <td>21.0</td>
+              <td>86.1</td>
+              <td>123.0</td>
+              <td>1.5e-27</td>
+          </tr>
+    
+          <tr>
+              <td>AEK64491.1</td>
+              <td>EtnB</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000506/1">BGC0000506</a></td>
+              <td>RiPP:Lanthipeptide</td>
+              <td>22.0</td>
+              <td>84.3</td>
+              <td>122.0</td>
+              <td>4.5e-27</td>
+          </tr>
+    
+          <tr>
+              <td>EMC15124.1</td>
+              <td>hypothetical_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000530/1">BGC0000530</a></td>
+              <td>RiPP:Lanthipeptide</td>
+              <td>21.0</td>
+              <td>85.8</td>
+              <td>121.0</td>
+              <td>7.6e-27</td>
+          </tr>
+    
+          <tr>
+              <td>AGL93173.1</td>
+              <td>lanthionine_synthetase_B-like_protein</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000560/1">BGC0000560</a></td>
+              <td>RiPP:Lanthipeptide</td>
+              <td>22.0</td>
+              <td>84.4</td>
+              <td>120.0</td>
+              <td>1.3e-26</td>
+          </tr>
+    
+          <tr>
+              <td>AAB91586.1</td>
+              <td>SpaB</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000559/1">BGC0000559</a></td>
+              <td>RiPP:Lanthipeptide</td>
+              <td>22.0</td>
+              <td>85.2</td>
+              <td>116.0</td>
+              <td>1.9e-25</td>
+          </tr>
+    
+          <tr>
+              <td>AAD56144.1</td>
+              <td>MutB</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000533/1">BGC0000533</a></td>
+              <td>RiPP:Lanthipeptide</td>
+              <td>21.0</td>
+              <td>86.0</td>
+              <td>113.0</td>
+              <td>2.7e-24</td>
+          </tr>
+    
+          <tr>
+              <td>AAG48566.1</td>
+              <td>MutB</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000531/1">BGC0000531</a></td>
+              <td>RiPP:Lanthipeptide</td>
+              <td>21.0</td>
+              <td>85.6</td>
+              <td>111.0</td>
+              <td>7.9e-24</td>
+          </tr>
+    
+          <tr>
+              <td>AAL15564.1</td>
+              <td>putative_SpaB</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000511/1">BGC0000511</a></td>
+              <td>RiPP:Lanthipeptide</td>
+              <td>22.0</td>
+              <td>84.4</td>
+              <td>110.0</td>
+              <td>1.3e-23</td>
+          </tr>
+    
+          <tr>
+              <td>AFS60102.1</td>
+              <td>PaenB</td>
+              <td><a href="https://mibig.secondarymetabolites.org/go/BGC0000540/1">BGC0000540</a></td>
+              <td>RiPP:Lanthipeptide</td>
+              <td>22.0</td>
+              <td>92.7</td>
+              <td>101.0</td>
+              <td>8.2e-21</td>
+          </tr>
+    
+    </tbody>
+  </table>
+</body>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" height="230" width="800" viewBox="0 0 800 230" preserveAspectRatio="none"  >
+<g label="Query sequence" class="clusterblast-cluster"  >
+<text x="5" y="20" class="clusterblast-acc"  >
+Query sequence</text>
+<line x1="10" y1="35" x2="778.0" y2="35" style="stroke-width:1; stroke:grey; "  />
+<polygon points="0,40 64,40 69,35 64,30 0,30 0,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_455975&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 39863 - 40886" locus_tag="CCIMNIEH_455975" class="clusterblast-orf" id="dummy-1_q0_0_all"  />
+<polygon points="68,40 203,40 208,35 203,30 68,30 68,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_455976&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 40878 - 42963" locus_tag="CCIMNIEH_455976" class="clusterblast-orf" id="dummy-1_q1_0_all"  />
+<polygon points="238,40 250,40 255,35 250,30 238,30 238,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_455977&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 43404 - 43659" locus_tag="CCIMNIEH_455977" class="clusterblast-orf" id="dummy-1_q2_0_all"  />
+<polygon points="259,40 350,40 355,35 350,30 259,30 259,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_455978&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 43716 - 45159" locus_tag="CCIMNIEH_455978" class="clusterblast-orf" id="dummy-1_q3_0_all"  />
+<polygon points="359,40 393,40 398,35 393,30 359,30 359,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_455979&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 45213 - 45789" locus_tag="CCIMNIEH_455979" class="clusterblast-orf" id="dummy-1_q4_0_all"  />
+<polygon points="408,40 426,40 431,35 426,30 408,30 408,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_455980&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 45946 - 46285" locus_tag="CCIMNIEH_455980" class="clusterblast-orf" id="dummy-1_q5_0_all"  />
+<polygon points="432,40 522,40 527,35 522,30 432,30 432,40 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_455981&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 46298 - 47723" locus_tag="CCIMNIEH_455981" class="clusterblast-orf" id="dummy-1_q6_0_all"  />
+<polygon points="570,35 575,30 633,30 633,40 575,40 570,35 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_455982&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 48358 - 49306" locus_tag="CCIMNIEH_455982" class="clusterblast-orf" id="dummy-1_q7_0_all"  />
+<polygon points="637,35 642,30 676,30 676,40 642,40 637,35 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_455983&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 49353 - 49935" locus_tag="CCIMNIEH_455983" class="clusterblast-orf" id="dummy-1_q8_0_all"  />
+<polygon points="675,35 680,30 780,30 780,40 680,40 675,35 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;CCIMNIEH_455984&lt;/b&gt;&lt;br&gt;unannotated protein&lt;br&gt;Location: 49931 - 51494" locus_tag="CCIMNIEH_455984" class="clusterblast-orf" id="dummy-1_q9_0_all"  />
+</g>
+<g label="BGC0000656" description="BGC0000656_c1: zeaxanthin (66% of genes show similarity), Terpene" class="clusterblast-cluster"  >
+<text x="5" y="70" class="clusterblast-acc"  >
+<a xlink:href="https://mibig.secondarymetabolites.org/go/BGC0000656/1" target="_blank">BGC0000656</a>:                                                                       zeaxanthin (66% of genes show similarity), Terpene</text>
+<line x1="10" y1="85" x2="778.0" y2="85" style="stroke-width:1; stroke:grey; "  />
+</g>
+<g id="a1_000"  >
+<polygon points="269,85 274,80 331,80 331,90 274,90 269,85 " style="fill:#d81515; stroke-width:1; stroke:black; " description="&lt;b&gt;AAL02001.1&lt;/b&gt;&lt;br&gt;phytoene synthase&lt;br&gt;Location: 3770 - 2835&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_455982&lt;/b&gt;&lt;br&gt;Percentage identity: 46&lt;br&gt;Percentage coverage: 96&lt;br&gt;BLAST bit score: 233&lt;br&gt;E-value: 4.5e-61" locus_tag="AAL02001.1" class="clusterblast-orf" id="dummy-1_h1_4_0"  />
+</g>
+<g id="a1_001"  >
+<polygon points="331,85 336,80 433,80 433,90 336,90 331,85 " style="fill:#15d8d8; stroke-width:1; stroke:black; " description="&lt;b&gt;AAL02000.1&lt;/b&gt;&lt;br&gt;phytoene dehydrogenase&lt;br&gt;Location: 2838 - 1324&lt;br&gt;&lt;br&gt;&lt;b&gt;BlastP hit with CCIMNIEH_455984&lt;/b&gt;&lt;br&gt;Percentage identity: 59&lt;br&gt;Percentage coverage: 94&lt;br&gt;BLAST bit score: 589&lt;br&gt;E-value: 5.3e-168" locus_tag="AAL02000.1" class="clusterblast-orf" id="dummy-1_h1_4_1"  />
+</g>
+<g id="a1_002"  >
+<polygon points="433,85 438,80 510,80 510,90 438,90 433,85 " style="fill:white; stroke-width:1; stroke:black; " description="&lt;b&gt;AAL01999.1&lt;/b&gt;&lt;br&gt;lycopene cyclase&lt;br&gt;Location: 1327 - 170" locus_tag="AAL01999.1" class="clusterblast-orf" id="dummy-1_h1_4_2"  />
+</g>
+</svg>

@@ -1,0 +1,15 @@
+ClusterBlast scores for test_contig_1275357
+
+Table of genes, locations, strands and annotations of query cluster:
+CCIMNIEH_1718461	209	1073	-	unannotated protein	
+CCIMNIEH_1718462	1218	1470	-	unannotated protein	
+CCIMNIEH_1718463	2013	2952	+	unannotated protein	
+CCIMNIEH_1718464	2948	4400	+	unannotated protein	
+CCIMNIEH_1718465	4427	4862	-	unannotated protein	
+CCIMNIEH_1718466	5102	5495	-	unannotated protein	
+
+
+Significant hits: 
+
+
+Details:
