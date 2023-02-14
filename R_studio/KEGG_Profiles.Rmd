@@ -192,7 +192,7 @@ df_info_kegg_plant <- df_info_kegg[df_info_kegg$Treatment!= 'EP',]
 
 # VIGS dataset with strigolactones concentrations information 
 ```{r}
-VIGS_meta <- read.csv("VIGS_meta.csv")
+VIGS_meta <- read.csv("../VIGS_meta.csv")
 VIGS_meta <- subset(VIGS_meta, select = -c(X))
 ```
 
@@ -224,7 +224,7 @@ rownames(VIGS_filt) <- VIGS_filt$Sample_ID
 library("readxl")
 
 
-ass_stats <- as.data.frame(read_excel('./assemblynode_commitment.xlsx', sheet='Sheet2'))
+ass_stats <- as.data.frame(read_excel('../assemblynode_commitment.xlsx', sheet='Sheet2'))
 ass_stats_samples <- ass_stats[1:54,]
 ass_stats_samples <- ass_stats_samples[order(ass_stats_samples$sample),]
 rownames(ass_stats_samples) <- ass_stats_samples$sample
@@ -801,50 +801,14 @@ KO_deseq_712 <- setDT(as.data.frame(KO_deseq_712), keep.rownames = "X")
 
 KO_deseq_712_long <- pivot_longer(KO_deseq_712,names_to="Sample",values_to="Counts", -X)
 KO_deseq_712_long
-KO_deseq_712_longer <- merge(KO_deseq_712_long, VIGS_712_long, by='Sample')
-KO_deseq_712_longer
-summary(KO_deseq_712_longer)
+# KO_deseq_712_longer <- merge(KO_deseq_712_long, VIGS_712_long, by='Sample')
+# KO_deseq_712_longer
+# summary(KO_deseq_712_longer)
 
 T_KO_des_712 <- as.data.frame(t(KO_deseq_712))
 T_KO_des_712
-VIGS_712$Orb_pmol_ml_g[which(VIGS_712$Sample_ID %in% KO_deseq_712_long$Sample)]
 ```
 
-# Correlation plots
-
-```{r}
-df_712 <- MSL_dds_712_clr
-df_712 <- df_kegg[,df_info_kegg$Treatment == '712']
-sInfo_712 <- sInfo[sInfo$group %in% c("T_712"),]
-VIGS_712 <- VIGS_filt[VIGS_filt$VIGS_gene == 'CYP712',]
-T_VIGS_712 <- as.data.frame(t(VIGS_712))
-colnames(T_VIGS_712) <- T_VIGS_712[1,]
-T_VIGS_712 <- T_VIGS_712[-1, ] 
-T_VIGS_712 <- T_VIGS_712[4,]
-T_VIGS_712
-
-VIGS_712_long <- setDT(as.data.frame(T_VIGS_712), keep.rownames = "X")
-VIGS_712_long <- pivot_longer(VIGS_712_long,names_to="Sample",values_to="OrobancholConc", -X)
-VIGS_712_long <- VIGS_712_long[,c('Sample',"OrobancholConc")]
-VIGS_712_long_num <- as.data.frame(apply(VIGS_712_long, 2, as.numeric))
-VIGS_712_long$OrobancholConc <- VIGS_712_long_num$OrobancholConc
-VIGS_712_long
-summary(VIGS_712_long)
-
-# df_712
-# 
-# ggplot(data = T_KO_des_712) +
-#   geom_point(mapping = aes(x = VIGS_712$Orb_pmol_ml_g, y = 'K00010'))
-
-corr_plot <- ggplot(data = KO_deseq_712_longer, aes(x = OrobancholConc, y = Counts)) +
-  geom_point() +
-  facet_wrap(~ X, nrow = 16, ncol = 8)
-
-#View(corr_plot) on console to download and be able to visualize image 
-
-# ggplot(data = KO_deseq_712_longer) +
-#   geom_point(mapping=aes(y = 'Sample', x = 'Counts'))
-```
 
 
 ## MaAslin2
@@ -929,7 +893,9 @@ reference = c("T_GUS"))
 
 ```{r}
 ggplot(MSLfilt_712_clrlm$results, aes(y=-log10(pval), x=coef, color=qval<0.05 & (coef>1 | coef< -1))) + 
-  geom_point() 
+  geom_point() +
+  #geom_label(data=MSLfilt_712_clrlm$results %>% filter(qval<0.05 & (coef>1 | coef< -1)), aes(label=MSLfilt_712_clrlm$results$feature))
+  geom_text(data=subset(MSLfilt_712_clrlm$results, qval<0.05 & (coef>1 | coef< -1)),  aes(label=MSLfilt_712_clrlm$results$feature), hjust=0, vjust=0)
 ```
 
 
@@ -970,6 +936,48 @@ MSL_dds_all$KOs[which(MSL_dds_all$KOs %in% list_MSL_dds_712_cssnb)]
 
 MSLfilt_712_clrlm$results$feature[which(MSLclrlm_712 %in% MSLcssnb_712)] #33
 MSLfilt_712_cssnb$results$feature[which(MSLcssnb_712 %in% MSLclrlm_712)] #33
+```
+
+
+
+
+# Correlation plots
+
+```{r}
+df_712 <- MSL_dds_712_clr
+df_712 <- df_kegg[,df_info_kegg$Treatment == '712']
+sInfo_712 <- sInfo[sInfo$group %in% c("T_712"),]
+VIGS_712 <- VIGS_filt[VIGS_filt$VIGS_gene == 'CYP712',]
+T_VIGS_712 <- as.data.frame(t(VIGS_712))
+colnames(T_VIGS_712) <- T_VIGS_712[1,]
+T_VIGS_712 <- T_VIGS_712[-1, ] 
+T_VIGS_712 <- T_VIGS_712[4,]
+T_VIGS_712
+
+VIGS_712$Orb_pmol_ml_g[which(VIGS_712$Sample_ID %in% KO_deseq_712_long$Sample)]
+
+
+VIGS_712_long <- setDT(as.data.frame(T_VIGS_712), keep.rownames = "X")
+VIGS_712_long <- pivot_longer(VIGS_712_long,names_to="Sample",values_to="OrobancholConc", -X)
+VIGS_712_long <- VIGS_712_long[,c('Sample',"OrobancholConc")]
+VIGS_712_long_num <- as.data.frame(apply(VIGS_712_long, 2, as.numeric))
+VIGS_712_long$OrobancholConc <- VIGS_712_long_num$OrobancholConc
+VIGS_712_long
+summary(VIGS_712_long)
+
+# df_712
+# 
+# ggplot(data = T_KO_des_712) +
+#   geom_point(mapping = aes(x = VIGS_712$Orb_pmol_ml_g, y = 'K00010'))
+
+corr_plot <- ggplot(data = KO_deseq_712_longer, aes(x = OrobancholConc, y = Counts)) +
+  geom_point() +
+  facet_wrap(~ X, nrow = 16, ncol = 8)
+
+#View(corr_plot) on console to download and be able to visualize image 
+
+# ggplot(data = KO_deseq_712_longer) +
+#   geom_point(mapping=aes(y = 'Sample', x = 'Counts'))
 ```
 
 
